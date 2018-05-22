@@ -1,7 +1,7 @@
 call plug#begin()
 
 Plug 'easymotion/vim-easymotion'
-Plug 'rstacruz/sparkup'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'tomtom/tcomment_vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-syntastic/syntastic'
