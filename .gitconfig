@@ -1,0 +1,9 @@
+[user]
+	email = sorkh.shahin@hotmail.com
+	name = Shahin Sorkh
+[push]
+	default = simple
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[core]
+	editor = vim
