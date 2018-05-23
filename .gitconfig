@@ -7,3 +7,5 @@
 	insteadOf = https://github.com/
 [core]
 	editor = vim
+[credential "http://185.88.152.130:3000"]
+	username = shahin
