@@ -6,6 +6,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-rhubarb'             " github extension
@@ -24,7 +25,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'posva/vim-vue'
 Plug 'jwalton512/vim-blade'
 Plug 'digitaltoad/vim-pug'
-Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -194,6 +194,9 @@ nnoremap <Leader>sv :source ~/.vimrc<cr>
 nnoremap <Leader>w :bd<cr>
 nnoremap <Tab> :bn!<cr>
 nnoremap <s-Tab> :bN!<cr>
+
+nnoremap <C-J> ddp
+nnoremap <C-K> ddkO<esc>pkdd
 
 inoremap jk <esc>
 inoremap <esc> <nop>
