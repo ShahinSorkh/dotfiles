@@ -1,107 +1,47 @@
-call plug#begin()
-
-Plug 'easymotion/vim-easymotion'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plug 'tomtom/tcomment_vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'tpope/vim-surround'
-Plug 'editorconfig/editorconfig-vim'
-
-Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-rhubarb'             " github extension
-" Plug 'shumphrey/fugitive-gitlab.vim' " gitlab extension
-
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
-
-" Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-Plug 'posva/vim-vue'
-Plug 'jwalton512/vim-blade'
-Plug 'digitaltoad/vim-pug'
-
-call plug#end()
-
-"""""""""""""""""""""""""""""""""""""""" core configs
 syntax enable
-colorscheme darcula
 
+colorscheme darcula
 set t_Co=256
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
+
 set encoding=utf-8
 set fileencoding=utf-8
-set number
-set incsearch
-set cursorline
-set nocompatible
-set guifont=Liberation\ Mono\ for\ Powerline\ 10
-let mapleader=','
 
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+set number
+set nocompatible
+
+set cursorline
 hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
 
 nnoremap <CR> :noh<CR><CR>
+let mapleader=','
 
 """""""""""""""""""""""""""""""""""""" Plugins configuration
 
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_checkers = ['pylint', 'flake8']
-let g:syntastic_php_checkers = ['php', 'phpmd']
-let g:syntastic_javascript_checkers = ['standard --fix']
-let g:syntastic_css_checkers = ['csslint', 'phpcs']
-let g:syntastic_vue_checkers = ['standard --plugin html', 'tidy', 'phpcs']
-let g:syntastic_blade_checkers = []
-let g:syntastic_html_checkers = ['tidy']
-let g:syntastic_typescript_checkers = ['tslint']
-let g:syntastic_coffee_checkers = ['coffee']
-let g:syntastic_go_checkers = ['go']
-let g:syntastic_json_checkers = ['jsonlint']
-let g:syntastic_markdown_checkers = ['mdl']
-let g:syntastic_scss_checkers = ['sass']
-let g:syntastic_sass_checkers = ['sass']
-let g:syntastic_sh_checkers = ['sh']
-let g:syntastic_sql_checkers = ['sqlint']
-let g:syntastic_xml_checkers = ['xml']
 
 " vim vue
 autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
-
-" vim vue nerd commenter integration
-let g:ft = ''
-function! NERDCommenter_before()
-  if &ft == 'vue'
-    let g:ft = 'vue'
-    let stack = synstack(line('.'), col('.'))
-    if len(stack) > 0
-      let syn = synIDattr((stack)[0], 'name')
-      if len(syn) > 0
-        exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
-      endif
-    endif
-  endif
-endfunction
-function! NERDCommenter_after()
-  if g:ft == 'vue'
-    setf vue
-    let g:ft = ''
-  endif
-endfunction
-
+let g:vue_disable_pre_processors=1
 
 " vim blade
-autocmd FileType blade.php syntax sync fromstart
+autocmd FileType blade syntax sync fromstart
 autocmd BufRead,BufNewFile *.blade.php setlocal filetype=blade
-let g:vue_disable_pre_processors=1
+
+
+" fugitive
+autocmd QuickFixCmdPost *grep* cwindow
+
+" vim-autosave
+nnoremap <Leader>as :AutoSaveToggle<CR>
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+let g:auto_save_write_all_buffers = 1
+let g:auto_save_no_updatetime = 1
 
 " easy motion
 nmap s <Plug>(easymotion-overwin-f)
@@ -118,7 +58,12 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='simple'
 
-" NERDTrees File highlighting
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+" nerdtree File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg=#ffffff guifg=#151515'
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
@@ -152,6 +97,7 @@ map <C-N> :NERDTreeToggle<CR>
 map <C-p> :CtrlP<CR>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar,*.bz,*.bz2,*.gz,*.xz,*.rar,*.phar,*.jar
+set wildignore+=*/node_modules/*,*/vendor/*,*/bower_components/*,*/storage/framework/*
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v/?(\.(git|hg|svn)|vendor|node_modules|bower_components)$',
@@ -161,7 +107,6 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = 'rw'
 
 " incsearch plugin
-set hlsearch
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
@@ -174,20 +119,14 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-map z/ <Plug>(incsearch-fuzzyspell-/)
-map z? <Plug>(incsearch-fuzzyspell-?)
-map zg/ <Plug>(incsearch-fuzzyspell-stay)
-
-" fugitive
-autocmd QuickFixCmdPost *grep* cwindow
-
 " status line
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 
 """"""""""""""""""" my configurations
+
 nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <Leader>sv :source ~/.vimrc<cr>
 
@@ -196,8 +135,9 @@ nnoremap <Tab> :bn!<cr>
 nnoremap <s-Tab> :bN!<cr>
 
 nnoremap <C-J> ddp
-nnoremap <C-K> ddkO<esc>pkdd
+nnoremap <C-K> ddkO<esc>Pjddk
 
 inoremap jk <esc>
 inoremap <esc> <nop>
 
+cnoremap w!! w !sudo tee > /dev/null % <cr> edit!<cr>
