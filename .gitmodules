@@ -40,3 +40,21 @@
 [submodule ".vim/pack/nerdtree/start/nerdtree-git-plugin"]
 	path = .vim/pack/nerdtree/start/nerdtree-git-plugin
 	url = git@github.com:Xuyuanp/nerdtree-git-plugin
+[submodule ".vim/pack/utilities/start/editorconfig-vim"]
+	path = .vim/pack/utilities/start/editorconfig-vim
+	url = git@github.com:editorconfig/editorconfig-vim
+[submodule ".vim/pack/utilities/start/emmet-vim"]
+	path = .vim/pack/utilities/start/emmet-vim
+	url = git@github.com:mattn/emmet-vim.git
+[submodule ".vim/pack/utilities/start/tcomment_vim"]
+	path = .vim/pack/utilities/start/tcomment_vim
+	url = git@github.com:tomtom/tcomment_vim
+[submodule ".vim/pack/utilities/start/vim-auto-save"]
+	path = .vim/pack/utilities/start/vim-auto-save
+	url = git@github.com:907th/vim-auto-save
+[submodule ".vim/pack/utilities/start/vim-easymotion"]
+	path = .vim/pack/utilities/start/vim-easymotion
+	url = git@github.com:easymotion/vim-easymotion
+[submodule ".vim/pack/utilities/start/vim-surround"]
+	path = .vim/pack/utilities/start/vim-surround
+	url = git@github.com:tpope/vim-surround
