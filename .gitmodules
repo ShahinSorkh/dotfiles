@@ -34,3 +34,9 @@
 [submodule ".vim/pack/git/opt/vim-rhubarb"]
 	path = .vim/pack/git/opt/vim-rhubarb
 	url = git@github.com:tpope/vim-rhubarb
+[submodule ".vim/pack/nerdtree/start/nerdtree"]
+	path = .vim/pack/nerdtree/start/nerdtree
+	url = git@github.com:scrooloose/nerdtree
+[submodule ".vim/pack/nerdtree/start/nerdtree-git-plugin"]
+	path = .vim/pack/nerdtree/start/nerdtree-git-plugin
+	url = git@github.com:Xuyuanp/nerdtree-git-plugin
