@@ -4,3 +4,15 @@
 [submodule ".vim/pack/airline/start/vim-airline-themes"]
 	path = .vim/pack/airline/start/vim-airline-themes
 	url = git@github.com:vim-airline/vim-airline-themes
+[submodule ".vim/pack/filetypes/start/typescript-vim"]
+	path = .vim/pack/filetypes/start/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim
+[submodule ".vim/pack/filetypes/start/vim-blade"]
+	path = .vim/pack/filetypes/start/vim-blade
+	url = git@github.com:jwalton512/vim-blade
+[submodule ".vim/pack/filetypes/start/vim-pug"]
+	path = .vim/pack/filetypes/start/vim-pug
+	url = git@github.com:digitaltoad/vim-pug
+[submodule ".vim/pack/filetypes/start/vim-vue"]
+	path = .vim/pack/filetypes/start/vim-vue
+	url = git@github.com:posva/vim-vue
