@@ -25,3 +25,12 @@
 [submodule ".vim/pack/finders/start/ctlp.vim"]
 	path = .vim/pack/finders/start/ctlp.vim
 	url = git@github.com:ctrlpvim/ctrlp.vim
+[submodule ".vim/pack/git/start/vim-fugitive"]
+	path = .vim/pack/git/start/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive
+[submodule ".vim/pack/git/opt/fugitive-gitlab.vim"]
+	path = .vim/pack/git/opt/fugitive-gitlab.vim
+	url = git@github.com:shumphrey/fugitive-gitlab.vim
+[submodule ".vim/pack/git/opt/vim-rhubarb"]
+	path = .vim/pack/git/opt/vim-rhubarb
+	url = git@github.com:tpope/vim-rhubarb
