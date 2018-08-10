@@ -16,3 +16,12 @@
 [submodule ".vim/pack/filetypes/start/vim-vue"]
 	path = .vim/pack/filetypes/start/vim-vue
 	url = git@github.com:posva/vim-vue
+[submodule ".vim/pack/finders/opt/incsearch-fuzzy.vim"]
+	path = .vim/pack/finders/opt/incsearch-fuzzy.vim
+	url = git@github.com:haya14busa/incsearch-fuzzy.vim
+[submodule ".vim/pack/finders/start/incsearch.vim"]
+	path = .vim/pack/finders/start/incsearch.vim
+	url = git@github.com:haya14busa/incsearch.vim
+[submodule ".vim/pack/finders/start/ctlp.vim"]
+	path = .vim/pack/finders/start/ctlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim
