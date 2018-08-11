@@ -58,3 +58,6 @@
 [submodule ".vim/pack/utilities/start/vim-surround"]
 	path = .vim/pack/utilities/start/vim-surround
 	url = git@github.com:tpope/vim-surround
+[submodule ".vim/pack/git/start/vim-gitgutter"]
+	path = .vim/pack/git/start/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
