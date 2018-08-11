@@ -12,8 +12,12 @@ set hlsearch
 set ignorecase
 set smartcase
 
-set number
+set autoindent
+set smartindent
+
 set nocompatible
+set number
+set signcolumn=yes
 
 set cursorline
 hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
@@ -36,6 +40,11 @@ autocmd BufRead,BufNewFile *.blade.php setlocal filetype=blade
 
 " fugitive
 autocmd QuickFixCmdPost *grep* cwindow
+
+" vim-gitgutter
+let g:gitgutter_diff_args = '-w'
+nnoremap <Leader>gglh :GitGutterLineHighlightsToggle<CR>
+autocmd BufWrite * GitGutter
 
 " vim-autosave
 nnoremap <Leader>as :AutoSaveToggle<CR>
@@ -99,7 +108,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(log|min\.(css|js))$',
   \ }
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_working_path_mode = '0'
 
 " incsearch plugin
 let g:incsearch#auto_nohlsearch = 1
