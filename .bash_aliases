@@ -35,6 +35,7 @@ alias grbrc="git branch --remote"
 alias gabrc="git branch --all"
 alias gtag="git tag"
 alias gatag="git tag --all"
+alias gmerg="git merge"
 
 alias vimrc="vim ~/.vimrc"
 alias clip="xclip -selection clipboard"
