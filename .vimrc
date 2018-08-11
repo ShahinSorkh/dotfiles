@@ -25,9 +25,9 @@ let mapleader=','
 
 
 " vim vue
+let g:vue_disable_pre_processors=1
 autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
-let g:vue_disable_pre_processors=1
 
 " vim blade
 autocmd FileType blade syntax sync fromstart
@@ -57,11 +57,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme='simple'
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
 
 " nerdtree File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg)
@@ -100,7 +95,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar,*.bz,*.bz2,*.gz,*.xz,*.rar,*.phar
 set wildignore+=*/node_modules/*,*/vendor/*,*/bower_components/*,*/storage/framework/*
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v/?(\.(git|hg|svn)|vendor|node_modules|bower_components)$',
+  \ 'dir':  '\v/?(\.(git|hg|svn)|vendor|node_modules|bower_components|storage\/framework)$',
   \ 'file': '\v\.(log|min\.(css|js))$',
   \ }
 let g:ctrlp_show_hidden = 1
@@ -147,7 +142,7 @@ nnoremap <Leader>sv :source ~/.vimrc<cr>
 
 nnoremap <Leader>w :bd<cr>
 nnoremap <Tab> :bn!<cr>
-nnoremap <s-Tab> :bN!<cr>
+nnoremap <S-Tab> :bN!<cr>
 
 nnoremap <C-J> ddp
 nnoremap <C-K> ddkO<esc>Pjddk
