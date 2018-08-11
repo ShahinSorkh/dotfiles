@@ -61,3 +61,6 @@
 [submodule ".vim/pack/git/start/vim-gitgutter"]
 	path = .vim/pack/git/start/vim-gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
+[submodule ".vim/pack/utilities/start/ale"]
+	path = .vim/pack/utilities/start/ale
+	url = git@github.com:w0rp/ale.git

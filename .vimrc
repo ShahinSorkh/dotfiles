@@ -27,6 +27,60 @@ let mapleader=','
 
 """""""""""""""""""""""""""""""""""""" Plugins configuration
 
+" ale
+let g:ale_linters_explicit = 1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\ }
+let g:ale_list_window_size = 5
+let g:ale_use_global_executables = 1
+
+nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
+nmap <silent> <Leader>j <Plug>(ale_next_wrap)
+
+" ale linters
+let g:ale_linters = {
+\  'javascript': ['standard'],
+\  'html': ['alex', 'tidy'],
+\  'text': ['alex'],
+\  'markdown': ['alex'],
+\  'css': ['stylelint'],
+\  'json': ['jsonlint'],
+\  'scss': ['stylelint'],
+\  'sass': ['stylelint'],
+\  'python': ['pylint'],
+\  'php': ['phpmd']
+\  }
+
+" ale fixers
+let g:ale_fixers = {
+\  'javascript': ['standard'],
+\  'html': ['tidy'],
+\  'css': ['stylelint'],
+\  'json': ['jsonlint'],
+\  'scss': ['stylelint'],
+\  'sass': ['stylelint'],
+\  'python': ['flake8'],
+\  'php': ['phpmd']
+\  }
+
+" ale options
+let g:ale_linter_aliases = {
+\  'vue': ['javascript', 'html', 'css'],
+\  'blade': ['php', 'javascript', 'css', 'html'],
+\  'php': ['php', 'html', 'javascript', 'css']
+\  }
+
+let g:ale_javascript_standard_options = '--plugin html'
+let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
+
 
 " vim vue
 let g:vue_disable_pre_processors=1
@@ -140,7 +194,6 @@ noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 
 " status line
 set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 
