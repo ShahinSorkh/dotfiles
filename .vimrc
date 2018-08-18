@@ -2,6 +2,7 @@ syntax enable
 
 colorscheme spacegray
 set t_Co=256
+set term=screen-256color
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 
 set encoding=utf-8
@@ -20,7 +21,7 @@ set number
 set signcolumn=yes
 
 set cursorline
-hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
+hi CursorLine cterm=NONE ctermbg=232 ctermfg=NONE
 
 nnoremap <CR> :noh<CR><CR>
 let mapleader=','
@@ -28,7 +29,7 @@ let mapleader=','
 """""""""""""""""""""""""""""""""""""" Spacegray
 " let g:spacegray_underline_search = 1
 let g:spacegray_use_italics = 1
-" let g:spacegray_low_contrast = 1
+let g:spacegray_low_contrast = 1
 
 
 """""""""""""""""""""""""""""""""""""" Plugins configuration
