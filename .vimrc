@@ -52,6 +52,12 @@ let g:ale_use_global_executables = 1
 nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>j <Plug>(ale_next_wrap)
 
+let g:ale_linter_aliases = {
+\  'vue': ['javascript', 'html', 'css'],
+\  'blade': ['php', 'javascript', 'css', 'html'],
+\  'php': ['html', 'javascript', 'css']
+\  }
+
 " ale linters
 let g:ale_linters = {
 \  'javascript': ['standard'],
@@ -63,7 +69,7 @@ let g:ale_linters = {
 \  'scss': ['stylelint'],
 \  'sass': ['stylelint'],
 \  'python': ['pylint'],
-\  'php': ['phpmd']
+\  'php': ['php', 'standard', 'stylelint']
 \  }
 
 " ale fixers
@@ -71,21 +77,16 @@ let g:ale_fixers = {
 \  'javascript': ['standard'],
 \  'html': ['tidy'],
 \  'css': ['stylelint'],
+\  'vue': ['standard', 'tidy', 'stylelint'],
 \  'json': ['jsonlint'],
 \  'scss': ['stylelint'],
 \  'sass': ['stylelint'],
 \  'python': ['flake8'],
-\  'php': ['phpmd']
+\  'php': ['tidy', 'standard', 'stylelint']
 \  }
 
 " ale options
-let g:ale_linter_aliases = {
-\  'vue': ['javascript', 'html', 'css'],
-\  'blade': ['php', 'javascript', 'css', 'html'],
-\  'php': ['php', 'html', 'javascript', 'css']
-\  }
-
-let g:ale_javascript_standard_options = '--plugin html'
+" let g:ale_vue_standard_options = '--plugin html'
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
 
 
