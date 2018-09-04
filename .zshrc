@@ -67,6 +67,7 @@ plugins=(
   command-not-found
   composer
   git
+  tmux
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -74,6 +75,8 @@ plugins=(
 source $ZSH/custom-omz.sh
 
 # User configuration
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART_ONCE=true
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
