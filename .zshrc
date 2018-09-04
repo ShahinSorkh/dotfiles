@@ -63,6 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  autojump
   colored-man-pages
   command-not-found
   composer
@@ -80,6 +81,8 @@ source $ZSH/custom-omz.sh
 # User configuration
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOSTART_ONCE=true
+
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
