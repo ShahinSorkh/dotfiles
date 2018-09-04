@@ -127,3 +127,4 @@ fi
 TERM=xterm-256color
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+[[ -z $TMUX ]] && (tmux attach || tmux new-session) && exit
