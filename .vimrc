@@ -222,4 +222,4 @@ nnoremap <C-K> ddkO<esc>Pjddk
 inoremap jk <esc>
 inoremap <esc> <nop>
 
-cnoremap w!! w !sudo tee > /dev/null % <cr> edit!<cr>
+cnoremap w!! w !sudo tee > /dev/null % <bar> edit!<cr>
