@@ -78,6 +78,7 @@ plugins=(
 )
 
 source $ZSH/custom-omz.sh
+source $ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
 # User configuration
 ZSH_TMUX_AUTOSTART=true

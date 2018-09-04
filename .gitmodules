@@ -82,3 +82,6 @@
 [submodule ".zsh/plugins/mysql-colorize"]
 	path = .zsh/plugins/mysql-colorize
 	url = git@github.com:horosgrisa/mysql-colorize
+[submodule ".zsh/plugins/zsh-you-should-use"]
+	path = .zsh/plugins/zsh-you-should-use
+	url = git@github.com:MichaelAquilina/zsh-you-should-use
