@@ -67,6 +67,7 @@ plugins=(
   command-not-found
   composer
   git
+  node
   tmux
   vi-mode
   yarn
