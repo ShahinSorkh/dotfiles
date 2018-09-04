@@ -69,6 +69,7 @@ plugins=(
   git
   tmux
   vi-mode
+  yarn
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
