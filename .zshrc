@@ -65,6 +65,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   git
   zsh-syntax-highlighting
+  zsh-autosuggestions
 )
 
 source $ZSH/custom-omz.sh
