@@ -207,6 +207,8 @@ set statusline+=%*
 
 """"""""""""""""""" my configurations
 
+nnoremap Y y$
+
 nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <Leader>sv :source ~/.vimrc<cr>
 
