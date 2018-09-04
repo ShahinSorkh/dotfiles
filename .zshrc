@@ -93,3 +93,8 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export TERM=xterm-256color
+
+# Remove the history (fc -l) command from the history list when invoked.
+setopt histnostore
+# Remove superfluous blanks from each command line being added to the history list.
+setopt histreduceblanks
