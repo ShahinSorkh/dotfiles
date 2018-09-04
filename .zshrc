@@ -92,5 +92,4 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export DEFAULT_USER=shahin
 export TERM=xterm-256color
