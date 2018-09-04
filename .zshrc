@@ -65,6 +65,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   colored-man-pages
   command-not-found
+  composer
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
