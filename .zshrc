@@ -68,6 +68,7 @@ plugins=(
   command-not-found
   composer
   git
+  mysql-colorize
   node
   tmux
   vi-mode

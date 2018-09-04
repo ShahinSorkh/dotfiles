@@ -79,3 +79,6 @@
 [submodule ".zsh/plugins/zsh-autosuggestions"]
 	path = .zsh/plugins/zsh-autosuggestions
 	url = git@github.com:zsh-users/zsh-autosuggestions
+[submodule ".zsh/plugins/mysql-colorize"]
+	path = .zsh/plugins/mysql-colorize
+	url = git@github.com:horosgrisa/mysql-colorize
