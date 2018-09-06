@@ -77,12 +77,16 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART_ONCE=true
+
+export TERM=xterm-256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 source $ZSH/custom-omz.sh
 source $ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
 # User configuration
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOSTART_ONCE=true
 
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 
@@ -108,7 +112,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export TERM=xterm-256color
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore

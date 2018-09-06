@@ -2,7 +2,6 @@ syntax enable
 
 colorscheme spacegray
 set t_Co=256
-set term=screen-256color
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 
 set encoding=utf-8
