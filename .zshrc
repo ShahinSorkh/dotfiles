@@ -69,6 +69,7 @@ plugins=(
   composer
   git
   node
+  ssh-agent
   tmux
   vi-mode
   yarn
