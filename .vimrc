@@ -1,15 +1,13 @@
-syntax enable
-
-colorscheme spacegray
 set t_Co=256
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
+colorscheme spacegray
+set cursorline
+hi CursorLine cterm=NONE ctermbg=232 ctermfg=NONE
 
 set encoding=utf-8
 set fileencoding=utf-8
 set ff=unix
 
 set incsearch
-set hlsearch
 set ignorecase
 set smartcase
 
@@ -18,6 +16,8 @@ set splitright
 
 set autoindent
 set smartindent
+syntax enable
+
 filetype on
 filetype indent on
 filetype plugin on
@@ -35,18 +35,11 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 
-set scrolloff=3
-set cursorline
-hi CursorLine cterm=NONE ctermbg=232 ctermfg=NONE
+set scrolloff=2
 
 set backspace=indent,eol,start
 nnoremap <CR> :noh<CR><CR>
 let mapleader=','
-
-"""""""""""""""""""""""""""""""""""""" Spacegray
-" let g:spacegray_underline_search = 1
-let g:spacegray_use_italics = 1
-let g:spacegray_low_contrast = 1
 
 
 """""""""""""""""""""""""""""""""""""" Plugins configuration
@@ -222,7 +215,9 @@ set statusline+=%#warningmsg#
 set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 
-""""""""""""""""""" my configurations
+AirlineRefresh
+
+"""""""""""""""""" my configurations
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
