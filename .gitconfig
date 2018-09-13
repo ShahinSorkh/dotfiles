@@ -1,11 +1,18 @@
 [user]
-	email = sorkh.shahin@hotmail.com
 	name = Shahin Sorkh
+	email = sorkh.shahin@hotmail.com
+	signingkey = 11D98599CBF7D60E
 [push]
 	default = simple
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[url "http://185.88.152.130:3000"]
+	insteadOf = http://pin.dpd.ir:3000
 [core]
 	editor = vim
-[credential "http://185.88.152.130:3000"]
-	username = shahin
+[credential]
+	helper = store
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
