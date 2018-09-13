@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ -z "$(rhythmbox-client --print-playing --no-start)" ] || [ "$(rhythmbox-client --print-playing --no-start | xargs)" = '-' ]; then
+PLAYING="$(rhythmbox-client --print-playing --no-start | xargs)"
+if [ -z "$PLAYING" ] || [ "$PLAYING" = '-' ]; then
     echo "🎧 "
     exit 0
 fi
