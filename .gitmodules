@@ -85,3 +85,6 @@
 [submodule ".zsh/plugins/zsh-you-should-use"]
 	path = .zsh/plugins/zsh-you-should-use
 	url = git@github.com:MichaelAquilina/zsh-you-should-use
+[submodule ".vim/pack/filetypes/start/php.vim"]
+	path = .vim/pack/filetypes/start/php.vim
+	url = git@github.com:StanAngeloff/php.vim
