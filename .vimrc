@@ -215,7 +215,9 @@ set statusline+=%#warningmsg#
 set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 
-AirlineRefresh
+if exists("#airline")
+  AirlineRefresh
+endif
 
 """""""""""""""""" my configurations
 
