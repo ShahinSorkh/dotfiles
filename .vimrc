@@ -1,7 +1,6 @@
 set t_Co=256
-colorscheme spacegray
 set cursorline
-hi CursorLine cterm=NONE ctermbg=232 ctermfg=NONE
+colorscheme spacegray
 
 set encoding=utf-8
 set fileencoding=utf-8
