@@ -8,6 +8,7 @@ set fileencoding=utf-8
 set ff=unix
 
 set incsearch
+set hlsearch
 set ignorecase
 set smartcase
 
