@@ -6,22 +6,40 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 12
 
 set encoding=utf-8
 set fileencoding=utf-8
+set ff=unix
 
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 
+set splitbelow
+set splitright
+
 set autoindent
 set smartindent
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
 
 set nocompatible
+set nobackup
+set noswapfile
 set number
 set signcolumn=yes
+set lazyredraw
 
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+
+set scrolloff=3
 set cursorline
 hi CursorLine cterm=NONE ctermbg=232 ctermfg=NONE
 
+set backspace=indent,eol,start
 nnoremap <CR> :noh<CR><CR>
 let mapleader=','
 
@@ -206,17 +224,32 @@ set statusline+=%*
 
 """"""""""""""""""" my configurations
 
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+nnoremap <space> za
 nnoremap Y y$
 
 nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <Leader>sv :source ~/.vimrc<cr>
 
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap g; g;zz
+nnoremap g, g,zz
+nnoremap <c-o> <c-o>zz
+
 nnoremap <Leader>w :bd<cr>
 nnoremap <Tab> :bn!<cr>
 nnoremap <S-Tab> :bN!<cr>
 
-nnoremap <C-J> ddp
-nnoremap <C-K> ddkO<esc>Pjddk
+nnoremap <C-J> :m+<cr>
+nnoremap <C-K> :m-2<cr>
 
 inoremap jk <esc>
 inoremap <esc> <nop>
