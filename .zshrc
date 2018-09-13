@@ -112,6 +112,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias phpunit="./vendor/bin/phpunit"
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore
