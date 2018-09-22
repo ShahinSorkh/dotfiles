@@ -113,6 +113,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias phpunit="./vendor/bin/phpunit"
+alias c="php ./composer.phar"
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore
