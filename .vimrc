@@ -65,7 +65,6 @@ nmap <silent> <Leader>j <Plug>(ale_next_wrap)
 let g:ale_linter_aliases = {
 \  'vue': ['javascript', 'html', 'css'],
 \  'blade': ['php', 'javascript', 'css', 'html'],
-\  'php': ['html', 'javascript', 'css']
 \  }
 
 " ale linters
@@ -79,7 +78,7 @@ let g:ale_linters = {
 \  'scss': ['stylelint'],
 \  'sass': ['stylelint'],
 \  'python': ['pylint'],
-\  'php': ['php', 'standard', 'stylelint']
+\  'php': ['phpmd']
 \  }
 
 " ale fixers
@@ -92,7 +91,7 @@ let g:ale_fixers = {
 \  'scss': ['stylelint'],
 \  'sass': ['stylelint'],
 \  'python': ['flake8'],
-\  'php': ['tidy', 'standard', 'stylelint']
+\  'php': ['phpmd']
 \  }
 
 " ale options
