@@ -66,6 +66,7 @@ plugins=(
   autojump
   colored-man-pages
   command-not-found
+  common-aliases
   composer
   git
   node
@@ -96,6 +97,7 @@ source $ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
+export BROWSER='firefox --new-tab'
 export EDITOR='vim'
 
 # Compilation flags
