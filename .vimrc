@@ -75,6 +75,7 @@ let g:ale_linters = {
 \  'markdown': ['alex'],
 \  'css': ['stylelint'],
 \  'json': ['jsonlint'],
+\  'vue': ['standard', 'tidy', 'stylelint'],
 \  'scss': ['stylelint'],
 \  'sass': ['stylelint'],
 \  'python': ['pylint'],
