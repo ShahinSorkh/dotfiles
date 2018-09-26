@@ -123,3 +123,4 @@ setopt histnostore
 # Remove superfluous blanks from each command line being added to the history list.
 setopt histreduceblanks
 export GPG_TTY=$(tty)
+export PAGER=""
