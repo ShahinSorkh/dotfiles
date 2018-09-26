@@ -18,3 +18,7 @@
 	program = gpg2
 [color]
 	ui = always
+[init]
+	templatedir = ~/.git_template
+[alias]
+	ctags = !.git/hooks/ctags
