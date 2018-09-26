@@ -75,7 +75,7 @@ let g:ale_linters = {
 \  'markdown': ['alex'],
 \  'css': ['stylelint'],
 \  'json': ['jsonlint'],
-\  'vue': ['standard', 'tidy', 'stylelint'],
+\  'vue': ['standard', 'stylelint'],
 \  'scss': ['stylelint'],
 \  'sass': ['stylelint'],
 \  'python': ['pylint'],
@@ -96,7 +96,7 @@ let g:ale_fixers = {
 \  }
 
 " ale options
-" let g:ale_vue_standard_options = '--plugin html'
+let g:ale_vue_standard_options = '--plugin html'
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
 
 
