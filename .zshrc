@@ -69,6 +69,7 @@ plugins=(
   common-aliases
   composer
   git
+  laravel5
   node
   ssh-agent
   tmux
@@ -115,7 +116,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias phpunit="./vendor/bin/phpunit"
-alias c="php ./composer.phar"
+alias a="php artisan"
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore
