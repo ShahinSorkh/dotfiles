@@ -124,3 +124,4 @@ setopt histnostore
 setopt histreduceblanks
 export GPG_TTY=$(tty)
 export PAGER=""
+export LESS=-Xr
