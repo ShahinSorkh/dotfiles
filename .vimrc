@@ -96,6 +96,7 @@ let g:ale_fixers = {
 \  }
 
 " ale options
+let g:ale_javascript_standard_options = '-v'
 let g:ale_vue_standard_options = '--plugin html'
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
 
