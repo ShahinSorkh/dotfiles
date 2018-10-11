@@ -67,6 +67,9 @@ let g:ale_linter_aliases = {
 \  'blade': ['php', 'javascript', 'css', 'html'],
 \  }
 
+" ale completion
+let g:ale_completion_enabled = 1
+
 " ale linters
 let g:ale_linters = {
 \  'javascript': ['standard'],
