@@ -81,6 +81,7 @@ plugins=(
 
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOSTART_ONCE=true
+ZSH_TMUX_AUTOQUIT=false
 
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
