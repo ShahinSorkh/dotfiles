@@ -94,3 +94,6 @@
 [submodule ".vim/pack/filetypes/start/vim-gfm-syntax"]
 	path = .vim/pack/filetypes/start/vim-gfm-syntax
 	url = git@github.com:rhysd/vim-gfm-syntax
+[submodule ".vim/pack/utilities/start/indentLine"]
+	path = .vim/pack/utilities/start/indentLine
+	url = git@github.com:Yggdroot/indentLine.git
