@@ -115,7 +115,7 @@ autocmd BufRead,BufNewFile *.blade.php setlocal filetype=blade
 
 
 " indentLine
-let g:indentLine_char = '⎸'
+let g:indentLine_char = '|'
 
 " fugitive
 autocmd QuickFixCmdPost *grep* cwindow
