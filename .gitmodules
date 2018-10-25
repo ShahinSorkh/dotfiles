@@ -97,3 +97,6 @@
 [submodule ".vim/pack/utilities/start/indentLine"]
 	path = .vim/pack/utilities/start/indentLine
 	url = git@github.com:Yggdroot/indentLine.git
+[submodule ".vim/pack/filetypes/start/vim-jsx"]
+	path = .vim/pack/filetypes/start/vim-jsx
+	url = git@github.com:mxw/vim-jsx
