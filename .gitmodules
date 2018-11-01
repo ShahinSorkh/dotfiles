@@ -100,3 +100,6 @@
 [submodule ".vim/pack/filetypes/start/vim-jsx"]
 	path = .vim/pack/filetypes/start/vim-jsx
 	url = git@github.com:mxw/vim-jsx
+[submodule ".vim/pack/utilities/start/vim-repeat"]
+	path = .vim/pack/utilities/start/vim-repeat
+	url = git@github.com:tpope/vim-repeat
