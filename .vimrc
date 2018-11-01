@@ -35,7 +35,7 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 
-set scrolloff=2
+set scrolloff=1
 
 set backspace=indent,eol,start
 nnoremap <CR> :noh<CR><CR>
