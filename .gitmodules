@@ -88,9 +88,6 @@
 [submodule ".vim/pack/filetypes/start/php.vim"]
 	path = .vim/pack/filetypes/start/php.vim
 	url = git@github.com:StanAngeloff/php.vim
-[submodule ".vim/pack/utilities/start/vim-indent-guides"]
-	path = .vim/pack/utilities/start/vim-indent-guides
-	url = git@github.com:nathanaelkane/vim-indent-guides
 [submodule ".vim/pack/filetypes/start/vim-gfm-syntax"]
 	path = .vim/pack/filetypes/start/vim-gfm-syntax
 	url = git@github.com:rhysd/vim-gfm-syntax
