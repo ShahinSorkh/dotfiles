@@ -182,10 +182,7 @@ map <C-p> :CtrlP<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar,*.bz,*.bz2,*.gz,*.xz,*.rar,*.phar,*.jar
 set wildignore+=*/node_modules/*,*/vendor/*,*/bower_components/*,*/storage/framework/*
 
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v/?(\.(git|hg|svn)|vendor|node_modules|bower_components|storage\/framework)$',
-  \ 'file': '\v\.(log|min\.(css|js))$',
-  \ }
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = '0'
 
