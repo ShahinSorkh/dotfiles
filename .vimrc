@@ -57,7 +57,7 @@ let g:ale_pattern_options = {
 \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
 \ }
 let g:ale_list_window_size = 5
-let g:ale_use_global_executables = 1
+let g:ale_use_global_executables = 0
 
 nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>j <Plug>(ale_next_wrap)
