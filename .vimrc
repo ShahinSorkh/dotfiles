@@ -237,6 +237,11 @@ nnoremap Y y$
 nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <Leader>sv :source ~/.vimrc<cr>
 
+nnoremap gj j
+nnoremap gk k
+vnoremap gj j
+vnoremap gk k
+
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
