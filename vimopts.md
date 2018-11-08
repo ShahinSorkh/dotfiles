@@ -1,6 +1,8 @@
 VIM options
 ===========
 
+[by: Benoit](https://stackoverflow.com/a/9312070/3332676)
+
 |   long form   | short form | bool | variants (negation and inversion)                         |
 |:-------------:|:----------:|:----:|:---------------------------------------------------------:|
 |aleph          | al         |      |                                                           |
@@ -25,7 +27,7 @@ VIM options
 |balloondelay   | bdlay      |      |                                                           |
 |ballooneval    | beval      |  X   | noballooneval    nobeval   invballooneval    invbeval     |
 |balloonexpr    | bexpr      |      |                                                           |
-|belloff        | bo         |      |                                                           |
+|belloff         | bo         |      |                                                           |
 |binary         | bin        |  X   | nobinary         nobin     invbinary         invbin       |
 |bioskey        | biosk      |  X   | nobioskey        nobiosk   invbioskey        invbiosk     |
 |bomb           |            |  X   | nobomb                     invbomb                        |
@@ -34,7 +36,7 @@ VIM options
 |breakindentopt | briopt     |      |                                                           |
 |browsedir      | bsdir      |      |                                                           |
 |bufhidden      | bh         |      |                                                           |
-|buflisted      | bl         |  X   | nobuflisted      nobl      invbuflisted      invbl        |
+|buflisted       | bl         |  X   | nobuflisted      nobl      invbuflisted      invbl          |
 |buftype        | bt         |      |                                                           |
 |casemap        | cmp        |      |                                                           |
 |cdpath         | cd         |      |                                                           |
@@ -57,14 +59,14 @@ VIM options
 |completeopt    | cot        |      |                                                           |
 |concealcursor  | cocu       |      |                                                           |
 |conceallevel   | cole       |      |                                                           |
-|confirm        | cf         |  X   | noconfirm        nocf      invconfirm        invcf        |
+|confirm         | cf         |  X   | noconfirm        nocf      invconfirm        invcf          |
 |conskey        | consk      |  X   | noconskey        noconsk   invconskey        invconsk     |
 |copyindent     | ci         |  X   | nocopyindent     noci      invcopyindent     invci        |
 |cpoptions      | cpo        |      |                                                           |
 |cryptmethod    | cm         |      |                                                           |
 |cscopepathcomp | cspc       |      |                                                           |
 |cscopeprg      | csprg      |      |                                                           |
-|cscopequickfix | csqf       |      |                                                           |
+|cscopequickfix  | csqf       |      |                                                           |
 |cscoperelative | csre       |  X   | nocscoperelative nocsre    invcscoperelative invcsre      |
 |cscopetag      | cst        |  X   | nocscopetag      nocst     invcscopetag      invcst       |
 |cscopetagorder | csto       |      |                                                           |
@@ -73,12 +75,12 @@ VIM options
 |cursorcolumn   | cuc        |  X   | nocursorcolumn   nocuc     invcursorcolumn   invcuc       |
 |cursorline     | cul        |  X   | nocursorline     nocul     invcursorline     invcul       |
 |debug          |            |      |                                                           |
-|define         | def        |      |                                                           |
+|define          | def        |      |                                                           |
 |delcombine     | deco       |  X   | nodelcombine     nodeco    invdelcombine     invdeco      |
 |dictionary     | dict       |      |                                                           |
-|diff           |            |  X   | nodiff                     invdiff                        |
-|diffexpr       | dex        |      |                                                           |
-|diffopt        | dip        |      |                                                           |
+|diff            |            |  X   | nodiff                     invdiff                          |
+|diffexpr        | dex        |      |                                                           |
+|diffopt         | dip        |      |                                                           |
 |digraph        | dg         |  X   | nodigraph        nodg      invdigraph        invdg        |
 |directory      | dir        |      |                                                           |
 |display        | dy         |      |                                                           |
@@ -86,25 +88,25 @@ VIM options
 |edcompatible   | ed         |  X   | noedcompatible   noed      invedcompatible   inved        |
 |emoji          | emo        |  X   | noemoji          noemo     invemoji          invemo       |
 |encoding       | enc        |      |                                                           |
-|endofline      | eol        |  X   | noendofline      noeol     invendofline      inveol       |
+|endofline       | eol        |  X   | noendofline      noeol     invendofline      inveol         |
 |equalalways    | ea         |  X   | noequalalways    noea      invequalalways    invea        |
 |equalprg       | ep         |      |                                                           |
 |errorbells     | eb         |  X   | noerrorbells     noeb      inverrorbells     inveb        |
-|errorfile      | ef         |      |                                                           |
+|errorfile       | ef         |      |                                                           |
 |errorformat    | efm        |      |                                                           |
 |esckeys        | ek         |  X   | noesckeys        noek      invesckeys        invek        |
 |eventignore    | ei         |      |                                                           |
 |expandtab      | et         |  X   | noexpandtab      noet      invexpandtab      invet        |
 |exrc           | ex         |  X   | noexrc           noex      invexrc           invex        |
 |fe             |            |      |                                                           |
-|fileencoding   | fenc       |      |                                                           |
-|fileencodings  | fencs      |      |                                                           |
-|fileformat     | ff         |      |                                                           |
-|fileformats    | ffs        |      |                                                           |
-|fileignorecase | fic        |  X   | nofileignorecase nofic     invfileignorecase invfic       |
-|filetype       | ft         |      |                                                           |
-|fillchars      | fcs        |      |                                                           |
-|fixendofline   | fixeol     |  X   | nofixendofline   nofixeol  invfixendofline   invfixeol    |
+|fileencoding    | fenc       |      |                                                           |
+|fileencodings   | fencs      |      |                                                           |
+|fileformat      | ff          |      |                                                           |
+|fileformats     | ffs         |      |                                                           |
+|fileignorecase  | fic         |  X   | nofileignorecase nofic     invfileignorecase invfic           |
+|filetype        | ft         |      |                                                           |
+|fillchars       | fcs        |      |                                                           |
+|fixendofline     | fixeol      |  X   | nofixendofline   nofixeol  invfixendofline   invfixeol          |
 |fkmap          | fk         |  X   | nofkmap          nofk      invfkmap          invfk        |
 |foldclose      | fcl        |      |                                                           |
 |foldcolumn     | fdc        |      |                                                           |
@@ -120,7 +122,7 @@ VIM options
 |foldopen       | fdo        |      |                                                           |
 |foldtext       | fdt        |      |                                                           |
 |formatexpr     | fex        |      |                                                           |
-|formatlistpat  | flp        |      |                                                           |
+|formatlistpat  | flp         |      |                                                           |
 |formatoptions  | fo         |      |                                                           |
 |formatprg      | fp         |      |                                                           |
 |fsync          | fs         |  X   | nofsync          nofs      invfsync          invfs        |
@@ -136,7 +138,7 @@ VIM options
 |guipty         |            |  X   | noguipty                   invguipty                      |
 |guitablabel    | gtl        |      |                                                           |
 |guitabtooltip  | gtt        |      |                                                           |
-|helpfile       | hf         |      |                                                           |
+|helpfile        | hf         |      |                                                           |
 |helpheight     | hh         |      |                                                           |
 |helplang       | hlg        |      |                                                           |
 |hidden         | hid        |  X   | nohidden         nohid     invhidden         invhid       |
@@ -202,8 +204,8 @@ VIM options
 |mkspellmem     | msm        |      |                                                           |
 |modeline       | ml         |  X   | nomodeline       noml      invmodeline       invml        |
 |modelines      | mls        |      |                                                           |
-|modifiable     | ma         |  X   | nomodifiable     noma      invmodifiable     invma        |
-|modified       | mod        |  X   | nomodified       nomod     invmodified       invmod       |
+|modifiable      | ma         |  X   | nomodifiable     noma      invmodifiable     invma          |
+|modified        | mod        |  X   | nomodified       nomod     invmodified       invmod         |
 |more           |            |  X   | nomore                     invmore                        |
 |mouse          |            |      |                                                           |
 |mousefocus     | mousef     |  X   | nomousefocus     nomousef  invmousefocus     invmousef    |
@@ -218,7 +220,7 @@ VIM options
 |omnifunc       | ofu        |      |                                                           |
 |opendevice     | odev       |  X   | noopendevice     noodev    invopendevice     invodev      |
 |operatorfunc   | opfunc     |      |                                                           |
-|osfiletype     | oft        |      |                                                           |
+|osfiletype      | oft        |      |                                                           |
 |packpath       | pp         |      |                                                           |
 |paragraphs     | para       |      |                                                           |
 |paste          |            |  X   | nopaste                    invpaste                       |
@@ -262,7 +264,7 @@ VIM options
 |scroll         | scr        |      |                                                           |
 |scrollbind     | scb        |  X   | noscrollbind     noscb     invscrollbind     invscb       |
 |scrolljump     | sj         |      |                                                           |
-|scrolloff      | so         |      |                                                           |
+|scrolloff       | so         |      |                                                           |
 |scrollopt      | sbo        |      |                                                           |
 |sections       | sect       |      |                                                           |
 |secure         |            |  X   | nosecure                   invsecure                      |
@@ -270,7 +272,7 @@ VIM options
 |selectmode     | slm        |      |                                                           |
 |sessionoptions | ssop       |      |                                                           |
 |shell          | sh         |      |                                                           |
-|shellcmdflag   | shcf       |      |                                                           |
+|shellcmdflag    | shcf       |      |                                                           |
 |shellpipe      | sp         |      |                                                           |
 |shellquote     | shq        |      |                                                           |
 |shellredir     | srr        |      |                                                           |
@@ -290,7 +292,7 @@ VIM options
 |showmode       | smd        |  X   | noshowmode       nosmd     invshowmode       invsmd       |
 |showtabline    | stal       |      |                                                           |
 |sidescroll     | ss         |      |                                                           |
-|sidescrolloff  | siso       |      |                                                           |
+|sidescrolloff   | siso       |      |                                                           |
 |signcolumn     | scl        |      |                                                           |
 |smartcase      | scs        |  X   | nosmartcase      noscs     invsmartcase      invscs       |
 |smartindent    | si         |  X   | nosmartindent    nosi      invsmartindent    invsi        |
@@ -298,16 +300,16 @@ VIM options
 |softtabstop    | sts        |      |                                                           |
 |spell          |            |  X   | nospell                    invspell                       |
 |spellcapcheck  | spc        |      |                                                           |
-|spellfile      | spf        |      |                                                           |
+|spellfile       | spf        |      |                                                           |
 |spelllang      | spl        |      |                                                           |
 |spellsuggest   | sps        |      |                                                           |
 |splitbelow     | sb         |  X   | nosplitbelow     nosb      invsplitbelow     invsb        |
 |splitright     | spr        |  X   | nosplitright     nospr     invsplitright     invspr       |
-|startofline    | sol        |  X   | nostartofline    nosol     invstartofline    invsol       |
+|startofline     | sol        |  X   | nostartofline    nosol     invstartofline    invsol         |
 |statusline     | stl        |      |                                                           |
-|suffixes       | su         |      |                                                           |
-|suffixesadd    | sua        |      |                                                           |
-|swapfile       | swf        |  X   | noswapfile       noswf     invswapfile       invswf       |
+|suffixes         | su         |      |                                                           |
+|suffixesadd      | sua        |      |                                                           |
+|swapfile        | swf        |  X   | noswapfile       noswf     invswapfile       invswf         |
 |swapsync       | sws        |      |                                                           |
 |switchbuf      | swb        |      |                                                           |
 |synmaxcol      | smc        |      |                                                           |
@@ -348,13 +350,13 @@ VIM options
 |ttyscroll      | tsl        |      |                                                           |
 |ttytype        | tty        |      |                                                           |
 |undodir        | udir       |      |                                                           |
-|undofile       | udf        |  X   | noundofile       noudf     invundofile       invudf       |
+|undofile        | udf        |  X   | noundofile       noudf     invundofile       invudf         |
 |undolevels     | ul         |      |                                                           |
 |undoreload     | ur         |      |                                                           |
 |updatecount    | uc         |      |                                                           |
 |updatetime     | ut         |      |                                                           |
 |verbose        | vbs        |      |                                                           |
-|verbosefile    | vfile      |      |                                                           |
+|verbosefile     | vfile       |      |                                                           |
 |viewdir        | vdir       |      |                                                           |
 |viewoptions    | vop        |      |                                                           |
 |viminfo        | vi         |      |                                                           |
@@ -372,8 +374,8 @@ VIM options
 |wildoptions    | wop        |      |                                                           |
 |winaltkeys     | wak        |      |                                                           |
 |window         | wi         |      |                                                           |
-|winfixheight   | wfh        |  X   | nowinfixheight   nowfh     invwinfixheight   invwfh       |
-|winfixwidth    | wfw        |  X   | nowinfixwidth    nowfw     invwinfixwidth    invwfw       |
+|winfixheight    | wfh        |  X   | nowinfixheight   nowfh     invwinfixheight   invwfh         |
+|winfixwidth     | wfw        |  X   | nowinfixwidth    nowfw     invwinfixwidth    invwfw         |
 |winheight      | wh         |      |                                                           |
 |winminheight   | wmh        |      |                                                           |
 |winminwidth    | wmw        |      |                                                           |
