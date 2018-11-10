@@ -7,7 +7,6 @@ set fileencoding=utf-8
 set ff=unix
 
 set incsearch
-set hlsearch
 set ignorecase
 set smartcase
 
@@ -182,7 +181,7 @@ map <C-p> :CtrlP<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar,*.bz,*.bz2,*.gz,*.xz,*.rar,*.phar,*.jar
 set wildignore+=*/node_modules/*,*/vendor/*,*/bower_components/*,*/storage/framework/*
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -oc --exclude-standard']
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = '0'
 
