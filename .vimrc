@@ -7,6 +7,7 @@ set fileencoding=utf-8
 set ff=unix
 
 set incsearch
+set hlsearch
 set ignorecase
 set smartcase
 
@@ -28,6 +29,9 @@ set noswapfile
 set number
 set signcolumn=yes
 set lazyredraw
+set noshowmode
+set updatetime=1250
+set scrolloff=1
 
 set foldenable
 set foldlevelstart=10
