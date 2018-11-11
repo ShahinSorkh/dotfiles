@@ -38,7 +38,8 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 
-set scrolloff=1
+set wildmenu
+set wildmode=list:longest,list:full
 
 set backspace=indent,eol,start
 nnoremap <CR> :noh<CR><CR>
