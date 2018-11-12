@@ -1,22 +1,41 @@
 #!/bin/bash
 
-PLAYING="$(rhythmbox-client --print-playing --no-start | xargs)"
-if [ -z "$PLAYING" ] || [ "$PLAYING" = '-' ]; then
-    echo "🎧 "
+INFO="$(mocp -i &2>/dev/null)"
+
+STATE="$(echo "$INFO" | awk '/^State/ { print $2 }')"
+TITLE="$(echo "$INFO" | awk '/^Title/ { printf "%s %s", $2, $3 }')"
+ARTIST="$(echo "$INFO" | awk '/^Artist/ { printf "%s %s", $2, $3 }')"
+ELAPSED="$(echo "$INFO" | awk '/^CurrentTime/ { print $2 }')"
+TOTAL="$(echo "$INFO" | awk '/^TotalTime/ { print $2 }')"
+
+case "$STATE" in
+    STOP)
+        PLAYING="⏹"
+        ;;
+    PLAY)
+        PLAYING="⏵"
+        ;;
+    PAUSE)
+        PLAYING="⏸"
+        ;;
+    *)
+        PLAYING=""
+        ;;
+esac
+
+if [ "$TITLE" == "" ]; then
+    echo "$PLAYING 🎧 "
     exit 0
 fi
-
-TITLE="$(echo $(rhythmbox-client --print-playing-format="%tt") | awk '{ print $1" "$2" "$3 }' | xargs)"
-ARTIST="$(echo $(rhythmbox-client --print-playing-format="%ta") | awk '{ print $1" "$2" "$3 }' | xargs)"
-ELAPSED=$(rhythmbox-client --print-playing-format="%te")
-TOTAL=$(rhythmbox-client --print-playing-format="%td")
 
 # ᠀
 # ♩ ♪ ♫ ♬ ♭ ♮ ♯
 # 🎧 🎼 𝄞
 # ♠ ♣ ♥ ♦
+# ⏴  ⏵  ⏶  ⏷  ⏸  ⏹  ⏺  
 #    
 
-echo "$ARTIST  $TITLE ($ELAPSED/$TOTAL)"
-exit 0
+# echo $TITLE
+echo "$PLAYING $ARTIST  $TITLE ($ELAPSED/$TOTAL)"
 
+exit 0
