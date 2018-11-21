@@ -86,7 +86,6 @@ let g:ale_linters = {
 \  'scss': ['stylelint'],
 \  'sass': ['stylelint'],
 \  'python': ['pylint'],
-\  'php': ['phpmd']
 \  }
 
 " ale fixers
