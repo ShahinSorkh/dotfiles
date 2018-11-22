@@ -1,1 +1,1 @@
-echo $(free -mh | awk "/^Mem/ {print \$7\"/\"\$2}")
+echo -e $(free -mh | awk "/^Mem/ {print \$7\"/\"\$2}")

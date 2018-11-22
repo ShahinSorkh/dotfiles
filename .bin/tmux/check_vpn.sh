@@ -1,12 +1,12 @@
 #!/bin/bash
 
-HAS_CONNECTED=$(ps aux | grep -v grep | grep -c openconnect 2>&1)
+HAS_CONNECTED=$(ip link show dev tun0 2>/dev/null)
 
 # 🔒 🔏 🔓 🔐 🔑 ⚿
 
-if [ $HAS_CONNECTED != 0 ]; then
-	echo 🔒
+if [ "$HAS_CONNECTED" != "" ]; then
+	echo -e 🔒
 else
-	echo 🔓
+	echo -e 🔓
 fi
 
