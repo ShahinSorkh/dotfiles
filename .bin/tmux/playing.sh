@@ -23,8 +23,8 @@ case "$STATE" in
         ;;
 esac
 
-if [ "$TITLE" == "" ]; then
-    echo "$PLAYING 🎧 "
+if [ -z "$TITLE" ]; then
+    echo "$PLAYING 🎧"
     exit 0
 fi
 
