@@ -5,8 +5,8 @@ HAS_CONNECTED=$(ip link show dev tun0 2>/dev/null)
 # 🔒 🔏 🔓 🔐 🔑 ⚿
 
 if [ "$HAS_CONNECTED" != "" ]; then
-	echo -e 🔒
+	echo 🔒
 else
-	echo -e 🔓
+	echo 🔓
 fi
 

@@ -1,1 +1,1 @@
-echo -e $(grep -c ^processor /proc/cpuinfo)
+echo $(grep -c ^processor /proc/cpuinfo)

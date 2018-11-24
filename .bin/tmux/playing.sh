@@ -36,6 +36,6 @@ fi
 #    
 
 # echo $TITLE
-echo -e "$PLAYING $ARTIST  $TITLE ($ELAPSED/$TOTAL)"
+echo "$PLAYING $ARTIST  $TITLE ($ELAPSED/$TOTAL)"
 
 exit 0
