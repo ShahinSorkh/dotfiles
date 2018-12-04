@@ -1,6 +1,13 @@
 #!/bin/sh
 
 GIT_TAGS=".git/tags"
+GIT_TAGS_LOCK=".git/tags.lock"
+
+if [ -f $GIT_TAGS_LOCK ]; then
+    exit 0
+fi
+
+touch $GIT_TAGS_LOCK
 
 if [ -f $GIT_TAGS ]; then
     rm -f $GIT_TAGS
@@ -29,5 +36,10 @@ if [ -x "$(command -v ctags)" ]; then
           --exclude="vendor/**/*.js"
 else
     echo "ERR: ctags not installed" 2>&1
+    exit 0
+fi
+
+if [ -f $GIT_TAGS_LOCK ]; then
+    rm -f $GIT_TAGS_LOCK
 fi
 
