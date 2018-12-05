@@ -252,7 +252,7 @@ nnoremap g; g;zz
 nnoremap g, g,zz
 nnoremap <c-o> <c-o>zz
 
-nnoremap <Leader><Leader>w :bd<cr>
+nnoremap <Leader><Leader>d :bd<cr>
 nnoremap <Leader><Leader>e :e!<cr>
 nnoremap <Tab> :bn!<cr>
 nnoremap <S-Tab> :bN!<cr>
