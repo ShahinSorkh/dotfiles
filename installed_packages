@@ -1,7 +1,8 @@
-ctags
-git
-moc
-node
-tmux
-vim
-zsh
+ctags (v5.9)
+git (v2.7.4)
+moc (v2.6-alpha1)
+node (v8.12.0)
+tmux (v2.7)
+vim (v8.1)
+yarn (v1.12.3)
+zsh (v5.1.1)
