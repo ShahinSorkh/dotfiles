@@ -1,0 +1,7 @@
+ReadTags = yes
+MusicDir = ~/Music/
+StartInMusicDir = yes
+
+Repeat = yes
+Shuffle = yes
+AutoNext = yes
