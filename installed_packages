@@ -1,7 +1,7 @@
 ctags (v5.9)
 git (v2.7.4)
 moc (v2.6-alpha1)
-node (v8.12.0)
+node (v10.14.1)
 tmux (v2.7)
 vim (v8.1)
 yarn (v1.12.3)
