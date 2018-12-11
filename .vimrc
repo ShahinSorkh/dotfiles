@@ -57,9 +57,9 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
 let g:ale_pattern_options = {
-\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-\ }
+      \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+      \ }
 let g:ale_list_window_size = 5
 let g:ale_use_global_executables = 0
 
@@ -67,38 +67,38 @@ nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>j <Plug>(ale_next_wrap)
 
 let g:ale_linter_aliases = {
-\  'vue': ['javascript', 'html', 'css'],
-\  'blade': ['php', 'javascript', 'css', 'html'],
-\  }
+      \  'vue': ['javascript', 'html', 'css'],
+      \  'blade': ['php', 'javascript', 'css', 'html'],
+      \  }
 
 " ale completion
 let g:ale_completion_enabled = 1
 
 " ale linters
 let g:ale_linters = {
-\  'javascript': ['standard'],
-\  'html': ['alex', 'tidy'],
-\  'text': ['alex'],
-\  'markdown': ['alex'],
-\  'css': ['stylelint'],
-\  'json': ['jsonlint'],
-\  'scss': ['stylelint'],
-\  'sass': ['stylelint'],
-\  'python': ['pylint'],
-\  }
+      \  'javascript': ['standard'],
+      \  'html': ['alex', 'tidy'],
+      \  'text': ['alex'],
+      \  'markdown': ['alex'],
+      \  'css': ['stylelint'],
+      \  'json': ['jsonlint'],
+      \  'scss': ['stylelint'],
+      \  'sass': ['stylelint'],
+      \  'python': ['pylint'],
+      \  }
 
 " ale fixers
 let g:ale_fixers = {
-\  'javascript': ['standard'],
-\  'html': ['tidy'],
-\  'css': ['stylelint'],
-\  'vue': ['standard', 'tidy', 'stylelint'],
-\  'json': ['jsonlint'],
-\  'scss': ['stylelint'],
-\  'sass': ['stylelint'],
-\  'python': ['flake8'],
-\  'php': ['phpmd']
-\  }
+      \  'javascript': ['standard'],
+      \  'html': ['tidy'],
+      \  'css': ['stylelint'],
+      \  'vue': ['standard', 'tidy', 'stylelint'],
+      \  'json': ['jsonlint'],
+      \  'scss': ['stylelint'],
+      \  'sass': ['stylelint'],
+      \  'python': ['flake8'],
+      \  'php': ['phpmd']
+      \  }
 
 " ale options
 let g:ale_javascript_standard_options = '-v'
@@ -205,11 +205,11 @@ packadd incsearch-fuzzy.vim
 
 function! s:config_fuzzyall(...) abort
   return extend(copy({
-  \   'converters': [
-  \     incsearch#config#fuzzy#converter(),
-  \     incsearch#config#fuzzyspell#converter()
-  \   ],
-  \ }), get(a:, 1, {}))
+        \   'converters': [
+        \     incsearch#config#fuzzy#converter(),
+        \     incsearch#config#fuzzyspell#converter()
+        \   ],
+        \ }), get(a:, 1, {}))
 endfunction
 
 noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
@@ -263,3 +263,5 @@ inoremap jk <esc>
 inoremap <esc> <nop>
 
 cnoremap w!! w !sudo tee > /dev/null % <cr> edit!<cr>
+
+" vim: et ts=2 sts=2 sw=2
