@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 STATE="$(echo "$(mocp -i &2>/dev/null)" | awk '/^State/ { print $2 }' | xargs)"
 

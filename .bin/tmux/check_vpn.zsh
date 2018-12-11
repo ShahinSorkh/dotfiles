@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 HAS_CONNECTED=$(ip link show dev tun0 2>/dev/null)
 

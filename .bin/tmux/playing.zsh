@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
 INFO="$(mocp -i &2>/dev/null)"
 
