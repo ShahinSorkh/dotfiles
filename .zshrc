@@ -72,6 +72,7 @@ plugins=(
   laravel5
   node
   ssh-agent
+  systemd
   tmux
   vi-mode
   yarn
