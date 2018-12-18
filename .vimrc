@@ -124,8 +124,22 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 " vim-gitgutter
 let g:gitgutter_diff_args = '-w'
+let g:gitgutter_map_keys = 0 " overwrites tcomment objects
+
 nnoremap <Leader>gglh :GitGutterLineHighlightsToggle<CR>
 autocmd BufWrite * GitGutter
+
+nmap ]c <Plug>GitGutterNextHunk
+nmap [c <Plug>GitGutterPrevHunk
+
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hu <Plug>GitGutterUndoHunk
+nmap <Leader>hp <Plug>GitGutterPreviewHunk
+
+omap ih <Plug>GitGutterTextObjectInnerPending
+omap ah <Plug>GitGutterTextObjectOuterPending
+xmap ih <Plug>GitGutterTextObjectInnerVisual
+xmap ah <Plug>GitGutterTextObjectOuterVisual
 
 " vim-autosave
 nnoremap <Leader>as :AutoSaveToggle<CR>
