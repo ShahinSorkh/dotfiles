@@ -1,102 +1,102 @@
-[submodule ".vim/pack/airline/start/vim-airline"]
-	path = .vim/pack/airline/start/vim-airline
-	url = git@github.com:vim-airline/vim-airline
-[submodule ".vim/pack/airline/start/vim-airline-themes"]
-	path = .vim/pack/airline/start/vim-airline-themes
-	url = git@github.com:vim-airline/vim-airline-themes
-[submodule ".vim/pack/filetypes/start/typescript-vim"]
-	path = .vim/pack/filetypes/start/typescript-vim
-	url = git@github.com:leafgarland/typescript-vim
-[submodule ".vim/pack/filetypes/start/vim-blade"]
-	path = .vim/pack/filetypes/start/vim-blade
-	url = git@github.com:jwalton512/vim-blade
-[submodule ".vim/pack/filetypes/start/vim-pug"]
-	path = .vim/pack/filetypes/start/vim-pug
-	url = git@github.com:digitaltoad/vim-pug
-[submodule ".vim/pack/filetypes/start/vim-vue"]
-	path = .vim/pack/filetypes/start/vim-vue
-	url = git@github.com:posva/vim-vue
-[submodule ".vim/pack/finders/opt/incsearch-fuzzy.vim"]
-	path = .vim/pack/finders/opt/incsearch-fuzzy.vim
-	url = git@github.com:haya14busa/incsearch-fuzzy.vim
-[submodule ".vim/pack/finders/start/incsearch.vim"]
-	path = .vim/pack/finders/start/incsearch.vim
-	url = git@github.com:haya14busa/incsearch.vim
-[submodule ".vim/pack/finders/start/ctlp.vim"]
-	path = .vim/pack/finders/start/ctlp.vim
-	url = git@github.com:ctrlpvim/ctrlp.vim
-[submodule ".vim/pack/git/start/vim-fugitive"]
-	path = .vim/pack/git/start/vim-fugitive
-	url = git@github.com:tpope/vim-fugitive
-[submodule ".vim/pack/git/opt/fugitive-gitlab.vim"]
-	path = .vim/pack/git/opt/fugitive-gitlab.vim
-	url = git@github.com:shumphrey/fugitive-gitlab.vim
-[submodule ".vim/pack/git/opt/vim-rhubarb"]
-	path = .vim/pack/git/opt/vim-rhubarb
-	url = git@github.com:tpope/vim-rhubarb
-[submodule ".vim/pack/nerdtree/start/nerdtree"]
-	path = .vim/pack/nerdtree/start/nerdtree
-	url = git@github.com:scrooloose/nerdtree
-[submodule ".vim/pack/nerdtree/start/nerdtree-git-plugin"]
-	path = .vim/pack/nerdtree/start/nerdtree-git-plugin
-	url = git@github.com:Xuyuanp/nerdtree-git-plugin
-[submodule ".vim/pack/utilities/start/editorconfig-vim"]
-	path = .vim/pack/utilities/start/editorconfig-vim
-	url = git@github.com:editorconfig/editorconfig-vim
-[submodule ".vim/pack/utilities/start/emmet-vim"]
-	path = .vim/pack/utilities/start/emmet-vim
-	url = git@github.com:mattn/emmet-vim.git
-[submodule ".vim/pack/utilities/start/tcomment_vim"]
-	path = .vim/pack/utilities/start/tcomment_vim
-	url = git@github.com:tomtom/tcomment_vim
-[submodule ".vim/pack/utilities/start/vim-auto-save"]
-	path = .vim/pack/utilities/start/vim-auto-save
-	url = git@github.com:907th/vim-auto-save
-[submodule ".vim/pack/utilities/start/vim-easymotion"]
-	path = .vim/pack/utilities/start/vim-easymotion
-	url = git@github.com:easymotion/vim-easymotion
-[submodule ".vim/pack/utilities/start/vim-surround"]
-	path = .vim/pack/utilities/start/vim-surround
-	url = git@github.com:tpope/vim-surround
-[submodule ".vim/pack/git/start/vim-gitgutter"]
-	path = .vim/pack/git/start/vim-gitgutter
-	url = git@github.com:airblade/vim-gitgutter.git
-[submodule ".vim/pack/utilities/start/ale"]
-	path = .vim/pack/utilities/start/ale
-	url = git@github.com:w0rp/ale.git
-[submodule ".vim/pack/filetypes/start/vim-javascript"]
-	path = .vim/pack/filetypes/start/vim-javascript
-	url = git@github.com:pangloss/vim-javascript.git
-[submodule ".vim/pack/utilities/start/Spacegray.vim"]
-	path = .vim/pack/utilities/start/Spacegray.vim
-	url = git@github.com:ajh17/Spacegray.vim.git
-[submodule ".zsh/plugins/zsh-syntax-highlighting"]
-	path = .zsh/plugins/zsh-syntax-highlighting
-	url = git@github.com:zsh-users/zsh-syntax-highlighting
-[submodule ".zsh/plugins/zsh-autosuggestions"]
-	path = .zsh/plugins/zsh-autosuggestions
-	url = git@github.com:zsh-users/zsh-autosuggestions
-[submodule ".zsh/plugins/mysql-colorize"]
-	path = .zsh/plugins/mysql-colorize
-	url = git@github.com:horosgrisa/mysql-colorize
-[submodule ".zsh/plugins/zsh-you-should-use"]
-	path = .zsh/plugins/zsh-you-should-use
-	url = git@github.com:MichaelAquilina/zsh-you-should-use
-[submodule ".vim/pack/filetypes/start/php.vim"]
-	path = .vim/pack/filetypes/start/php.vim
-	url = git@github.com:StanAngeloff/php.vim
-[submodule ".vim/pack/filetypes/start/vim-gfm-syntax"]
-	path = .vim/pack/filetypes/start/vim-gfm-syntax
-	url = git@github.com:rhysd/vim-gfm-syntax
-[submodule ".vim/pack/utilities/start/indentLine"]
-	path = .vim/pack/utilities/start/indentLine
-	url = git@github.com:Yggdroot/indentLine.git
-[submodule ".vim/pack/filetypes/start/vim-jsx"]
-	path = .vim/pack/filetypes/start/vim-jsx
-	url = git@github.com:mxw/vim-jsx
-[submodule ".vim/pack/utilities/start/vim-repeat"]
-	path = .vim/pack/utilities/start/vim-repeat
-	url = git@github.com:tpope/vim-repeat
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh
+[submodule "dot/vim/pack/git/opt/fugitive-gitlab.vim"]
+	path = dot/vim/pack/git/opt/fugitive-gitlab.vim
+	url = git@github.com:shumphrey/fugitive-gitlab.vim
+[submodule "dot/vim/pack/finders/opt/incsearch-fuzzy.vim"]
+	path = dot/vim/pack/finders/opt/incsearch-fuzzy.vim
+	url = git@github.com:haya14busa/incsearch-fuzzy.vim
+[submodule "dot/vim/pack/git/opt/vim-rhubarb"]
+	path = dot/vim/pack/git/opt/vim-rhubarb
+	url = git@github.com:tpope/vim-rhubarb
+[submodule "dot/zsh/plugins/mysql-colorize"]
+	path = dot/zsh/plugins/mysql-colorize
+	url = git@github.com:horosgrisa/mysql-colorize
+[submodule "dot/zsh/plugins/zsh-autosuggestions"]
+	path = dot/zsh/plugins/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions
+[submodule "dot/zsh/plugins/zsh-syntax-highlighting"]
+	path = dot/zsh/plugins/zsh-syntax-highlighting
+	url = git@github.com:zsh-users/zsh-syntax-highlighting
+[submodule "dot/zsh/plugins/zsh-you-should-use"]
+	path = dot/zsh/plugins/zsh-you-should-use
+	url = git@github.com:MichaelAquilina/zsh-you-should-use
+[submodule "dot/vim/pack/utilities/start/ale"]
+	path = dot/vim/pack/utilities/start/ale
+	url = git@github.com:w0rp/ale.git
+[submodule "dot/vim/pack/finders/start/ctlp.vim"]
+	path = dot/vim/pack/finders/start/ctlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim
+[submodule "dot/vim/pack/utilities/start/editorconfig-vim"]
+	path = dot/vim/pack/utilities/start/editorconfig-vim
+	url = git@github.com:editorconfig/editorconfig-vim
+[submodule "dot/vim/pack/utilities/start/emmet-vim"]
+	path = dot/vim/pack/utilities/start/emmet-vim
+	url = git@github.com:mattn/emmet-vim.git
+[submodule "dot/vim/pack/finders/start/incsearch.vim"]
+	path = dot/vim/pack/finders/start/incsearch.vim
+	url = git@github.com:haya14busa/incsearch.vim
+[submodule "dot/vim/pack/utilities/start/indentLine"]
+	path = dot/vim/pack/utilities/start/indentLine
+	url = git@github.com:Yggdroot/indentLine.git
+[submodule "dot/vim/pack/nerdtree/start/nerdtree-git-plugin"]
+	path = dot/vim/pack/nerdtree/start/nerdtree-git-plugin
+	url = git@github.com:Xuyuanp/nerdtree-git-plugin
+[submodule "dot/vim/pack/nerdtree/start/nerdtree"]
+	path = dot/vim/pack/nerdtree/start/nerdtree
+	url = git@github.com:scrooloose/nerdtree
+[submodule "dot/vim/pack/filetypes/start/php.vim"]
+	path = dot/vim/pack/filetypes/start/php.vim
+	url = git@github.com:StanAngeloff/php.vim
+[submodule "dot/vim/pack/utilities/start/Spacegray.vim"]
+	path = dot/vim/pack/utilities/start/Spacegray.vim
+	url = git@github.com:ajh17/Spacegray.vim.git
+[submodule "dot/vim/pack/utilities/start/tcomment_vim"]
+	path = dot/vim/pack/utilities/start/tcomment_vim
+	url = git@github.com:tomtom/tcomment_vim
+[submodule "dot/vim/pack/filetypes/start/typescript-vim"]
+	path = dot/vim/pack/filetypes/start/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim
+[submodule "dot/vim/pack/airline/start/vim-airline-themes"]
+	path = dot/vim/pack/airline/start/vim-airline-themes
+	url = git@github.com:vim-airline/vim-airline-themes
+[submodule "dot/vim/pack/airline/start/vim-airline"]
+	path = dot/vim/pack/airline/start/vim-airline
+	url = git@github.com:vim-airline/vim-airline
+[submodule "dot/vim/pack/utilities/start/vim-auto-save"]
+	path = dot/vim/pack/utilities/start/vim-auto-save
+	url = git@github.com:907th/vim-auto-save
+[submodule "dot/vim/pack/filetypes/start/vim-blade"]
+	path = dot/vim/pack/filetypes/start/vim-blade
+	url = git@github.com:jwalton512/vim-blade
+[submodule "dot/vim/pack/utilities/start/vim-easymotion"]
+	path = dot/vim/pack/utilities/start/vim-easymotion
+	url = git@github.com:easymotion/vim-easymotion
+[submodule "dot/vim/pack/git/start/vim-fugitive"]
+	path = dot/vim/pack/git/start/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive
+[submodule "dot/vim/pack/filetypes/start/vim-gfm-syntax"]
+	path = dot/vim/pack/filetypes/start/vim-gfm-syntax
+	url = git@github.com:rhysd/vim-gfm-syntax
+[submodule "dot/vim/pack/git/start/vim-gitgutter"]
+	path = dot/vim/pack/git/start/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "dot/vim/pack/filetypes/start/vim-javascript"]
+	path = dot/vim/pack/filetypes/start/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
+[submodule "dot/vim/pack/filetypes/start/vim-jsx"]
+	path = dot/vim/pack/filetypes/start/vim-jsx
+	url = git@github.com:mxw/vim-jsx
+[submodule "dot/vim/pack/filetypes/start/vim-pug"]
+	path = dot/vim/pack/filetypes/start/vim-pug
+	url = git@github.com:digitaltoad/vim-pug
+[submodule "dot/vim/pack/utilities/start/vim-surround"]
+	path = dot/vim/pack/utilities/start/vim-surround
+	url = git@github.com:tpope/vim-surround
+[submodule "dot/vim/pack/filetypes/start/vim-vue"]
+	path = dot/vim/pack/filetypes/start/vim-vue
+	url = git@github.com:posva/vim-vue
+[submodule "dot/vim/pack/utilities/start/vim-repeat"]
+	path = dot/vim/pack/utilities/start/vim-repeat
+	url = git@github.com:tpope/vim-repeat
