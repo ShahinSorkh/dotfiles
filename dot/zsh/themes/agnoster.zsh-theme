@@ -1,1 +1,1 @@
-../../.oh-my-zsh/themes/agnoster.zsh-theme
+../../../oh-my-zsh/themes/agnoster.zsh-theme

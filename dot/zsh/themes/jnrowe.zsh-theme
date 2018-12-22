@@ -1,1 +1,1 @@
-../../.oh-my-zsh/themes/jnrowe.zsh-theme
+../../../oh-my-zsh/themes/jnrowe.zsh-theme
