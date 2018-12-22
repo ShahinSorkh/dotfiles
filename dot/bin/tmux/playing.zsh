@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 
-INFO="$(mocp -i &2>/dev/null)"
+INFO="$(mocp -i 2>/dev/null)"
 
 STATE="$(echo "$INFO" | awk '/^State/ { print $2 }' | xargs)"
 TITLE="$(echo "$INFO" | awk '/^SongTitle/ { printf "%s %s", $2, $3 }' | xargs)"
@@ -23,7 +23,7 @@ case "$STATE" in
         ;;
 esac
 
-if [ -z "$TITLE" ]; then
+if [ -z "$TITLE" && -z "$ARTIST" ]; then
     echo "$PLAYING 🎧"
     exit 0
 fi
