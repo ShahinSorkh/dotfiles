@@ -23,7 +23,7 @@ case "$STATE" in
         ;;
 esac
 
-if [ -z "$TITLE" && -z "$ARTIST" ]; then
+if [ -z "$TITLE" ] && [ -z "$ARTIST" ]; then
     echo "$PLAYING 🎧"
     exit 0
 fi
