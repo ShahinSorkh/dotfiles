@@ -39,7 +39,7 @@ set foldnestmax=10
 set foldmethod=indent
 
 set wildmenu
-set wildmode=list:longest,list:full
+set wildmode=full
 
 set backspace=indent,eol,start
 nnoremap <CR> :noh<CR><CR>
@@ -76,7 +76,7 @@ let g:ale_completion_enabled = 1
 
 " ale linters
 let g:ale_linters = {
-      \  'javascript': ['standard'],
+      \  'javascript': ['eslint'],
       \  'html': ['alex', 'tidy'],
       \  'text': ['alex'],
       \  'markdown': ['alex'],
@@ -89,10 +89,10 @@ let g:ale_linters = {
 
 " ale fixers
 let g:ale_fixers = {
-      \  'javascript': ['standard'],
+      \  'javascript': ['eslint'],
       \  'html': ['tidy'],
       \  'css': ['stylelint'],
-      \  'vue': ['standard', 'tidy', 'stylelint'],
+      \  'vue': ['eslint', 'tidy', 'stylelint'],
       \  'json': ['jsonlint'],
       \  'scss': ['stylelint'],
       \  'sass': ['stylelint'],
@@ -101,10 +101,7 @@ let g:ale_fixers = {
       \  }
 
 " ale options
-let g:ale_javascript_standard_options = '-v'
-let g:ale_vue_standard_options = '--plugin html'
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
-
 
 " vim vue
 let g:vue_disable_pre_processors=1
