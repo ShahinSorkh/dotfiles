@@ -76,6 +76,7 @@ let g:ale_completion_enabled = 1
 
 " ale linters
 let g:ale_linters = {
+      \  'vue': ['eslint'],
       \  'javascript': ['eslint'],
       \  'html': ['alex', 'tidy'],
       \  'text': ['alex'],
@@ -279,6 +280,6 @@ nnoremap <C-K> :m-2<cr>
 inoremap jk <esc>
 inoremap <esc> <nop>
 
-cnoremap w!! w !sudo tee > /dev/null % <cr> edit!<cr>
+cmap w!! w !sudo tee > /dev/null % <cr> :edit!<cr>
 
 " vim: et ts=2 sts=2 sw=2
