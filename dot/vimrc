@@ -4,11 +4,12 @@ colorscheme spacegray
 
 set encoding=utf-8
 set fileencoding=utf-8
-set ff=unix
+set fileformat=unix
+scriptencoding utf-8
 
-set incsearch
 set hlsearch
 set ignorecase
+set incsearch
 set smartcase
 
 set splitbelow
@@ -16,35 +17,39 @@ set splitright
 
 set autoindent
 set smartindent
+filetype plugin indent on
 syntax enable
 
-filetype on
-filetype indent on
-filetype plugin on
-filetype plugin indent on
-
-set nocompatible
 set nobackup
-set noswapfile
-set number
-set signcolumn=yes
-set lazyredraw
+set nocompatible
 set noshowmode
-set updatetime=1250
+set noswapfile
+
+set number
+set lazyredraw
 set scrolloff=1
+set signcolumn=yes
+set updatetime=1250
 
 set foldenable
 set foldlevelstart=10
-set foldnestmax=10
 set foldmethod=indent
+set foldnestmax=10
 
 set wildmenu
 set wildmode=full
 
 set backspace=indent,eol,start
+set pastetoggle=<f2>
 nnoremap <CR> :noh<CR><CR>
-let mapleader=','
+let g:mapleader=','
 
+" for ale completion issues
+set completeopt=menu,menuone,preview,noselect,noinsert
+
+augroup vimrc
+  autocmd!
+augroup END
 
 """""""""""""""""""""""""""""""""""""" Plugins configuration
 
@@ -61,7 +66,6 @@ let g:ale_pattern_options = {
       \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
       \ }
 let g:ale_list_window_size = 5
-let g:ale_use_global_executables = 0
 
 nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>j <Plug>(ale_next_wrap)
@@ -76,8 +80,8 @@ let g:ale_completion_enabled = 1
 
 " ale linters
 let g:ale_linters = {
-      \  'vue': ['eslint'],
-      \  'javascript': ['eslint'],
+      \  'vue': ['vls', 'eslint'],
+      \  'javascript': ['tsserver', 'eslint'],
       \  'html': ['alex', 'tidy'],
       \  'text': ['alex'],
       \  'markdown': ['alex'],
@@ -86,6 +90,8 @@ let g:ale_linters = {
       \  'scss': ['stylelint'],
       \  'sass': ['stylelint'],
       \  'python': ['pylint'],
+      \  'php': ['langserver', 'php'],
+      \  'blade': ['langserver', 'tsserver', 'php', 'alex', 'eslint'],
       \  }
 
 " ale fixers
@@ -104,28 +110,31 @@ let g:ale_fixers = {
 " ale options
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
 
+let g:ale_php_langserver_use_global = 1
+let g:ale_php_langserver_executable = $HOME.'/.config/composer/vendor/bin/php-language-server.php'
+
 " vim vue
 let g:vue_disable_pre_processors=1
-autocmd FileType vue syntax sync fromstart
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
 
-" vim blade
-autocmd FileType blade syntax sync fromstart
-autocmd BufRead,BufNewFile *.blade.php setlocal filetype=blade
+autocmd vimrc FileType vue syntax sync fromstart
+autocmd vimrc BufRead,BufNewFile *.vue setlocal filetype=vue
 
+" blade
+autocmd vimrc FileType blade syntax sync fromstart
+autocmd vimrc BufRead,BufNewFile *.blade.php setlocal filetype=blade
 
 " indentLine
 let g:indentLine_char = '|'
 
 " fugitive
-autocmd QuickFixCmdPost *grep* cwindow
+autocmd vimrc QuickFixCmdPost *grep* cwindow
 
 " vim-gitgutter
 let g:gitgutter_diff_args = '-w'
 let g:gitgutter_map_keys = 0 " overwrites tcomment objects
 
+autocmd vimrc BufWrite * GitGutter
 nnoremap <Leader>gglh :GitGutterLineHighlightsToggle<CR>
-autocmd BufWrite * GitGutter
 
 nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
@@ -180,10 +189,11 @@ call NERDTreeHighlightFile('js', 'Red', 'none')
 call NERDTreeHighlightFile('php', 'Magenta', 'none')
 
 " nerdtree
-autocmd StdinReadPre * let s:std_in=1
+autocmd vimrc StdinReadPre * let s:std_in=1
+
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd vimrc VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
+autocmd vimrc BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDTreeChDirMode = 2
 
@@ -240,10 +250,8 @@ endif
 """""""""""""""""" my configurations
 
 " jump to the last position when reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-        \| exe "normal! g'\"" | endif
-endif
+autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+      \| exe "normal! g'\"" | endif
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
