@@ -71,7 +71,7 @@ nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>j <Plug>(ale_next_wrap)
 
 let g:ale_linter_aliases = {
-      \  'vue': ['javascript', 'html', 'css'],
+      \  'vue': ['vue', 'javascript', 'html', 'css'],
       \  'blade': ['php', 'javascript', 'css', 'html'],
       \  }
 
@@ -91,7 +91,7 @@ let g:ale_linters = {
       \  'sass': ['stylelint'],
       \  'python': ['pylint'],
       \  'php': ['langserver', 'php'],
-      \  'blade': ['langserver', 'tsserver', 'php', 'alex', 'eslint', 'stylelint'],
+      \  'blade': ['langserver', 'tsserver', 'php', 'eslint', 'stylelint'],
       \  'vim': ['vint'],
       \  'sh': ['language_server'],
       \  'bash': ['language_server'],
@@ -113,10 +113,13 @@ let g:ale_fixers = {
       \  }
 
 " ale options
-let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
 let g:ale_bash_language_server_use_global = 1
-
+let g:ale_javascript_tsserver_use_global = 1
 let g:ale_php_langserver_use_global = 1
+let g:ale_vue_vls_use_global = 1
+
+let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
+
 let g:ale_php_langserver_executable = $HOME.'/.config/composer/vendor/bin/php-language-server.php'
 
 " vim vue
