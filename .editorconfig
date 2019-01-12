@@ -13,15 +13,15 @@ insert_final_newline = true
 indent_style = space
 indent_size = 4
 
-[*.{txt,md}]
+[*.txt]
 indent_style = tab
 
 [*.{diff,md}]
 trim_trailing_whitespace = false
 
-[*.{js,pug,vue,json}]
+[*.{js,pug,vue,sass,scss,css}]
 indent_size = 2
 
-[*.js]
+[*.{js,scss}]
 insert_final_newline = false
 
