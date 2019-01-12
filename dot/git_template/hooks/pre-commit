@@ -1,0 +1,16 @@
+#!/bin/bash
+
+NPX='npx --quiet --no-install'
+ES_FILES=$(git diff --name-only --cached --relative | egrep '\.(vue|jsx?)$')
+STYLE_FILES=$(git diff --name-only --cached --relative | egrep '\.(vue|s?[ac]ss|blade)$')
+
+[ ! -z "$ES_FILES" ] && ESLINT=$($NPX eslint $ES_FILES 2>&1)
+[ ! -z "$STYLE_FILES" ] && STYLELINT=$($NPX stylelint $STYLE_FILES 2>&1)
+
+if [ ! -z "$ESLINT" ] || [ ! -z "$STYLELINT" ]; then
+  echo '>>>>> Standard Style errors were detected. Aborting commit.' >&2
+  [ ! -z "$ESLINT" ] && echo "$ESLINT" >&2
+  [ ! -z "$STYLELINT" ] && echo "$STYLELINT" >&2
+  exit 1
+fi
+
