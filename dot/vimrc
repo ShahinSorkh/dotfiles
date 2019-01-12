@@ -92,6 +92,10 @@ let g:ale_linters = {
       \  'python': ['pylint'],
       \  'php': ['langserver', 'php'],
       \  'blade': ['langserver', 'tsserver', 'php', 'alex', 'eslint'],
+      \  'vim': ['vint'],
+      \  'bash': ['language-server'],
+      \  'c': ['gcc'],
+      \  'cpp': ['gcc'],
       \  }
 
 " ale fixers
@@ -109,6 +113,7 @@ let g:ale_fixers = {
 
 " ale options
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
+let g:ale_bash_language_server_use_global = 1
 
 let g:ale_php_langserver_use_global = 1
 let g:ale_php_langserver_executable = $HOME.'/.config/composer/vendor/bin/php-language-server.php'
@@ -150,7 +155,7 @@ xmap ah <Plug>GitGutterTextObjectOuterVisual
 
 " vim-autosave
 nnoremap <Leader>as :AutoSaveToggle<CR>
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
+let g:auto_save_events = ['InsertLeave', 'TextChanged']
 let g:auto_save_write_all_buffers = 1
 let g:auto_save_no_updatetime = 1
 
@@ -243,7 +248,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 
-if exists("#airline")
+if exists('#airline')
   AirlineRefresh
 endif
 
