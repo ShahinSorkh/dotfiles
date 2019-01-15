@@ -109,7 +109,7 @@ let g:ale_fixers = {
       \  'scss': ['stylelint'],
       \  'sass': ['stylelint'],
       \  'python': ['flake8'],
-      \  'php': ['phpmd']
+      \  'php': ['php-cs-fixer']
       \  }
 
 " ale options
