@@ -1,3 +1,5 @@
+" vint: -ProhibitSetNoCompatible
+
 set t_Co=256
 set cursorline
 colorscheme spacegray
@@ -73,6 +75,7 @@ nmap <silent> <Leader>j <Plug>(ale_next_wrap)
 let g:ale_linter_aliases = {
       \  'vue': ['vue', 'javascript', 'html', 'css'],
       \  'blade': ['php', 'javascript', 'css', 'html'],
+      \  'vader': ['vim'],
       \  }
 
 " ale completion
@@ -93,6 +96,7 @@ let g:ale_linters = {
       \  'php': ['langserver', 'php'],
       \  'blade': ['langserver', 'tsserver', 'php', 'eslint', 'stylelint'],
       \  'vim': ['vint'],
+      \  'vader': ['vint'],
       \  'sh': ['language_server'],
       \  'bash': ['language_server'],
       \  'c': ['gcc'],

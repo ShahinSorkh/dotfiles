@@ -100,3 +100,6 @@
 [submodule "dot/vim/pack/utilities/start/vim-repeat"]
 	path = dot/vim/pack/utilities/start/vim-repeat
 	url = git@github.com:tpope/vim-repeat
+[submodule "dot/vim/pack/filetypes/start/vader.vim"]
+	path = dot/vim/pack/filetypes/start/vader.vim
+	url = git@github.com:junegunn/vader.vim
