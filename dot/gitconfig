@@ -24,3 +24,10 @@
 	ctags = !.git/hooks/ctags
 [diff]
 	tool = vimdiff
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[difftool]
+	prompt = false
