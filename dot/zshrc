@@ -69,6 +69,7 @@ plugins=(
   common-aliases
   composer
   git
+  gitignore
   laravel5
   node
   ssh-agent
