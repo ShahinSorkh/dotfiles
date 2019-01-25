@@ -95,7 +95,7 @@ let g:ale_linters = {
       \  'sass': ['stylelint'],
       \  'python': ['pylint'],
       \  'php': ['langserver', 'php'],
-      \  'blade': ['langserver', 'tsserver', 'php', 'eslint', 'stylelint'],
+      \  'blade': ['langserver', 'php', 'eslint', 'stylelint'],
       \  'vim': ['vint'],
       \  'vader': ['vint'],
       \  'sh': ['language_server'],
@@ -210,6 +210,10 @@ autocmd vimrc VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:
 autocmd vimrc BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:NERDTreeChDirMode = 2
+let g:NERDTreeIgnore = [
+      \ '\.map$',
+      \ '\.pyc$',
+      \]
 
 map <C-n> :NERDTree<CR>
 map <C-N> :NERDTreeToggle<CR>
