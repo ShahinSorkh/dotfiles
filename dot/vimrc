@@ -268,6 +268,13 @@ endif
 
 """""""""""""""""" my configurations
 
+" disable IndentLines for json files
+autocmd vimrc FileType json IndentLinesDisable
+
+" persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions)
+autocmd vimrc BufWinLeave * mkview
+autocmd vimrc BufWinEnter * silent loadview
+
 " jump to the last position when reopening a file
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
       \| exe "normal! g'\"" | endif

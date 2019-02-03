@@ -121,6 +121,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias phpunit="./vendor/bin/phpunit"
 alias a="php artisan"
+alias -g CLIP="| xclip -selection clipboard"
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore
