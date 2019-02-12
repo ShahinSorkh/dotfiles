@@ -270,14 +270,14 @@ endif
 
 " disable IndentLines for json files
 autocmd vimrc FileType json IndentLinesDisable
+autocmd vimrc FileType yml,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions)
 autocmd vimrc BufWinLeave * mkview
-autocmd vimrc BufWinEnter * silent loadview
+autocmd vimrc BufWinEnter * if &filetype != '' | silent loadview | endif
 
 " jump to the last position when reopening a file
-autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-      \| exe "normal! g'\"" | endif
+autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
