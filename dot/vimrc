@@ -22,6 +22,12 @@ set smartindent
 filetype plugin indent on
 syntax enable
 
+set hidden
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
+
 set nobackup
 set nocompatible
 set noshowmode
