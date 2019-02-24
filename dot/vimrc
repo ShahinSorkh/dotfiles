@@ -279,8 +279,8 @@ autocmd vimrc FileType json IndentLinesDisable
 autocmd vimrc FileType yml,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions)
-autocmd vimrc BufWinLeave * mkview
-autocmd vimrc BufWinEnter * if &filetype != '' | silent loadview | endif
+autocmd vimrc BufWinLeave * silent! mkview
+autocmd vimrc BufWinEnter * if &filetype != '' | silent! loadview | endif
 
 " jump to the last position when reopening a file
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
