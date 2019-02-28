@@ -83,8 +83,11 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOSTART_ONCE=true
+if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
+  ZSH_TMUX_AUTOSTART=true
+  ZSH_TMUX_AUTOSTART_ONCE=true
+fi
+
 ZSH_TMUX_AUTOQUIT=false
 
 export TERM=xterm-256color
