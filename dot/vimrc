@@ -99,7 +99,7 @@ let g:ale_linters = {
       \  'css': ['stylelint'],
       \  'scss': ['stylelint'],
       \  'sass': ['stylelint'],
-      \  'python': ['pylint'],
+      \  'python': ['pylint', 'pyls'],
       \  'php': ['langserver', 'php'],
       \  'blade': ['langserver', 'php', 'eslint', 'stylelint'],
       \  'vim': ['vint'],
