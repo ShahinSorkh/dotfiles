@@ -129,6 +129,7 @@ let g:ale_bash_language_server_use_global = 1
 let g:ale_javascript_tsserver_use_global = 1
 let g:ale_php_langserver_use_global = 1
 let g:ale_vue_vls_use_global = 1
+let g:ale_python_pylint_options = '--disable=missing-docstring'
 
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
 
