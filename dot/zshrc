@@ -79,7 +79,6 @@ plugins=(
   vi-mode
   vue
   yarn
-  zsh-autosuggestions
   zsh-syntax-highlighting
 )
 
@@ -97,8 +96,8 @@ source $ZSH/custom-omz.sh
 source $ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
 # User configuration
-
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+[[ -s /etc/profile.d/autojump.sh ]] && . /etc/profile.d/autojump.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
