@@ -1,5 +1,6 @@
 #!/usr/bin/zsh
 
+exit 0
 INFO="$(mocp -i 2>/dev/null)"
 
 STATE="$(echo "$INFO" | awk '/^State/ { print $2 }' | xargs)"
