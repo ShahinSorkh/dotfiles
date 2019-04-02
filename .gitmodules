@@ -106,3 +106,6 @@
 [submodule "dot/vim/pack/utilities/opt/vim-jekyll"]
 	path = dot/vim/pack/utilities/opt/vim-jekyll
 	url = git@github.com:parkr/vim-jekyll.git
+[submodule "dot/vim/pack/filetypes/start/vim-liquid"]
+	path = dot/vim/pack/filetypes/start/vim-liquid
+	url = git@github.com:tpope/vim-liquid.git
