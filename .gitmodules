@@ -103,3 +103,6 @@
 [submodule "dot/vim/pack/filetypes/start/vader.vim"]
 	path = dot/vim/pack/filetypes/start/vader.vim
 	url = git@github.com:junegunn/vader.vim
+[submodule "dot/vim/pack/utilities/opt/vim-jekyll"]
+	path = dot/vim/pack/utilities/opt/vim-jekyll
+	url = git@github.com:parkr/vim-jekyll.git
