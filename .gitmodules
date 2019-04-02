@@ -109,3 +109,6 @@
 [submodule "dot/vim/pack/filetypes/start/vim-liquid"]
 	path = dot/vim/pack/filetypes/start/vim-liquid
 	url = git@github.com:tpope/vim-liquid.git
+[submodule "dot/vim/pack/utilities/start/vim-localvimrc"]
+	path = dot/vim/pack/utilities/start/vim-localvimrc
+	url = git@github.com:embear/vim-localvimrc.git
