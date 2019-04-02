@@ -1,67 +1,78 @@
 " vint: -ProhibitSetNoCompatible
+" vim: et ts=2 sts=2 sw=2 fdm=marker fdl=1
 
+"""""""""""""""""""""""""""""""""""""" General configurations {{{1
+" colors {{{2
 set t_Co=256
 set cursorline
 colorscheme spacegray
 
+" read/write {{{2
 set encoding=utf-8
 set fileencoding=utf-8
 set fileformat=unix
 scriptencoding utf-8
 
+" search {{{2
 set hlsearch
 set ignorecase
 set incsearch
 set smartcase
 
+" split {{{2
 set splitbelow
 set splitright
 
+" indentation {{{2
 set autoindent
 set smartindent
 filetype plugin indent on
 syntax enable
 
+" undo {{{2
 set hidden
 set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
-set nobackup
+" vim backward-compatiblity {{{2
 set nocompatible
+set nobackup
 set noshowmode
 set noswapfile
 
+" gutter {{{2
 set number
-set lazyredraw
 set scrolloff=1
 set signcolumn=yes
-set updatetime=1250
 
+" fold {{{2
 set foldenable
 set foldlevelstart=10
 set foldmethod=indent
 set foldnestmax=10
 
+" wild menu {{{2
 set wildmenu
 set wildmode=full
 
+" misc {{{2
 set backspace=indent,eol,start
 set pastetoggle=<f2>
+set lazyredraw
+set updatetime=1250
 nnoremap <CR> :noh<CR><CR>
 let g:mapleader=','
 
-" for ale completion issues
-set completeopt=menu,menuone,preview,noselect,noinsert
-
+" autocmd group {{{2
 augroup vimrc
   autocmd!
 augroup END
 
-"""""""""""""""""""""""""""""""""""""" Plugins configuration
-
-" ale
+"""""""""""""""""""""""""""""""""""""" Plugins configuration {{{1
+" ale {{{2
+" ale general {{{3
 let g:ale_linters_explicit = 1
 let g:ale_sign_column_always = 1
 let g:airline#extensions#ale#enabled = 1
@@ -84,10 +95,11 @@ let g:ale_linter_aliases = {
       \  'vader': ['vim'],
       \  }
 
-" ale completion
+" ale completion {{{3
+set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ale_completion_enabled = 1
 
-" ale linters
+" ale linters {{{3
 let g:ale_linters = {
       \  'vue': ['vls', 'eslint', 'stylelint'],
       \  'javascript': ['tsserver', 'eslint'],
@@ -111,7 +123,7 @@ let g:ale_linters = {
       \  'rust': ['cargo', 'rustc'],
       \  }
 
-" ale fixers
+" ale fixers {{{3
 let g:ale_fixers = {
       \  'javascript': ['eslint'],
       \  'html': ['tidy'],
@@ -124,7 +136,7 @@ let g:ale_fixers = {
       \  'php': ['php-cs-fixer']
       \  }
 
-" ale options
+" ale options {{{3
 let g:ale_bash_language_server_use_global = 1
 let g:ale_javascript_tsserver_use_global = 1
 let g:ale_php_langserver_use_global = 1
@@ -135,23 +147,23 @@ let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --
 
 let g:ale_php_langserver_executable = $HOME.'/.config/composer/vendor/bin/php-language-server.php'
 
-" vim vue
+" vim vue {{{2
 let g:vue_disable_pre_processors=1
 
 autocmd vimrc FileType vue syntax sync fromstart
 autocmd vimrc BufRead,BufNewFile *.vue setlocal filetype=vue
 
-" blade
+" blade {{{2
 autocmd vimrc FileType blade syntax sync fromstart
 autocmd vimrc BufRead,BufNewFile *.blade.php setlocal filetype=blade
 
-" indentLine
+" indentLine {{{2
 let g:indentLine_char = '|'
 
-" fugitive
+" fugitive {{{2
 autocmd vimrc QuickFixCmdPost *grep* cwindow
 
-" vim-gitgutter
+" vim-gitgutter {{{2
 let g:gitgutter_diff_args = '-w'
 let g:gitgutter_map_keys = 0 " overwrites tcomment objects
 
@@ -170,19 +182,19 @@ omap ah <Plug>GitGutterTextObjectOuterPending
 xmap ih <Plug>GitGutterTextObjectInnerVisual
 xmap ah <Plug>GitGutterTextObjectOuterVisual
 
-" vim-autosave
+" vim-autosave {{{2
 nnoremap <Leader>as :AutoSaveToggle<CR>
 let g:auto_save_events = ['InsertLeave', 'TextChanged']
 let g:auto_save_write_all_buffers = 1
 let g:auto_save_no_updatetime = 1
 
-" easy motion
+" easy motion {{{2
 nmap s <Plug>(easymotion-overwin-f)
 nmap s <Plug>(easymotion-overwin-f2)
 
 let g:EasyMotion_smartcase = 1
 
-" airline
+" airline {{{2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -191,7 +203,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='simple'
 
-" nerdtree File highlighting
+" nerdtree File highlighting {{{2
 function! NERDTreeHighlightFile(extension, fg, bg)
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg=#ffffff guifg=#151515'
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
@@ -210,7 +222,7 @@ call NERDTreeHighlightFile('vue', 'Red', 'none')
 call NERDTreeHighlightFile('js', 'Red', 'none')
 call NERDTreeHighlightFile('php', 'Magenta', 'none')
 
-" nerdtree
+" nerdtree {{{2
 autocmd vimrc StdinReadPre * let s:std_in=1
 
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -226,7 +238,7 @@ let g:NERDTreeIgnore = [
 map <C-n> :NERDTree<CR>
 map <C-N> :NERDTreeToggle<CR>
 
-" ctrl p
+" ctrl p {{{2
 map <C-p> :CtrlP<CR>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar,*.bz,*.bz2,*.gz,*.xz,*.rar,*.phar,*.jar
@@ -237,7 +249,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -oc --exclude-standar
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_working_path_mode = '0'
 
-" incsearch plugin
+" incsearch plugin {{{2
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
@@ -250,6 +262,7 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+" incsearch-fuzzy {{{2
 packadd incsearch-fuzzy.vim
 
 function! s:config_fuzzyall(...) abort
@@ -265,7 +278,7 @@ noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
 noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
 noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 
-" status line
+" status line {{{2
 set statusline+=%#warningmsg#
 set statusline+=%{fugitive#statusline()}
 set statusline+=%*
@@ -274,28 +287,30 @@ if exists('#airline')
   AirlineRefresh
 endif
 
-"""""""""""""""""" my configurations
-
-" disable IndentLines for json files
+"""""""""""""""""""""""""""""""""""""" My configurations {{{1
+" disable IndentLines for json files {{{2
 autocmd vimrc FileType json IndentLinesDisable
 autocmd vimrc FileType yml,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
-" persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions)
+" persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions) {{{2
 autocmd vimrc BufWinLeave * silent! mkview
 autocmd vimrc BufWinEnter * if &filetype != '' | silent! loadview | endif
 
-" jump to the last position when reopening a file
+" jump to the last position when reopening a file {{{2
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-" Highlight VCS conflict markers
+" Highlight VCS conflict markers {{{2
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+" custom mappings {{{2
 nnoremap <space> za
 nnoremap Y y$
 
+" ~/.vimrc helpers {{{3
 nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
 nnoremap <Leader>sv :source ~/.vimrc<cr>
 
+" smart movement {{{3
 nnoremap gj j
 nnoremap gk k
 vnoremap gj j
@@ -306,29 +321,29 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+" center the cursor {{{3
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap g; g;zz
 nnoremap g, g,zz
 nnoremap <c-o> <c-o>zz
 
+" buffer helpers {{{3
 nnoremap <Leader><Leader>d :bd<cr>
 nnoremap <Tab> :bn!<cr>
 nnoremap <S-Tab> :bN!<cr>
 
-nnoremap <C-J> :m+<cr>
-nnoremap <C-K> :m-2<cr>
-
+" force jk instead of <esc> {{{3
 inoremap jk <esc>
 inoremap <esc> <nop>
 
+" write as sudo {{{3
 cmap w!! w !sudo tee > /dev/null % <cr> :edit!<cr>
 
+" safe load local vimrc file {{{2
 set secure
 " override settings using my special vimrc config file
 autocmd vimrc BufEnter .shvimsorc set filetype=vim
 if filereadable('.shvimsorc')
   source .shvimsorc
 endif
-
-" vim: et ts=2 sts=2 sw=2
