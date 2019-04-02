@@ -324,4 +324,11 @@ inoremap <esc> <nop>
 
 cmap w!! w !sudo tee > /dev/null % <cr> :edit!<cr>
 
+set secure
+" override settings using my special vimrc config file
+autocmd vimrc BufEnter .shvimsorc set filetype=vim
+if filereadable('.shvimsorc')
+  source .shvimsorc
+endif
+
 " vim: et ts=2 sts=2 sw=2
