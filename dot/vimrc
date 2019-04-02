@@ -278,6 +278,16 @@ noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
 noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
 noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 
+" vim-jekyll {{{2
+let g:jekyll_post_extension = '.md'
+let g:jekyll_post_template =  [
+      \ '---',
+      \ 'date: "JEKYLL_DATE"',
+      \ 'title: "JEKYLL_TITLE"',
+      \ '---'
+      \]
+let g:jekyll_build_command = 'bundle exec jekyll build'
+
 " status line {{{2
 set statusline+=%#warningmsg#
 set statusline+=%{fugitive#statusline()}
