@@ -341,8 +341,8 @@ inoremap <esc> <nop>
 cmap w!! w !sudo tee > /dev/null % <cr> :edit!<cr>
 
 " safe load local vimrc file {{{2
+" the idea has come from https://stackoverflow.com/a/13192721/3332676
 set secure
-" override settings using my special vimrc config file
 autocmd vimrc BufEnter .shvimsorc set filetype=vim
 if filereadable('.shvimsorc')
   source .shvimsorc
