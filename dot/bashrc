@@ -124,6 +124,10 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
-TERM=xterm-256color
+if [ -z "$TMUX" ]; then
+  TERM=xterm-256color
+else
+  TERM=screen-256color
+fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
