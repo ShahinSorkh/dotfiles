@@ -1,12 +1,12 @@
+# vim: fdm=marker fdl=0
+
+# php {{{1
 alias a="php ./artisan"
 alias c="php composer.phar"
 alias phpunit="./vendor/bin/phpunit"
 
-alias vimrc="vim ~/.vimrc"
-alias clip="xclip -selection clipboard"
-
-# {{{{ git
-alias g=git
+# git {{{1
+alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
 alias gap='git apply'
@@ -141,4 +141,16 @@ alias gupav='git pull --rebase --autostash -v'
 alias gupv='git pull --rebase -v'
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
+
+# tmux {{{1
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias tkss='tmux kill-session -t'
+alias tksv='tmux kill-server'
+alias tl='tmux list-sessions'
+alias ts='tmux new-session -s'
+
+# misc {{{1
+alias clip="xclip -selection clipboard"
+alias vimrc="vim ~/.vimrc"
 
