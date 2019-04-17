@@ -1,0 +1,31 @@
+#!/usr/bin/zsh
+
+remotes=(
+  'shahin@127.0.0.1'
+  'shahin@127.0.0.2'
+)
+archive_name='update.tar'
+
+echo '[127.0.0.1] archiving..'
+tar -cahf $archive_name -C ~ .vim .vimrc .bash_aliases .bashrc
+tar -raf $archive_name -C ~/.dotfiles/remotes .tmux.conf
+echo "[127.0.0.1] archived to $archive_name"
+
+for host in $remotes; do
+  (
+    ssh $host 'rm -rf .vim' >/dev/null || exit 1
+    scp ./$archive_name $host:~ >/dev/null && \
+        echo "[$host]\tcopied" || exit 1
+    ssh $host "tar -xaf $archive_name" && \
+        echo "[$host]\textracted" || exit 1
+    ssh $host "rm $archive_name" && \
+        ssh $host 'sed -i "s/inoremap <esc> <nop>//" ~/.vimrc' && \
+        echo "[$host]\tdone" || exit 1
+  ) &
+done
+
+wait
+rm $archive_name
+echo "[127.0.0.1] archive removed"
+
+# vim: ts=4 sts=4 sw=4 et sta ai si
