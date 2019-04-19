@@ -134,3 +134,4 @@ setopt histreduceblanks
 
 export GPG_TTY=$(tty)
 export LESS=-XR
+export GROFF_NO_SGR=1
