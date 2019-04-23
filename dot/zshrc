@@ -65,6 +65,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   autojump
   colored-man-pages
+  colorize
   command-not-found
   common-aliases
   composer
