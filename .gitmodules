@@ -112,3 +112,6 @@
 [submodule "dot/vim/pack/utilities/start/vim-localvimrc"]
 	path = dot/vim/pack/utilities/start/vim-localvimrc
 	url = git@github.com:embear/vim-localvimrc.git
+[submodule "dot/vim/pack/utilities/start/goyo.vim"]
+	path = dot/vim/pack/utilities/start/goyo.vim
+	url = git@github.com:junegunn/goyo.vim.git

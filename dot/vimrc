@@ -288,6 +288,23 @@ let g:jekyll_post_template =  [
       \]
 let g:jekyll_build_command = 'bundle exec jekyll build'
 
+" goyo.vim {{{2
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set scrolloff=1
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+noremap <Leader><Leader>g :Goyo<cr>
+
 " status line {{{2
 set statusline+=%#warningmsg#
 set statusline+=%{fugitive#statusline()}
