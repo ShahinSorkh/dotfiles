@@ -140,3 +140,6 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # vim: ts=4 sts=4 sw=4 et ai si sta
+
+# added by travis gem
+[ -f /home/shahin/.travis/travis.sh ] && source /home/shahin/.travis/travis.sh

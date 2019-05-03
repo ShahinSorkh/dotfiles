@@ -136,3 +136,6 @@ setopt histreduceblanks
 export GPG_TTY=$(tty)
 export LESS=-XR
 export GROFF_NO_SGR=1
+
+# added by travis gem
+[ -f /home/shahin/.travis/travis.sh ] && source /home/shahin/.travis/travis.sh
