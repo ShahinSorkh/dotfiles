@@ -120,13 +120,12 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias phpunit="./vendor/bin/phpunit"
 alias a="php artisan"
-alias -g CLIP="| xclip -selection clipboard"
+alias dc="docker-compose"
+alias docker="sudo docker"
+alias phpunit="./vendor/bin/phpunit"
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore
