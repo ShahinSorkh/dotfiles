@@ -139,13 +139,14 @@ let g:ale_fixers = {
 " ale options {{{3
 let g:ale_bash_language_server_use_global = 1
 let g:ale_javascript_tsserver_use_global = 1
+
 let g:ale_php_langserver_use_global = 1
+let g:ale_php_langserver_executable = substitute(system('composer global config bin-dir --absolute 2>/dev/null') .  '/php-language-server.php', '\n', '', 'g')
+
 let g:ale_vue_vls_use_global = 1
 let g:ale_python_pylint_options = '--disable=missing-docstring'
 
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
-
-let g:ale_php_langserver_executable = $HOME.'/.config/composer/vendor/bin/php-language-server.php'
 
 " vim vue {{{2
 let g:vue_disable_pre_processors=1
