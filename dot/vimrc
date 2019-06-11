@@ -156,7 +156,7 @@ autocmd vimrc FileType blade syntax sync fromstart
 autocmd vimrc BufRead,BufNewFile *.blade.php setlocal filetype=blade
 
 " indentLine {{{2
-let g:indentLine_char = '|'
+let g:indentLine_char_list = ['▏', '⎸', '¦', '┆', '┊']
 
 " fugitive {{{2
 autocmd vimrc QuickFixCmdPost *grep* cwindow
