@@ -1,4 +1,3 @@
-" vint: -ProhibitSetNoCompatible
 " vim: et ts=2 sts=2 sw=2 fdm=marker fdl=1
 
 """""""""""""""""""""""""""""""""""""" General configurations {{{1
@@ -25,7 +24,6 @@ set splitright
 
 " indentation {{{2
 set autoindent
-set smartindent
 filetype plugin indent on
 syntax enable
 
@@ -37,7 +35,6 @@ set undolevels=1000
 set undoreload=10000
 
 " vim backward-compatiblity {{{2
-set nocompatible
 set nobackup
 set noshowmode
 set noswapfile
@@ -205,7 +202,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='simple'
 
 " nerdtree File highlighting {{{2
-function! NERDTreeHighlightFile(extension, fg, bg)
+function! NERDTreeHighlightFile(extension, fg, bg) abort
   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg=#ffffff guifg=#151515'
   exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
@@ -290,13 +287,13 @@ let g:jekyll_post_template =  [
 let g:jekyll_build_command = 'bundle exec jekyll build'
 
 " goyo.vim {{{2
-function! s:goyo_enter()
+function! s:goyo_enter() abort
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
   set scrolloff=999
 endfunction
 
-function! s:goyo_leave()
+function! s:goyo_leave() abort
   silent !tmux set status on
   "silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   set scrolloff=1
@@ -319,7 +316,7 @@ endif
 """""""""""""""""""""""""""""""""""""" My configurations {{{1
 " disable IndentLines for json files {{{2
 autocmd vimrc FileType json IndentLinesDisable
-autocmd vimrc FileType yml,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd vimrc FileType yml,yaml setlocal softtabstop=2 shiftwidth=2 expandtab
 
 " persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions) {{{2
 autocmd vimrc BufWinLeave * silent! mkview
