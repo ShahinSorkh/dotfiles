@@ -1,7 +1,6 @@
 [user]
 	name = Shahin Sorkh
 	email = sorkh.shahin@hotmail.com
-	signingkey = 11D98599CBF7D60E
 [push]
 	default = simple
 [url "git@github.com:"]
@@ -12,8 +11,6 @@
 	editor = vim
 [credential]
 	helper = store
-[commit]
-	gpgsign = true
 [gpg]
 	program = gpg2
 [color]
