@@ -139,4 +139,4 @@ export LESS=-XR
 export GROFF_NO_SGR=1
 
 # added by travis gem
-[ -f /home/shahin/.travis/travis.sh ] && source /home/shahin/.travis/travis.sh
+if [ -f /home/shahin/.travis/travis.sh ]; then source /home/shahin/.travis/travis.sh; fi
