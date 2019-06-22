@@ -1,9 +1,14 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/shahin/.zsh"
 case $PATH in
-    "*:$HOME/.local/bin:*") ;;
-    *) export PATH="$HOME/.local/bin:$PATH" ;;
+    *$HOME/.local/bin*) ;;
+    *) PATH="$HOME/.local/bin:$PATH" ;;
 esac
+case $PATH in
+    *$HOME/.yarn/bin*) ;;
+    *) PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH" ;;
+esac
+export PATH
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -101,11 +106,11 @@ source $ZSH/custom-omz.sh
 source $ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
 # User configuration
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 [[ -s /etc/profile.d/autojump.sh ]] && . /etc/profile.d/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+[[ -s ~/.travis/travis.sh ]] && . ~/.travis/travis.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -135,8 +140,5 @@ setopt histnostore
 setopt histreduceblanks
 
 export GPG_TTY=$(tty)
-export LESS=-XR
 export GROFF_NO_SGR=1
-
-# added by travis gem
-if [ -f /home/shahin/.travis/travis.sh ]; then source /home/shahin/.travis/travis.sh; fi
+export LESS=-XR
