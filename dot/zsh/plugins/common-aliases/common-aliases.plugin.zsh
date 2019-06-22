@@ -31,6 +31,7 @@ alias -g CA="2>&1 | cat -A"
 alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 # alias -g P="2>&1| pygmentize -l pytb"
+alias -g X='| xargs'
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
@@ -44,9 +45,9 @@ alias p='ps -f'
 alias sortnr='sort -n -r'
 alias unexport='unset'
 
-# alias rm='rm -i'
-# alias cp='cp -i'
-# alias mv='mv -i'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 
 # zsh is able to auto-do some kungfoo
 # depends on the SUFFIX :)
@@ -57,8 +58,8 @@ if is-at-least 4.2.0; then
     for ft in $_browser_fts; do alias -s $ft=$BROWSER; done
   fi
 
-  _editor_fts=(cpp cxx cc c hh h inl asc txt TXT tex php js conf ini)
-  for ft in $_editor_fts; do alias -s $ft=$EDITOR; done
+  # _editor_fts=(cpp cxx cc c hh h inl asc txt TXT tex php js conf ini)
+  # for ft in $_editor_fts; do alias -s $ft=$EDITOR; done
 
   # if [[ -n "$XIVIEWER" ]]; then
   #   _image_fts=(jpg jpeg png gif mng tiff tif xpm)
@@ -76,11 +77,11 @@ if is-at-least 4.2.0; then
   # alias -s djvu=djview
 
   # #list whats inside packed file
-  # alias -s zip="unzip -l"
-  # alias -s rar="unrar l"
-  # alias -s tar="tar tf"
-  # alias -s tar.gz="echo "
-  # alias -s ace="unace l"
+  alias -s zip="unzip -l"
+  alias -s rar="unrar l"
+  alias -s tar="tar tf"
+  alias -s tar.gz="echo "
+  alias -s ace="unace l"
 
 fi
 
