@@ -1,6 +1,7 @@
 [user]
 	name = Shahin Sorkh
 	email = sorkh.shahin@hotmail.com
+	signingkey = 0C078ACD97A6A07E712E960E06C228F459745AC7
 [push]
 	default = simple
 [url "git@github.com:"]
@@ -28,3 +29,5 @@
 	prompt = false
 [difftool]
 	prompt = false
+[commit]
+	gpgsign = true
