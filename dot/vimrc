@@ -35,6 +35,7 @@ set undolevels=1000
 set undoreload=10000
 
 " vim backward-compatiblity {{{2
+set shell=/bin/bash
 set nobackup
 set noshowmode
 set noswapfile
@@ -314,6 +315,9 @@ if exists('#airline')
 endif
 
 """""""""""""""""""""""""""""""""""""" My configurations {{{1
+" terminal configs {{{2
+autocmd vimrc TerminalOpen * if &buftype == 'terminal' | setlocal signcolumn=no nonumber | endif
+
 " disable IndentLines for json files {{{2
 autocmd vimrc FileType json IndentLinesDisable
 autocmd vimrc FileType yml,yaml setlocal softtabstop=2 shiftwidth=2 expandtab
