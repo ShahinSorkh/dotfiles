@@ -28,7 +28,6 @@ filetype plugin indent on
 syntax enable
 
 " undo {{{2
-set hidden
 set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=1000
@@ -57,8 +56,9 @@ set wildmode=full
 
 " misc {{{2
 set backspace=indent,eol,start
-set pastetoggle=<f2>
+set nohidden
 set lazyredraw
+set pastetoggle=<f2>
 set updatetime=1250
 nnoremap <CR> :noh<CR><CR>
 let g:mapleader=','
