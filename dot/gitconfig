@@ -1,33 +1,63 @@
-[user]
-	name = Shahin Sorkh
-	email = sorkh.shahin@protonmail.com
-	signingkey = 0C078ACD97A6A07E712E960E06C228F459745AC7
-[push]
-	default = simple
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[url "http://185.88.152.130:3000"]
-	insteadOf = http://pin.dpd.ir:3000
-[core]
-	editor = vim
-[credential]
-	helper = store
-[gpg]
-	program = gpg2
-[color]
-	ui = always
-[init]
-	templatedir = ~/.git_template
 [alias]
 	ctags = !.git/hooks/ctags
-[diff]
-	tool = vimdiff
-[merge]
-	tool = vimdiff
-	conflictstyle = diff3
-[mergetool]
-	prompt = false
-[difftool]
-	prompt = false
+
+[color]
+	ui = always
+
 [commit]
 	gpgsign = true
+
+[core]
+	editor = vim
+	eol = lf
+	safecrlf = true
+
+[credential]
+	helper = store
+
+[diff]
+	algorithm = histogram
+	tool = vimdiff
+
+[difftool]
+	prompt = false
+
+[gpg]
+	program = gpg2
+
+[init]
+	templatedir = ~/.git_template
+
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+
+[mergetool]
+	prompt = false
+	writeToTemp = true
+
+[push]
+	default = simple
+
+[rebase]
+	missingCommitsCheck = warn
+
+[status]
+	showStash = true
+
+[submodule]
+	fetchJobs = 0
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+
+[url "http://185.88.152.130:3000"]
+	insteadOf = http://pin.dpd.ir:3000
+
+[user]
+	email = sorkh.shahin@protonmail.com
+	name = Shahin Sorkh
+	signingkey = 0C078ACD97A6A07E712E960E06C228F459745AC7
