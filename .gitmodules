@@ -115,6 +115,3 @@
 [submodule "dot/vim/pack/utilities/start/goyo.vim"]
 	path = dot/vim/pack/utilities/start/goyo.vim
 	url = git@github.com:junegunn/goyo.vim.git
-[submodule "dot/vim/pack/filetypes/start/vim-instant-markdown"]
-	path = dot/vim/pack/filetypes/start/vim-instant-markdown
-	url = git@github.com:suan/vim-instant-markdown.git
