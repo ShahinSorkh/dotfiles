@@ -59,6 +59,7 @@ set wildmode=full
 set backspace=indent,eol,start
 set nohidden
 set lazyredraw
+set modeline
 set pastetoggle=<f2>
 set updatetime=1250
 nnoremap <CR> :noh<CR><CR>
