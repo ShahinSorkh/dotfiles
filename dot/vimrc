@@ -47,9 +47,9 @@ set signcolumn=yes
 
 " fold {{{2
 set foldenable
-set foldlevelstart=10
-set foldmethod=indent
-set foldnestmax=10
+set foldlevelstart=0
+set foldcolumn=4
+set foldmethod=syntax
 
 " wild menu {{{2
 set wildmenu
