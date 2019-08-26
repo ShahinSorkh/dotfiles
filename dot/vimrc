@@ -154,6 +154,10 @@ let g:vue_disable_pre_processors=1
 autocmd vimrc FileType vue syntax sync fromstart
 autocmd vimrc BufRead,BufNewFile *.vue setlocal filetype=vue
 
+" php {{{2
+let g:PHP_noArrowMatching = 1
+let g:php_folding = 2
+
 " blade {{{2
 autocmd vimrc FileType blade syntax sync fromstart
 autocmd vimrc BufRead,BufNewFile *.blade.php setlocal filetype=blade
