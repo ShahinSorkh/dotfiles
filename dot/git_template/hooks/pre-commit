@@ -1,16 +1,26 @@
 #!/bin/bash
 
 NPX='npx --quiet --no-install'
-ES_FILES=$(git diff --name-only --cached --relative | egrep '\.(vue|jsx?)$' | grep -v .eslint)
-STYLE_FILES=$(git diff --name-only --cached --relative | egrep '\.(vue|s?[ac]ss|blade)$' | grep -v .stylelint)
+PHPCS='./vendor/bin/php-cs-fixer'
+CACHED='git diff --name-only --cached --relative'
 
-[ -f .eslint* ] && [ ! -z "$ES_FILES" ] && ESLINT=$($NPX eslint $ES_FILES 2>&1)
-[ -f .stylelint* ] && [ ! -z "$STYLE_FILES" ] && STYLELINT=$($NPX stylelint $STYLE_FILES 2>&1)
+ES_FILES=$($CACHED | egrep '\.(vue|jsx?|blade\.php)$')
+JSON_FILES=$($CACHED | egrep '\.json$')
+PHP_FILES=$($CACHED | egrep '\.php$')
+STYLE_FILES=$($CACHED | egrep '\.(vue|s?[ac]ss|blade\.php)$')
 
-if [ ! -z "$ESLINT" ] || [ ! -z "$STYLELINT" ]; then
+[ -n "$ES_FILES" ] && ESLINT="$($NPX eslint $ES_FILES 2>&1)"
+[ -n "$JSON_FILES" ] && JSONLINT="$($NPX jsonlint $JSON_FILES -q -c 2>&1)"
+[ -n "$PHP_FILES" ] && [ -f '.php_cs' ] && [ -x "$PHPCS" ] && \
+    PHPCSFIXER="$($PHPCS fix --config .php_cs --dry-run $PHP_FILES 2>/dev/null | sed '/\.php$/! d')"
+[ -n "$STYLE_FILES" ] && STYLELINT="$($NPX stylelint $STYLE_FILES 2>&1)"
+
+if [ -n "$ESLINT" ] || [ -n "$STYLELINT" ] || [ -n "$PHPCSFIXER" ] || [ -n "$JSONLINT" ]; then
   echo '>>>>> Standard Style errors were detected. Aborting commit.' >&2
-  [ ! -z "$ESLINT" ] && echo "$ESLINT" >&2
-  [ ! -z "$STYLELINT" ] && echo "$STYLELINT" >&2
+  [ -n "$PHPCSFIXER" ] && echo "$PHPCSFIXER" >&2
+  [ -n "$ESLINT" ] && echo "$ESLINT" >&2
+  [ -n "$STYLELINT" ] && echo "$STYLELINT" >&2
+  [ -n "$JSONLINT" ] && echo "$JSONLINT" >&2
   exit 1
 fi
 
