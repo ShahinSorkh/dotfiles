@@ -326,7 +326,9 @@ autocmd vimrc TerminalOpen * if &buftype == 'terminal' | setlocal signcolumn=no 
 
 " disable IndentLines for json files {{{2
 autocmd vimrc FileType json IndentLinesDisable
-autocmd vimrc FileType yml,yaml setlocal softtabstop=2 shiftwidth=2 expandtab
+
+" YAML specific configs {{{2
+autocmd vimrc FileType yml,yaml setlocal softtabstop=2 shiftwidth=2 expandtab foldmethod=indent
 
 " persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions) {{{2
 autocmd vimrc BufWinLeave * silent! mkview
