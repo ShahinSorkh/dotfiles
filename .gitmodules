@@ -24,7 +24,7 @@
 	url = git@github.com:MichaelAquilina/zsh-you-should-use
 [submodule "dot/vim/pack/utilities/start/ale"]
 	path = dot/vim/pack/utilities/start/ale
-	url = git@github.com:w0rp/ale.git
+	url = git@github.com:dense-analysis/ale.git
 [submodule "dot/vim/pack/finders/start/ctlp.vim"]
 	path = dot/vim/pack/finders/start/ctlp.vim
 	url = git@github.com:ctrlpvim/ctrlp.vim
