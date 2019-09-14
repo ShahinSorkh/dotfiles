@@ -75,7 +75,6 @@ augroup END
 " ale general {{{3
 let g:ale_linters_explicit = 1
 let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 1
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
@@ -200,13 +199,44 @@ nmap s <Plug>(easymotion-overwin-f2)
 let g:EasyMotion_smartcase = 1
 
 " airline {{{2
+" general {{{3
+let g:airline_skip_empty_sections = 1
+let g:airline_statusline_ontop = 1
+
+" appearance {{{3
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_powerline_fonts = 1
+let g:airline_theme='simple'
+
+" extensions {{{3
+" ale {{{4
+let g:airline#extensions#ale#enabled = 1
+
+" branch {{{4
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#format = 2
+let g:airline#extensions#branch#sha1_len = 7
+
+" tabline {{{4
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_tab_count = 1
+let g:airline#extensions#tabline#exclude_preview = 1
+let g:airline#extensions#tabline#show_tab_type = 1
+let g:airline#extensions#tabline#overflow_marker = '…'
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#disable_refresh = 0
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='simple'
+" cursormode {{{4
+let g:airline#extensions#cursormode#enabled = 1
+
+" hunks {{{4
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 1
 
 " nerdtree File highlighting {{{2
 function! NERDTreeHighlightFile(extension, fg, bg) abort
