@@ -201,7 +201,6 @@ let g:EasyMotion_smartcase = 1
 " airline {{{2
 " general {{{3
 let g:airline_skip_empty_sections = 1
-let g:airline_statusline_ontop = 1
 
 " appearance {{{3
 let g:airline_left_sep = ''
