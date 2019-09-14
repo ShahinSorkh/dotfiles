@@ -266,6 +266,7 @@ autocmd vimrc BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTr
 
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeIgnore = [
+      \ '\.min\.(js|css)$',
       \ '\.map$',
       \ '\.pyc$',
       \]
