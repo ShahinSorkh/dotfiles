@@ -19,7 +19,6 @@ for host in $remotes; do
     ssh $host "tar -xaf $archive_name" && \
         echo '['$'\e[0;33m'"$host"$'\e[0;00m'"] extracted" || exit 1
     ssh $host "rm $archive_name" && \
-        ssh $host 'sed -i "s/inoremap <esc> <nop>//" ~/.vimrc' && \
         echo '['$'\e[0;33m'"$host"$'\e[0;00m'"] done" || exit 1
   ) &
 done
