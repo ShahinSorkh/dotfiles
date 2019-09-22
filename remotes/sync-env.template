@@ -7,9 +7,8 @@ remotes=(
 archive_name='update.tar'
 
 echo '['$'\e[0;33m''127.0.0.1'$'\e[0;00m''] archiving..'
-tar -cahf $archive_name -C ~ --exclude='*/undo/*' --exclude='*/view/*' \
-    .vim .vimrc .bash_aliases .bashrc
-tar -raf $archive_name -C ~/.dotfiles/remotes .tmux.conf
+tar -cahf $archive_name -C ~/.dotfiles/remotes \
+    .bashrc .bash_aliases .tmux.conf .vimrc .vim
 echo '['$'\e[0;33m''127.0.0.1'$'\e[0;00m'"] archived to $archive_name"
 
 for host in $remotes; do
