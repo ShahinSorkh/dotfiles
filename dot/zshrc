@@ -132,8 +132,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # For a full list of active aliases, run `alias`.
 alias a="php artisan"
 alias phpunit="./vendor/bin/phpunit"
-alias vimrc="vim ~/.vimrc"
-alias zshrc="vim ~/.zshrc"
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore
