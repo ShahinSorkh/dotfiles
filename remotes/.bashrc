@@ -89,7 +89,7 @@ fi
 
 # some more ls aliases
 alias ll='ls -AlhF'
-alias la='ls -A'
+alias la='ls --group-directories-first -ACF'
 alias l='ls --group-directories-first -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
