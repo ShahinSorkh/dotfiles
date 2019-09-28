@@ -360,6 +360,9 @@ autocmd vimrc FileType json IndentLinesDisable
 " YAML specific configs {{{2
 autocmd vimrc FileType yml,yaml setlocal softtabstop=2 shiftwidth=2 expandtab foldmethod=indent
 
+" python specific configs {{{2
+autocmd vimrc FileType python setlocal foldmethod=indent
+
 " persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions) {{{2
 autocmd vimrc BufWinLeave * silent! mkview
 autocmd vimrc BufWinEnter * if &filetype != '' | silent! loadview | endif
