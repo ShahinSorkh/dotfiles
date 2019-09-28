@@ -174,17 +174,17 @@ let g:gitgutter_map_keys = 0 " overwrites tcomment objects
 autocmd vimrc BufWrite * GitGutter
 nnoremap <Leader>gglh :GitGutterLineHighlightsToggle<CR>
 
-nmap ]c <Plug>GitGutterNextHunk
-nmap [c <Plug>GitGutterPrevHunk
+nmap ]c <Plug>(GitGutterNextHunk)
+nmap [c <Plug>(GitGutterPrevHunk)
 
-nmap <Leader>ha <Plug>GitGutterStageHunk
-nmap <Leader>hu <Plug>GitGutterUndoHunk
-nmap <Leader>hp <Plug>GitGutterPreviewHunk
+nmap <Leader>ha <Plug>(GitGutterStageHunk)
+nmap <Leader>hu <Plug>(GitGutterUndoHunk)
+nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
 
-omap ih <Plug>GitGutterTextObjectInnerPending
-omap ah <Plug>GitGutterTextObjectOuterPending
-xmap ih <Plug>GitGutterTextObjectInnerVisual
-xmap ah <Plug>GitGutterTextObjectOuterVisual
+omap ih <Plug>(GitGutterTextObjectInnerPending)
+omap ah <Plug>(GitGutterTextObjectOuterPending)
+xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
 " vim-autosave {{{2
 nnoremap <Leader>as :AutoSaveToggle<CR>
