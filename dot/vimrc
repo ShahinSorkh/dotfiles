@@ -58,6 +58,7 @@ set wildmode=full
 " misc {{{2
 set backspace=indent,eol,start
 set nohidden
+set tags^=./.git/tags
 set lazyredraw
 set modeline
 set pastetoggle=<f2>
