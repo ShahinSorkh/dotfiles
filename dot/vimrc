@@ -162,6 +162,10 @@ let g:php_folding = 2
 autocmd vimrc FileType blade syntax sync fromstart
 autocmd vimrc BufRead,BufNewFile *.blade.php setlocal filetype=blade
 
+" emmet-vim {{{2
+let g:user_emmet_mode = 'iv'
+autocmd vimrc FileType blade,php,html,css,sass,scss packadd emmet-vim
+
 " indentLine {{{2
 let g:indentLine_char_list = ['▏', '⎸', '¦', '┆', '┊']
 
