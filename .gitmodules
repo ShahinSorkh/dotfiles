@@ -31,9 +31,6 @@
 [submodule "dot/vim/pack/utilities/start/editorconfig-vim"]
 	path = dot/vim/pack/utilities/start/editorconfig-vim
 	url = git@github.com:editorconfig/editorconfig-vim
-[submodule "dot/vim/pack/utilities/start/emmet-vim"]
-	path = dot/vim/pack/utilities/start/emmet-vim
-	url = git@github.com:mattn/emmet-vim.git
 [submodule "dot/vim/pack/finders/start/incsearch.vim"]
 	path = dot/vim/pack/finders/start/incsearch.vim
 	url = git@github.com:haya14busa/incsearch.vim
@@ -118,3 +115,6 @@
 [submodule "dot/vim/pack/filetypes/opt/vim-instant-markdown"]
 	path = dot/vim/pack/filetypes/opt/vim-instant-markdown
 	url = git@github.com:suan/vim-instant-markdown.git
+[submodule "dot/vim/pack/utilities/opt/emmet-vim"]
+	path = dot/vim/pack/utilities/opt/emmet-vim
+	url = git@github.com:mattn/emmet-vim.git
