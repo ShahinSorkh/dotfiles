@@ -4,7 +4,7 @@
 " colors {{{2
 set t_Co=256
 set cursorline
-colorscheme spacegray
+colorscheme darcula
 
 " read/write {{{2
 set encoding=utf-8
@@ -164,7 +164,7 @@ autocmd vimrc BufRead,BufNewFile *.blade.php setlocal filetype=blade
 
 " emmet-vim {{{2
 let g:user_emmet_mode = 'iv'
-autocmd vimrc FileType blade,php,html,css,sass,scss packadd emmet-vim
+autocmd vimrc FileType blade,php,vue,html,css,sass,scss packadd emmet-vim
 
 " indentLine {{{2
 let g:indentLine_char_list = ['▏', '⎸', '¦', '┆', '┊']

@@ -61,8 +61,8 @@ hi Underlined ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gu
 hi htmlTag ctermfg=222 ctermbg=NONE cterm=NONE guifg=#d9c767 guibg=NONE gui=NONE
 hi htmlEndTag ctermfg=222 ctermbg=NONE cterm=NONE guifg=#d9c767 guibg=NONE gui=NONE
 hi htmlTagName ctermfg=222 ctermbg=NONE cterm=NONE guifg=#d9c767 guibg=NONE gui=NONE
-hi htmlString ctermfg=222 ctermbg=NONE cterm=NONE guifg=#8dc35b guibg=NONE gui=NONE
-hi htmlArg ctermfg=222 ctermbg=NONE cterm=NONE guifg=#a9b7c6 guibg=NONE gui=NONE
+hi htmlString ctermfg=113 ctermbg=NONE cterm=NONE guifg=#8dc35b guibg=NONE gui=NONE
+hi htmlArg ctermfg=103 ctermbg=NONE cterm=NONE guifg=#a9b7c6 guibg=NONE gui=NONE
 hi htmlSpecialChar ctermfg=103 ctermbg=NONE cterm=NONE guifg=#67609c guibg=NONE gui=italic
 hi yamlKey ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 hi yamlAnchor ctermfg=67 ctermbg=NONE cterm=NONE guifg=#7ca8c6 guibg=NONE gui=NONE
