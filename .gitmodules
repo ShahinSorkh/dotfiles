@@ -118,3 +118,6 @@
 [submodule "dot/vim/pack/utilities/opt/emmet-vim"]
 	path = dot/vim/pack/utilities/opt/emmet-vim
 	url = git@github.com:mattn/emmet-vim.git
+[submodule "dot/vim/pack/filetypes/start/rust.vim"]
+	path = dot/vim/pack/filetypes/start/rust.vim
+	url = git@github.com:rust-lang/rust.vim.git
