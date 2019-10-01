@@ -121,3 +121,6 @@
 [submodule "dot/vim/pack/filetypes/start/rust.vim"]
 	path = dot/vim/pack/filetypes/start/rust.vim
 	url = git@github.com:rust-lang/rust.vim.git
+[submodule "dot/vim/pack/filetypes/start/vim-toml"]
+	path = dot/vim/pack/filetypes/start/vim-toml
+	url = git@github.com:cespare/vim-toml.git
