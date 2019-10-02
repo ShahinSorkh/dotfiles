@@ -26,7 +26,7 @@
 [core]
 	editor = vim
 	eol = lf
-	safecrlf = true
+	safecrlf = false
 
 [credential]
 	helper = store
