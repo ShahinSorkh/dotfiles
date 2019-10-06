@@ -69,6 +69,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  artisan
   autojump
   colored-man-pages
   colorize
@@ -80,7 +81,6 @@ plugins=(
   docker-machine
   git
   gitignore
-  laravel5
   node
   ssh-agent
   systemd
@@ -130,7 +130,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias a="php artisan"
 alias phpunit="./vendor/bin/phpunit"
 
 # Remove the history (fc -l) command from the history list when invoked.
