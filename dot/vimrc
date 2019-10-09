@@ -126,13 +126,14 @@ let g:ale_linters = {
 " ale fixers {{{3
 let g:ale_fixers = {
       \  'javascript': ['eslint'],
+      \  'typescript': ['eslint'],
       \  'html': ['tidy'],
       \  'css': ['stylelint'],
       \  'vue': ['eslint', 'tidy', 'stylelint'],
       \  'json': ['jq', 'jsonlint'],
       \  'scss': ['stylelint'],
       \  'sass': ['stylelint'],
-      \  'python': ['flake8'],
+      \  'python': ['autopep8', 'flake8'],
       \  'php': ['php-cs-fixer']
       \  }
 
