@@ -4,6 +4,7 @@ set cursorline
 set foldenable foldmethod=syntax
 set signcolumn=yes number autoindent smartindent
 set expandtab shiftwidth=4 softtabstop=4
+set tags^=./.git/tags
 
 set path+=**
 set wildignore+=*/.git/*,*/tmp/*,*.so,*.swp,*.zip,*.tar,*.bz,*.bz2,*.gz,*.xz,*.rar,*.phar,*.jar
