@@ -1,15 +1,26 @@
 #!/usr/bin/zsh
 # vim: ts=4 sw=4 sts=4 et ai si sta
 
+CMD="$0"
+usage () {
+    echo "USAGE: $CMD [-d] { -c COMMAND | -f COMMAND_FILE } HOSTS"
+    echo "    -d                Detach after executing command [Optional]"
+    echo "    -c                Command to execute in \`sh\` syntax"
+    echo "    -f                Command file to execute in \`sh\` syntax"
+    echo "    HOSTS             The hosts to execute command(s) on, separated by space"
+    exit ${1:-0}
+}
+
 I=0
-while getopts dc:f: name "$@"; do
+while getopts hdc:f: name "$@"; do
     case $name in
+        h) usage;;
         d) I=$(( I - 1 ))
             DETACHED=1;;
         f) I=$(( I + 1 ))
             if [ ! -f "$OPTARG" ]; then
-                echo $'\e[;31m''[ERR]'$'\e[;31m'" file $OPTARG not found" >&2
-                exit 101
+                echo $'\e[;31m''[ERR]'$'\e[;00m'" file $OPTARG not found" >&2
+                usage 101
             fi
             SCRIPT="$(cat "$OPTARG")";;
         c) I=$(( I + 1 ))
@@ -22,12 +33,12 @@ i=1; while (( i < I )); do shift; i=$(( i + 1 )) done; unset i
 
 if [ -z "$SCRIPT" ]; then
     echo $'\e[;31m''[ERR]'$'\e[;00m'' you must specify [-c COMMAND] or [-f COMMAND_FILE]' >&2
-    exit 102
+    usage 102
 fi
 
 if [[ ${#@} -lt 1 ]]; then
     echo $'\e[;31m''[ERR]'$'\e[;00m'' you must enter hosts as arguments' >&2
-    exit 103
+    usage 103
 fi
 
 bar='-'
