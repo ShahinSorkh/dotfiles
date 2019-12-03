@@ -123,7 +123,7 @@ let g:ale_linters = {
       \  'bash': ['language_server'],
       \  'c': ['gcc'],
       \  'cpp': ['gcc'],
-      \  'rust': ['cargo', 'rustc'],
+      \  'rust': ['rls', 'cargo', 'rustc'],
       \  }
 
 " ale fixers {{{3
