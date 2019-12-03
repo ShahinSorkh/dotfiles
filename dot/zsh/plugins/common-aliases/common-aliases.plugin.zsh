@@ -34,6 +34,7 @@ alias -g NUL='> /dev/null 2>&1'
 alias -g P='2>&1| pygmentize -l pytb'
 alias -g X='| xargs'
 alias -g A='| awk'
+alias -g JQ='| jq'
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
