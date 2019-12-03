@@ -384,6 +384,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " custom mappings {{{2
 nnoremap <space> za
 nnoremap Y y$
+inoremap {; {<cr>}<esc>O
 
 " ~/.vimrc helpers {{{3
 nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
