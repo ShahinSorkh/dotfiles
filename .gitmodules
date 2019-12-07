@@ -1,6 +1,6 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
-	url = git@github.com:robbyrussell/oh-my-zsh
+	url = git@github.com:ohmyzsh/ohmyzsh
 [submodule "dot/vim/pack/git/opt/fugitive-gitlab.vim"]
 	path = dot/vim/pack/git/opt/fugitive-gitlab.vim
 	url = git@github.com:shumphrey/fugitive-gitlab.vim
