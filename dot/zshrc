@@ -78,7 +78,7 @@ plugins=(
   composer
   docker
   docker-compose
-  docker-machine
+  thefuck
   git
   gitignore
   node
