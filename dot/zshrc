@@ -94,10 +94,11 @@ plugins=(
 
 if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
   ZSH_TMUX_AUTOSTART=true
-  ZSH_TMUX_AUTOSTART_ONCE=true
 fi
 
+ZSH_TMUX_AUTOSTART_ONCE=true
 ZSH_TMUX_AUTOQUIT=false
+ZSH_TMUX_UNICODE=true
 
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
