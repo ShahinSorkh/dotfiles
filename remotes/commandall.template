@@ -18,11 +18,12 @@ while getopts hdc:f: name "$@"; do
         d) I=$(( I - 1 ))
             DETACHED=1;;
         f) I=$(( I + 1 ))
-            if [ ! -f "$OPTARG" ]; then
+            CMD_FILE="$HOME/code/PROJECTS/path/to/cmd/dir/$OPTARG"
+            if [ ! -f "$CMD_FILE" ]; then
                 echo $'\e[;31m''[ERR]'$'\e[;00m'" file $OPTARG not found" >&2
                 usage 101
             fi
-            SCRIPT="$(cat "$OPTARG")";;
+            SCRIPT="$(cat "$CMD_FILE")";;
         c) I=$(( I + 1 ))
             SCRIPT="$OPTARG";;
     esac

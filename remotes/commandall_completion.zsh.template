@@ -1,0 +1,14 @@
+# vim: ft=zsh
+
+_cmd_completions()
+{
+	typeset -A opt_args
+	V=()
+	for F in "$HOME/code/PROJECTS/path/to/cmd/dir/"*; do
+		V+=("${F##[[:print:]]*/}")
+	done
+
+	_arguments : -d - set1 -c: - set2 "-f: :($V)"
+}
+
+compdef _cmd_completions cmd
