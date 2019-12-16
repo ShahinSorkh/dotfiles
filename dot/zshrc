@@ -147,6 +147,12 @@ export GPG_TTY=$(tty)
 export GROFF_NO_SGR=1
 export LESS=-XR
 
+if [ -d "$HOME"/.zcompletion.d ]; then
+    for F in "$HOME"/.zcompletion.d/*.zsh; do
+        [ -f "$F" ] && source "$F"
+    done
+fi
+
 if [ -e /run/privoxy.pid ]; then
     connect_privoxy
 fi
