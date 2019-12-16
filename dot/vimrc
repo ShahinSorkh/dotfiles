@@ -389,7 +389,13 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " custom mappings {{{2
 nnoremap <space> za
 nnoremap Y y$
+
 inoremap {; {<cr>}<esc>O
+inoremap if({ if () {<cr>}<cr><esc>?if<cr>:noh<cr>f(a
+inoremap func({ function () {<cr>}<esc>?function<cr>:noh<cr>f(i
+inoremap for({ for () {<cr>}<cr><esc>?for<cr>:noh<cr>f(a
+inoremap fore({ foreach () {<cr>}<cr><esc>?foreach<cr>:noh<cr>f(a
+inoremap while({ while () {<cr>}<cr><esc>?while<cr>:noh<cr>f(a
 
 " ~/.vimrc helpers {{{3
 nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
