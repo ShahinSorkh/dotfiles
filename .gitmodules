@@ -46,9 +46,6 @@
 [submodule "dot/vim/pack/filetypes/start/php.vim"]
 	path = dot/vim/pack/filetypes/start/php.vim
 	url = git@github.com:StanAngeloff/php.vim
-[submodule "dot/vim/pack/utilities/start/Spacegray.vim"]
-	path = dot/vim/pack/utilities/start/Spacegray.vim
-	url = git@github.com:ajh17/Spacegray.vim.git
 [submodule "dot/vim/pack/utilities/start/tcomment_vim"]
 	path = dot/vim/pack/utilities/start/tcomment_vim
 	url = git@github.com:tomtom/tcomment_vim
