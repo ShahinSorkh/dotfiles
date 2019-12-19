@@ -77,3 +77,5 @@
 	email = sorkh.shahin@protonmail.com
 	name = Shahin Sorkh
 	signingkey = 0C078ACD97A6A07E712E960E06C228F459745AC7
+[hub]
+	protocol = ssh
