@@ -141,7 +141,7 @@ let g:ale_fixers = {
       \  'scss': ['stylelint'],
       \  'sass': ['stylelint'],
       \  'python': ['autopep8', 'flake8'],
-      \  'php': ['php-cs-fixer']
+      \  'php': ['php_cs_fixer']
       \  }
 
 " ale options {{{3
