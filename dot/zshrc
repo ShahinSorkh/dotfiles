@@ -108,7 +108,7 @@ ZSH_TMUX_UNICODE=true
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-source $ZSH/custom-omz.sh
+source $ZSH/oh-my-zsh.sh
 # source $ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
 # User configuration

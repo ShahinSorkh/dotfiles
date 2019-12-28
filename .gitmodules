@@ -10,17 +10,17 @@
 [submodule "dot/vim/pack/git/opt/vim-rhubarb"]
 	path = dot/vim/pack/git/opt/vim-rhubarb
 	url = git@github.com:tpope/vim-rhubarb
-[submodule "dot/zsh/plugins/mysql-colorize"]
-	path = dot/zsh/plugins/mysql-colorize
+[submodule "dot/zsh/custom/plugins/mysql-colorize"]
+	path = dot/zsh/custom/plugins/mysql-colorize
 	url = git@github.com:horosgrisa/mysql-colorize
-[submodule "dot/zsh/plugins/zsh-autosuggestions"]
-	path = dot/zsh/plugins/zsh-autosuggestions
+[submodule "dot/zsh/custom/plugins/zsh-autosuggestions"]
+	path = dot/zsh/custom/plugins/zsh-autosuggestions
 	url = git@github.com:zsh-users/zsh-autosuggestions
-[submodule "dot/zsh/plugins/zsh-syntax-highlighting"]
-	path = dot/zsh/plugins/zsh-syntax-highlighting
+[submodule "dot/zsh/custom/plugins/zsh-syntax-highlighting"]
+	path = dot/zsh/custom/plugins/zsh-syntax-highlighting
 	url = git@github.com:zsh-users/zsh-syntax-highlighting
-[submodule "dot/zsh/plugins/zsh-you-should-use"]
-	path = dot/zsh/plugins/zsh-you-should-use
+[submodule "dot/zsh/custom/plugins/zsh-you-should-use"]
+	path = dot/zsh/custom/plugins/zsh-you-should-use
 	url = git@github.com:MichaelAquilina/zsh-you-should-use
 [submodule "dot/vim/pack/utilities/start/ale"]
 	path = dot/vim/pack/utilities/start/ale
