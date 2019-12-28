@@ -114,6 +114,9 @@ source $ZSH/custom-omz.sh
 # User configuration
 [[ -s /etc/profile.d/autojump.sh ]] && . /etc/profile.d/autojump.sh
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+if [ -n "$TMUX" ] && ! ( tmux has-session -t dev 2>/dev/null ); then
+    tmux rename-session dev
+fi
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
