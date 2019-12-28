@@ -1,15 +1,15 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/shahin/.zsh"
 case $PATH in
-    *$HOME/.local/bin*) ;;
+    *"$HOME/.local/bin"*) ;;
     *) PATH="$HOME/.local/bin:$PATH" ;;
 esac
 case $PATH in
-    *$HOME/.yarn/bin*) ;;
+    *"$HOME/.yarn/bin"*) ;;
     *) PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH" ;;
 esac
 case $PATH in
-    *$HOME/.cargo/bin*) ;;
+    *"$HOME/.cargo/bin"*) ;;
     *) PATH="$HOME/.cargo/bin:$PATH" ;;
 esac
 export PATH
@@ -62,7 +62,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+ HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -77,12 +77,12 @@ plugins=(
   autojump
   colored-man-pages
   colorize
-  command-not-found
+  # command-not-found
   common-aliases
   composer
   docker
   docker-compose
-  thefuck
+  # thefuck
   git
   gitignore
   node
@@ -109,13 +109,11 @@ export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 source $ZSH/custom-omz.sh
-source $ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+# source $ZSH/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
 # User configuration
 [[ -s /etc/profile.d/autojump.sh ]] && . /etc/profile.d/autojump.sh
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
-[[ -s /etc/profile.d/conda.sh ]] && . /etc/profile.d/conda.sh
-[[ -s ~/.travis/travis.sh ]] && . ~/.travis/travis.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -136,12 +134,15 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias phpunit="./vendor/bin/phpunit"
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore
 # Remove superfluous blanks from each command line being added to the history list.
 setopt histreduceblanks
+
+# keep a reasonable history size
+HISTSIZE=1000
+SAVEHIST=1000
 
 export GPG_TTY=$(tty)
 export GROFF_NO_SGR=1
