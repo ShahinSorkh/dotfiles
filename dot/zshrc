@@ -161,3 +161,7 @@ fi
 if [ -e /run/privoxy.pid ]; then
     connect_privoxy
 fi
+
+if [ -r .setupenv ]; then
+    source .setupenv
+fi
