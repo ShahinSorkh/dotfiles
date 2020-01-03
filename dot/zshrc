@@ -85,6 +85,7 @@ plugins=(
   # thefuck
   git
   gitignore
+  lab
   node
   privoxy
   ssh-agent
