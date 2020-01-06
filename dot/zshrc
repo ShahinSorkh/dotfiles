@@ -118,6 +118,8 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 [[ -s /etc/profile.d/autojump.sh ]] && . /etc/profile.d/autojump.sh
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+( command -v direnv 2>&1 >/dev/null ) && eval "$(direnv hook zsh)"
+
 if [ -n "$TMUX" ] && ! ( tmux has-session -t dev 2>/dev/null ); then
     tmux rename-session dev
 fi
