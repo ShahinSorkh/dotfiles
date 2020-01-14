@@ -121,3 +121,6 @@
 [submodule "dot/vim/pack/filetypes/start/vim-toml"]
 	path = dot/vim/pack/filetypes/start/vim-toml
 	url = git@github.com:cespare/vim-toml.git
+[submodule "dot/vim/pack/utilities/start/vim-test"]
+	path = dot/vim/pack/utilities/start/vim-test
+	url = git@github.com:janko/vim-test.git
