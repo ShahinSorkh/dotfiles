@@ -354,6 +354,13 @@ autocmd vimrc User GoyoEnter nested call <SID>goyo_enter()
 autocmd vimrc User GoyoLeave nested call <SID>goyo_leave()
 noremap <Leader><Leader>g :Goyo<cr>
 
+" vim-test {{{2
+nnoremap <leader>tf :TestFile<cr>
+nnoremap <leader>tl :TestLast<cr>
+nnoremap <leader>tn :TestNearest<cr>
+nnoremap <leader>ts :TestSuite<cr>
+nnoremap <leader>tv :TestVisit<cr>
+
 " status line {{{2
 set statusline+=%#warningmsg#
 set statusline+=%{fugitive#statusline()}
@@ -392,6 +399,7 @@ nnoremap Y y$
 
 inoremap {; {<cr>}<esc>O
 inoremap if({ if () {<cr>}<cr><esc>?if<cr>:noh<cr>f(a
+inoremap tfunc({ /** @test */<cr>public function ()<cr>{<cr>}<esc>?function<cr>:noh<cr>f(i
 inoremap func({ function () {<cr>}<esc>?function<cr>:noh<cr>f(i
 inoremap for({ for () {<cr>}<cr><esc>?for<cr>:noh<cr>f(a
 inoremap fore({ foreach () {<cr>}<cr><esc>?foreach<cr>:noh<cr>f(a
