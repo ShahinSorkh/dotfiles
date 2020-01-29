@@ -1,0 +1,13 @@
+#!/bin/sh
+
+ps -aux \
+    | grep -E "^$(whoami)" \
+    | grep -F "$1" \
+    | grep -v 'grep' \
+    | grep -F -v "$0" \
+    | tee /tmp/kilal.tmp \
+    | awk '{print $2}' \
+    | xargs -r kill
+
+cat /tmp/kilal.tmp
+rm -f /tmp/kilal.tmp
