@@ -72,7 +72,7 @@ echo "PWD:\t$PWD"
 
 if [ -n "$WITH_DOTS" ]; then
     for f in $DOTFILES; do
-        [ "$f" = 'bin' ] && continue
+        # [ "$f" = 'bin' ] && continue
         make_link "$DOTDIR/$f" "$HOME/.$f"
     done
 fi
