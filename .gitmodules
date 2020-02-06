@@ -124,3 +124,6 @@
 [submodule "dot/vim/pack/utilities/start/vim-test"]
 	path = dot/vim/pack/utilities/start/vim-test
 	url = git@github.com:janko/vim-test.git
+[submodule "dot/vim/pack/filetypes/start/vim-twig"]
+	path = dot/vim/pack/filetypes/start/vim-twig
+	url = git@github.com:lumiliet/vim-twig.git
