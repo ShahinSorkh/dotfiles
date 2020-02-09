@@ -78,44 +78,50 @@ unset DRY_RUN QUIET NO_COLOR VERBOSE
 # USAGE {{{1
 usage () {
     echo -n "USAGE: $CMD"
-    echo -n " [-h | --help]"
-    echo -n " [-n | --dry]"
-    echo -n " [-q | --quiet]"
-    echo -n " [--no-color]"
-    echo -n " [-v | --verbose]"
+    #echo -n "#############"
+    echo -n " [-h | --help]"    # DON'T TOUCH
+    echo -n " [-n | --dry]"     # DON'T TOUCH
+    echo -n " [-q | --quiet]"   # DON'T TOUCH
+    echo -n " [--no-color]"     # DON'T TOUCH
+    echo -n " [-v | --verbose]" # DON'T TOUCH
     echo "\n"
-    echo "\t""-h, --help    :       Shows this help message"
-    echo "\t""-n, --dry     :       Doesn't do anything just shows you what commands"
-    echo "\t""                      would be executed"
-    echo "\t""-q, --quiet   :       Turns off output"
-    echo "\t""--no-color    :       Turns off colorized output (off by default if not"
-    echo "\t""                      a tty or terminal doesn't support)"
-    echo "\t""-v, --verbose :       Verbose output (not applicable if running with -q)"
+    #echo "\t""#######################"
+    echo "\t""-h, --help    :       Shows this help message"                            # DON'T TOUCH
+    echo "\t""-n, --dry     :       Doesn't do anything just shows you what commands"   # DON'T TOUCH
+    echo "\t""                      would be executed"                                  # DON'T TOUCH
+    echo "\t""-q, --quiet   :       Turns off output"                                   # DON'T TOUCH
+    echo "\t""--no-color    :       Turns off colorized output (off by default if not"  # DON'T TOUCH
+    echo "\t""                      a tty or terminal doesn't support)"                 # DON'T TOUCH
+    echo "\t""-v, --verbose :       Verbose output (not applicable if running with -q)" # DON'T TOUCH
     echo
     echo "EXIT STATUS:"
-    echo "\t""0             SUCCESS"
-    echo "\t""1             INVALID OPTION"
-    echo "\t""200           UNKNOWN ERROR"
+    echo "\t""0             SUCCESS"        # DON'T TOUCH
+    echo "\t""1             INVALID OPTION" # DON'T TOUCH
+    #echo "\t""#             ############"
+    echo "\t""200           UNKNOWN ERROR"  # DON'T TOUCH
     exit ${1:-0}
 }
 # USAGE }}}
 
 # COLLECTING OPTIONS AND ARGS {{{1
 #| Turn off colors if not a tty or if terminal doesn't support colors.        |#
-[ -z "$NO_COLOR" ] && ( [ ! -t 1 ] || [ -z "$(tput colors)" ] ) && NO_COLOR=1
+[ -z "$NO_COLOR" ] && ( [ ! -t 1 ] || [ -z "$(tput colors)" ] ) && NO_COLOR=1   # DON'T TOUCH
 
 for opt in ${@}; do
     case "$opt" in
-        -h|--help) usage ;;
+        #####) ####### ;;
+        -h|--help) usage ;;                 # DON'T OVERRIDE
         -n|--dry) DRY_RUN=1 ;;              # DON'T OVERRIDE
         -q|--quiet) QUIET=1 ;;              # DON'T OVERRIDE
         --no-color) NO_COLOR=1 ;;           # DON'T OVERRIDE
         -v|--verbose) VERBOSE=1 ;;          # DON'T OVERRIDE
-        *) err 1 Invalid option: $opt ;;
+        *) err 1 Invalid option: $opt ;;    # DON'T TOUCH
     esac
 done
 # COLLECTING OPTIONS AND ARGS }}}
 
-exe ls -lhFA
+####################
+####################
+####################
 
-[ "$?" -ne "0" ] && exit 200 || exit 0
+[ "$?" -ne "0" ] && exit 200 || exit 0      # DON'T TOUCH
