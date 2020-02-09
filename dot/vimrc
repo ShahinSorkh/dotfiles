@@ -384,7 +384,7 @@ autocmd vimrc FileType yml,yaml setlocal softtabstop=2 shiftwidth=2 expandtab fo
 autocmd vimrc FileType python setlocal foldmethod=indent
 
 " persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions) {{{2
-autocmd vimrc BufWritePost,BufWinLeave * silent! mkview
+autocmd vimrc BufWinLeave * silent! mkview
 autocmd vimrc BufWinEnter * if &filetype != '' | silent! loadview | endif
 
 " jump to the last position when reopening a file {{{2
