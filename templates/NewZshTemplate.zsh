@@ -47,9 +47,11 @@ exe () {
         echo $(red '>>') $*
     else
         [ -z "$QUIET" ] && [ -n "$VERBOSE" ] && echo $(red '>') $(cyan $*)
-        [ -z "$QUIET" ] \
-            && ( exec $* ) \
-            || ( exec $* 2>&1 >/dev/null )
+        if [ -z "$QUIET" ]; then
+            ( exec $* )
+        else
+            ( exec $* 2>/dev/null >/dev/null )
+        fi
     fi
 }
 
@@ -61,8 +63,7 @@ err () {
     if [ -z "$QUIET" ]; then
         echo -n $(red '[ERR]') >&2
         echo " $ERROR_MSG" >&2
-        echo >&2
-        echo "Run \`$CMD -h\` for usage" >&2
+        [ "$ERROR_CODE" -eq "1" ] && echo "\nRun \`$CMD -h\` for usage" >&2
     fi
     exit $ERROR_CODE
 }
@@ -94,6 +95,7 @@ usage () {
     echo "EXIT STATUS:"
     echo "\t""0             SUCCESS"
     echo "\t""1             INVALID OPTION"
+    echo "\t""200           UNKNOWN ERROR"
     exit ${1:-0}
 }
 # USAGE }}}
@@ -115,3 +117,5 @@ done
 # COLLECTING OPTIONS AND ARGS }}}
 
 exe ls -lhFA
+
+[ "$?" -ne "0" ] && exit 200 || exit 0
