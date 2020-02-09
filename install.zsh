@@ -2,9 +2,9 @@
 
 CMD="$0"
 usage () {
-    echo "USAGE: $CMD [-h | --help] [-n | --dry] [-d | --dots] [-b | --bins] [-u | --uninstall] [-f | --force]"
+    echo "USAGE: $CMD [-h | --help] [-n | --dry] [-d | --dots] [-b | --bins] [-t | --templates] [-u | --uninstall] [-f | --force]"
     echo
-    echo "\tAt least one of -d or -b options are required"
+    echo "\tAt least one of -d or -b or -t options are required"
     echo
     echo "\t-h|--help:        Shows this help message"
     echo "\t-n|--dry:         Doesn't do anything just shows you what commands would be executed"
@@ -50,6 +50,7 @@ for opt in ${@}; do
         -n|--dry) DRY_RUN=1;;
         -b|--bins) WITH_BINS=1;;
         -d|--dots) WITH_DOTS=1;;
+        -t|--templates) WITH_TEMPLATES=1;;
         -f|--force) FORCE_DELETE=1;;
         -u|--uninstall) UNINSTALL=1;;
         *)  echo "[ERR] Invalid option: $opt"
@@ -57,30 +58,38 @@ for opt in ${@}; do
     esac
 done
 
-[ -z "$WITH_DOTS" ] && [ -z "$WITH_BINS" ] && usage
+[ -z "$WITH_DOTS" ] && [ -z "$WITH_BINS" ] && [ -z "$WITH_TEMPLATES" ] && usage
 
 EXEDIR="$(dirname $0)"
-DOTDIR="$(realpath --relative-to="$HOME" $EXEDIR)/dot"
+DOTDIR="$(realpath --relative-to="$HOME" $EXEDIR)"
 
 pushd "$HOME"
 pushd "$DOTDIR"
 
-DOTFILES=($(print *))
-BINFILES=($(print bin/*(.)))
+DOTFILES=($(print dot/*))
+BINFILES=($(print dot/bin/*(.)))
+TEMFILES=($(print templates/*(.)))
 popd
 echo "PWD:\t$PWD"
 
 if [ -n "$WITH_DOTS" ]; then
-    for f in $DOTFILES; do
-        # [ "$f" = 'bin' ] && continue
-        make_link "$DOTDIR/$f" "$HOME/.$f"
+    for dot in $DOTFILES; do
+        f="$(basename $dot)"
+        make_link "$DOTDIR/dot/$f" "$HOME/.$f"
     done
 fi
 
 if [ -n "$WITH_BINS" ]; then
     for bin in $BINFILES; do
         f="$(basename $bin)"
-        make_link "../../$DOTDIR/bin/$f" "$HOME/.local/bin/$f"
+        make_link "../../$DOTDIR/dot/bin/$f" "$HOME/.local/bin/$f"
+    done
+fi
+
+if [ -n "$WITH_TEMPLATES" ]; then
+    for t in $TEMFILES; do
+        f="$(basename $t)"
+        make_link "../$DOTDIR/templates/$f" "$HOME/Templates/$f"
     done
 fi
 
