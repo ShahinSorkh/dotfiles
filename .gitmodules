@@ -127,3 +127,6 @@
 [submodule "dot/vim/pack/filetypes/start/vim-twig"]
 	path = dot/vim/pack/filetypes/start/vim-twig
 	url = git@github.com:lumiliet/vim-twig.git
+[submodule "dot/vim/pack/filetypes/start/vim-go"]
+	path = dot/vim/pack/filetypes/start/vim-go
+	url = git@github.com:fatih/vim-go.git
