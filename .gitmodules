@@ -130,3 +130,6 @@
 [submodule "dot/vim/pack/filetypes/start/vim-go"]
 	path = dot/vim/pack/filetypes/start/vim-go
 	url = git@github.com:fatih/vim-go.git
+[submodule "dot/vim/pack/utilities/start/auto.pairs"]
+	path = dot/vim/pack/utilities/start/auto.pairs
+	url = git@github.com:Krasjet/auto.pairs
