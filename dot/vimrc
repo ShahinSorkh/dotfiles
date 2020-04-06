@@ -111,6 +111,7 @@ let g:ale_linters = {
       \  'vue': ['vls', 'eslint', 'stylelint'],
       \  'javascript': ['tsserver', 'eslint'],
       \  'typescript': ['tsserver', 'eslint'],
+      \  'typescriptreact': ['tsserver', 'eslint'],
       \  'html': ['alex', 'tidy'],
       \  'text': ['alex'],
       \  'markdown': ['alex'],
@@ -135,6 +136,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
       \  'javascript': ['eslint'],
       \  'typescript': ['eslint'],
+      \  'typescriptreact': ['eslint'],
       \  'html': ['tidy'],
       \  'css': ['stylelint'],
       \  'vue': ['eslint', 'tidy', 'stylelint'],
