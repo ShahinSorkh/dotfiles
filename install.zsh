@@ -10,6 +10,7 @@ usage () {
     echo "\t-n|--dry:         Doesn't do anything just shows you what commands would be executed"
     echo "\t-d|--dots:        Links all of $(dirname $CMD)/dot/* to your home dir [$HOME]"
     echo "\t-b|--bins:        Links all of $(dirname $CMD)/dot/bin/* into your local bin dir [$HOME/.local/bin]"
+    echo "\t-t|--templates:   Links all of $(dirname $CMD)/templates/* into your home templates dir [$HOME/Templates]"
     echo "\t-u|--uninstall:   Unlinks/removes whatever was supposed to be linked using this script"
     echo "\t-f|--force:       Removes any non-link file which is in conflict with the execution of the script"
     exit ${1:-1}
