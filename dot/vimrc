@@ -405,6 +405,8 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 nnoremap <space> za
 nnoremap Y y$
 
+inoremap /*v /** @var */<esc>Tra
+inoremap /** /**<cr>/<esc>O
 inoremap {; {<cr>}<esc>O
 inoremap if({ if () {<cr>}<cr><esc>?if<cr>:noh<cr>f(a
 inoremap tfunc({ /** @test */<cr>public function ()<cr>{<cr>}<esc>?function<cr>:noh<cr>f(i

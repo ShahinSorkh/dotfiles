@@ -3,13 +3,13 @@
 
 	# cite: https://blog.jez.io/cli-code-review/
 	# list files which have changed since REVIEW_BASE
-	files = !git diff --name-only $(git merge-base HEAD \"${REVIEW_BASE-HEAD}\")
+	files = !git diff --name-only $(git merge-base HEAD \"${REVIEW_BASE-master}\")
 
 	# cite: https://blog.jez.io/cli-code-review/
 	# Same as the above, except specify names of files as arguments,
 	# instead of opening all files:
 	# git reviewone foo.js bar.js
-	reviewone = !vim -p +\"tabdo Gvdiff ${REVIEW_BASE-HEAD}\" +\"let g:gitgutter_diff_base = '${REVIEW_BASE-HEAD}'\"
+	reviewone = !vim -p +\"tabdo Gvdiff ${REVIEW_BASE-master}\" +\"let g:gitgutter_diff_base = '${REVIEW_BASE-master}'\"
 
 	# cite: https://blog.jez.io/cli-code-review/
 	# Open all files changed since REVIEW_BASE in Vim tabs
