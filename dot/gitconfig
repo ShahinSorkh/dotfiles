@@ -20,9 +20,6 @@
 [color]
 	ui = always
 
-[commit]
-	gpgsign = true
-
 [core]
 	editor = vim
 	eol = lf
@@ -37,9 +34,6 @@
 
 [difftool]
 	prompt = false
-
-[gpg]
-	program = gpg2
 
 [init]
 	templatedir = ~/.git_template
@@ -73,9 +67,8 @@
 [url "http://185.88.152.130:3000"]
 	insteadOf = http://pin.dpd.ir:3000
 
-[user]
-	email = sorkh.shahin@protonmail.com
-	name = Shahin Sorkh
-	signingkey = 0C078ACD97A6A07E712E960E06C228F459745AC7
 [hub]
 	protocol = ssh
+
+[include]
+    path = ~/.gitprofile
