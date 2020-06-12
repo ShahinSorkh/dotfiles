@@ -133,3 +133,6 @@
 [submodule "dot/vim/pack/utilities/start/auto.pairs"]
 	path = dot/vim/pack/utilities/start/auto.pairs
 	url = git@github.com:Krasjet/auto.pairs
+[submodule "zinit"]
+	path = zinit
+	url = git@github.com:zdharma/zinit.git
