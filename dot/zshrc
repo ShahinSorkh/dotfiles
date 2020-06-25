@@ -1,0 +1,116 @@
+export EDITOR="vim" LESS="-iRFX"
+
+setopt  aliases             append_history          auto_cd             auto_list
+setopt  auto_menu           auto_pushd              bang_hist           c_bases
+setopt  no_case_glob        complete_in_word        glob_complete       no_glob_dots
+setopt  glob_star_short     hist_ignore_dups        hist_ignore_space   no_hist_no_functions
+setopt  inc_append_history  interactive_comments    list_packed         mark_dirs
+setopt  notify              numeric_glob_sort       octal_zeroes        no_prompt_cr
+setopt  prompt_subst        pushd_ignore_dups       rc_quotes           share_history
+setopt  extended_glob       extended_history
+
+autoload -U colors && colors
+
+### Added by Zinit's installer
+module_path+=(~/.dotfiles/zinit/zmodules/Src); zmodload zdharma/zplugin &>/dev/null
+source ~/.dotfiles/zinit/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+autoload up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "$terminfo[kpp]"   ]] && bindkey "$terminfo[kpp]"   up-line-or-beginning-search   # PAGE UP
+[[ -n "$terminfo[knp]"   ]] && bindkey "$terminfo[knp]"   down-line-or-beginning-search # PAGE DOWN
+[[ -n "$terminfo[khome]" ]] && bindkey "$terminfo[khome]" beginning-of-line             # HOME
+[[ -n "$terminfo[kend]"  ]] && bindkey "$terminfo[kend]"  end-of-line                   # END
+[[ -n "$terminfo[kdch1]" ]] && bindkey "$terminfo[kdch1]" delete-char                   # DELETE
+[[ -n "$terminfo[kbs]"   ]] && bindkey "$terminfo[kbs]"   backward-delete-char          # BACKSPACE
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+# Essentials
+export COMPLETION_WAITING_DOTS=true
+zinit snippet OMZL::completion.zsh
+zinit ice svn; zinit snippet PZT::modules/utility/
+zinit snippet PZT::modules/ssh/init.zsh
+#zinit snippet OMZL::directories.zsh
+zinit snippet OMZL::git.zsh
+zinit snippet OMZP::git
+
+zinit ice wait lucid
+zinit snippet PZT::modules/environment/init.zsh
+
+# Terminal tab and window titles
+zstyle ':prezto:module:terminal' auto-title 'yes'
+zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+zinit ice wait'1' lucid
+zinit snippet PZT::modules/terminal/init.zsh
+
+# History
+zinit ice wait'1' lucid
+zinit snippet PZT::modules/history/init.zsh
+
+# Theme
+zinit wait'!' for \
+    OMZL::prompt_info_functions.zsh \
+    OMZP::vi-mode \
+    https://gist.github.com/ShahinSorkh/8d63a94d69c7ab64e6364ad3b90f9428/raw/ba4640673aab217e18f418832f07935e6fa78031/jnrowe-theme.zsh
+
+# zaw
+zinit ice wait'1' lucid
+zinit light zsh-users/zaw
+
+# z
+zinit ice wait'1' blockf lucid
+zinit light rupa/z
+
+# z tab completion
+zinit ice wait'1' lucid
+zinit light changyuheng/fz
+
+# z / fzf (ctrl-g)
+zinit ice wait'1' lucid
+zinit light andrewferrier/fzf-z
+
+# cd
+zinit ice wait'1' lucid
+zinit light changyuheng/zsh-interactive-cd
+
+bindkey -r '^r'
+function __bind_history_keys() {
+  bindkey '^r' history-substring-search-up
+}
+# History substring searching
+zinit ice wait'1' lucid atload'__bind_history_keys'
+zinit light zsh-users/zsh-history-substring-search
+
+# autosuggestions, trigger precmd hook upon load
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
+zinit ice wait'1' lucid atload'_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
+
+# Colored man pages
+zinit ice wait'1' lucid
+zinit snippet OMZP::colored-man-pages
+
+# Syntax highlighting
+zinit ice wait'1' lucid atinit"zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'; zpcdreplay"
+zinit light zdharma/fast-syntax-highlighting
+
+# Tab completions
+zinit ice wait'1' lucid atload"zicompinit; zicdreplay" blockf
+zinit light zsh-users/zsh-completions
+
+# Tmux
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOQUIT=true
+ZSH_TMUX_UNICODE=true
+ZSH_TMUX_DEFAULT_SESSION_NAME='dev'
+zinit ice wait lucid svn
+zinit snippet OMZ::plugins/tmux/
+
