@@ -33,11 +33,12 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # Essentials
+# zinit light zinit-zsh/z-a-patch-dl # https://zdharma.org/zinit/wiki/z-a-patch-dl/
+
 export COMPLETION_WAITING_DOTS=true
 zinit snippet OMZL::completion.zsh
 zinit ice svn; zinit snippet PZT::modules/utility/
 zinit snippet PZT::modules/ssh/init.zsh
-#zinit snippet OMZL::directories.zsh
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 
@@ -56,10 +57,13 @@ zinit ice wait'1' lucid
 zinit snippet PZT::modules/history/init.zsh
 
 # Theme
+zinit ice wait'1' lucid \
+    atload'ZSH_COMMAND_TIME_MSG=; RPROMPT="%{$bg[red]$fg_bold[yellow]%}\${ZSH_COMMAND_TIME}%s%f%b"'
+zinit light popstas/zsh-command-time
+
 zinit wait'!' for \
-    OMZL::prompt_info_functions.zsh \
-    OMZP::vi-mode \
-    https://gist.github.com/ShahinSorkh/8d63a94d69c7ab64e6364ad3b90f9428/raw/ba4640673aab217e18f418832f07935e6fa78031/jnrowe-theme.zsh
+    as'theme' atload'DRACULA_ARROW_ICON="%(?:%{$fg_bold[green]%}➜:%{$fg_bold[red]%}%S↑%s%?) "' \
+        dracula/zsh
 
 # zaw
 zinit ice wait'1' lucid
@@ -89,28 +93,32 @@ function __bind_history_keys() {
 zinit ice wait'1' lucid atload'__bind_history_keys'
 zinit light zsh-users/zsh-history-substring-search
 
-# autosuggestions, trigger precmd hook upon load
+# Autosuggestions, syntax highlighting and tab completions
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
-zinit ice wait'1' lucid atload'_zsh_autosuggest_start'
-zinit light zsh-users/zsh-autosuggestions
+zinit wait lucid light-mode for \
+  atinit'zicompinit; zicdreplay' \
+      zdharma/fast-syntax-highlighting \
+  atload'_zsh_autosuggest_start' \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
 
 # Colored man pages
 zinit ice wait'1' lucid
 zinit snippet OMZP::colored-man-pages
 
-# Syntax highlighting
-zinit ice wait'1' lucid atinit"zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'; zpcdreplay"
-zinit light zdharma/fast-syntax-highlighting
-
-# Tab completions
-zinit ice wait'1' lucid atload"zicompinit; zicdreplay" blockf
-zinit light zsh-users/zsh-completions
+# Clipboard
+zinit ice wait'1' lucid
+zinit snippet OMZL::clipboard.zsh
 
 # Tmux
 ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOQUIT=true
+ZSH_TMUX_AUTOQUIT=false
 ZSH_TMUX_UNICODE=true
 ZSH_TMUX_DEFAULT_SESSION_NAME='dev'
 zinit ice wait lucid svn
 zinit snippet OMZ::plugins/tmux/
+
+mdcd () { mkdir $1; cd $1; }
+alias sudo='sudo '
 
