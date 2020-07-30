@@ -126,8 +126,8 @@ let g:ale_linters = {
       \  'vader': ['vint'],
       \  'sh': ['language_server'],
       \  'bash': ['language_server'],
-      \  'c': ['gcc'],
-      \  'cpp': ['gcc'],
+      \  'c': ['ccls', 'gcc', 'clang', 'clazy'],
+      \  'cpp': ['ccls', 'g++', 'clang', 'clazy'],
       \  'rust': ['rls', 'cargo', 'rustc'],
       \  'go': ['gobuild', 'gofmt', 'govet', 'golangserver'],
       \  }
