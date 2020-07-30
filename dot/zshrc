@@ -62,7 +62,7 @@ zinit ice wait'1' lucid \
 zinit light popstas/zsh-command-time
 
 zinit wait'!' for \
-    as'theme' atload'DRACULA_ARROW_ICON="%(?:%{$fg_bold[green]%}➜:%{$fg_bold[red]%}%S↑%s%?) "' \
+    as'theme' atload'DRACULA_ARROW_ICON="%(?:%{$fg_bold[green]%}➜:%{$fg_bold[red]%}%S↑%s%?)"' \
         dracula/zsh
 
 # zaw
