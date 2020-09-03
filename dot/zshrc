@@ -58,7 +58,7 @@ zinit snippet PZT::modules/history/init.zsh
 
 # Theme
 zinit ice wait'1' lucid \
-    atload'ZSH_COMMAND_TIME_MSG=; RPROMPT="%{$bg[red]$fg_bold[yellow]%}\${ZSH_COMMAND_TIME}%s%f%b"'
+    atload'ZSH_COMMAND_TIME_MSG=; RPROMPT="%{$bg[red]$fg_bold[yellow]%}\${ZSH_COMMAND_TIME}%s%f%b \$(date +%T)"'
 zinit light popstas/zsh-command-time
 
 zinit wait'!' for \
