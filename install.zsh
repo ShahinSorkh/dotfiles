@@ -2,7 +2,7 @@
 
 CMD="$0"
 usage () {
-    echo "USAGE: $CMD [-h | --help] [-n | --dry] [-d | --dots] [-b | --bins] [-t | --templates] [-u | --uninstall] [-f | --force]"
+    echo "USAGE: $CMD [-h | --help] [-n | --dry] [-d | --dots] [-b | --bins] [-t | --templates] [-u | --uninstall] [-f | --force] [-s | --skip]"
     echo
     echo "\tAt least one of -d or -b or -t options are required"
     echo
@@ -13,6 +13,7 @@ usage () {
     echo "\t-t|--templates:   Links all of $(dirname $CMD)/templates/* into your home templates dir [$HOME/Templates]"
     echo "\t-u|--uninstall:   Unlinks/removes whatever was supposed to be linked using this script"
     echo "\t-f|--force:       Removes any non-link file which is in conflict with the execution of the script"
+    echo "\t-s|--skip:        Skips files with conflicts"
     exit ${1:-1}
 }
 
@@ -34,7 +35,7 @@ remove_if_exists () {
                 exe rm -rf "$1"
             else
                 echo $'\e[38;5;160m'"use --force to force delete $1"$'\e[00m'
-                exit 1
+                [ -n "$SKIP_CONFLICTS" ] && return 0 || exit 1
             fi
         fi
     fi
@@ -42,7 +43,9 @@ remove_if_exists () {
 
 make_link () {
     remove_if_exists "$2"
-    [ -z "$UNINSTALL" ] && exe ln -s "$1" "$2"
+    if [ -z "$UNINSTALL" ]; then
+        [ ! -e "$2" ] && exe ln -s "$1" "$2"
+    fi
 }
 
 for opt in ${@}; do
@@ -53,6 +56,7 @@ for opt in ${@}; do
         -d|--dots) WITH_DOTS=1;;
         -t|--templates) WITH_TEMPLATES=1;;
         -f|--force) FORCE_DELETE=1;;
+        -s|--skip) SKIP_CONFLICTS=1;;
         -u|--uninstall) UNINSTALL=1;;
         *)  echo "[ERR] Invalid option: $opt"
             usage 2;;
