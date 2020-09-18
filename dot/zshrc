@@ -1,4 +1,4 @@
-export EDITOR="vim" LESS="-iRFX"
+export EDITOR='vim' VISUAL='vim' LESS='-iRFX' BROWSER='firefox'
 
 setopt  aliases             append_history          auto_cd             auto_list
 setopt  auto_menu           auto_pushd              bang_hist           c_bases
@@ -34,6 +34,10 @@ bindkey -M vicmd v edit-command-line
 
 # Essentials
 # zinit light zinit-zsh/z-a-patch-dl # https://zdharma.org/zinit/wiki/z-a-patch-dl/
+
+zstyle ':prezto:module:utility:ls' color true
+zstyle ':prezto:module:utility:ls' dirs-first true
+zstyle ':prezto:module:utility:grep' color true
 
 export COMPLETION_WAITING_DOTS=true
 zinit snippet OMZL::completion.zsh
@@ -107,18 +111,14 @@ zinit wait lucid light-mode for \
 zinit ice wait'1' lucid
 zinit snippet OMZP::colored-man-pages
 
-# Clipboard
-zinit ice wait'1' lucid
-zinit snippet OMZL::clipboard.zsh
-
 # Tmux
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 ZSH_TMUX_AUTOQUIT=false
 ZSH_TMUX_UNICODE=true
 ZSH_TMUX_DEFAULT_SESSION_NAME='dev'
 zinit ice wait lucid svn
 zinit snippet OMZ::plugins/tmux/
 
-mdcd () { mkdir $1; cd $1; }
-alias sudo='sudo '
+# fix nocorrect not found error (https://unix.stackexchange.com/a/526277)
+alias sudo=$'sudo\t'
 
