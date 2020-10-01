@@ -52,7 +52,7 @@ block = "custom"
 on_click = "zsh ~/.bin/vpn/nordvpn.sh toggle"
 command = "zsh ~/.bin/vpn/nordvpn.sh"
 json = true
-interval = 1
+interval = 5
 
 [[block]]
 block = "memory"
