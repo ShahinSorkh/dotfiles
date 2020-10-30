@@ -77,11 +77,8 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+Shift+v split h
-
-# split in vertical orientation
-bindsym $mod+v split v
+# toggle split
+bindsym $mod+v split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -162,11 +159,16 @@ mode "resize" {
     bindsym k resize shrink height 10 px or 10 ppt
     bindsym l resize grow width 10 px or 10 ppt
 
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Shift+h resize shrink width 30 px or 30 ppt
+    bindsym Shift+j resize grow height 30 px or 30 ppt
+    bindsym Shift+k resize shrink height 30 px or 30 ppt
+    bindsym Shift+l resize grow width 30 px or 30 ppt
+
+    # # same bindings, but for the arrow keys
+    # bindsym Left resize shrink width 10 px or 10 ppt
+    # bindsym Down resize grow height 10 px or 10 ppt
+    # bindsym Up resize shrink height 10 px or 10 ppt
+    # bindsym Right resize grow width 10 px or 10 ppt
 
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
@@ -176,48 +178,48 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Start i3bar to display a workspace bar
 bar {
     font pango:DejaVu Sans Mono, FontAwesome 12
     status_command i3status-rs ~/.i3/status.toml
 }
 
+# You can also use any non-zero value if you'd like to have a border
+for_window [class=".*"] border pixel 1
+
 # Plasma compatibility improvements
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
+exec --no-startup-id wmctrl -c Plasma
+for_window [title="Desktop — Plasma"] kill; floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-for_window [class="yakuake"] floating enable
-for_window [class="systemsettings"] floating enable
-for_window [class="plasmashell"] floating enable;
-for_window [class="Plasma"] floating enable; border none
-for_window [title="plasma-desktop"] floating enable; border none
-for_window [title="win7"] floating enable; border none
-for_window [class="krunner"] floating enable; border none
-for_window [class="Kmix"] floating enable; border none
-for_window [class="Klipper"] floating enable; border none
-for_window [class="Plasmoidviewer"] floating enable; border none
-for_window [class="(?i)*nextcloud*"] floating disable
-for_window [class="plasmashell" window_type="notification"] border none, move absolute position center, move down 250 px, resize set width 200 px height 200 px
+for_window [class="plasmashell" window_type="notification"] border none, move absolute position center, move down 250 px
+assign [class="plasmashell" window_type="notification"] output primary
 no_focus [class="plasmashell" window_type="notification"]
 
+for_window [class="yakuake"] floating enable, border none
+for_window [class="systemsettings"] floating enable
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [title="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="VirtualBox Machine"] floating disable, move to workspace number $ws10
+for_window [class="Spotify"] move to workspace number $ws9
+
 # gaps
-# You can also use any non-zero value if you'd like to have a border
-for_window [class=".*"] border pixel 0
-gaps inner 10
-gaps outer 10
+gaps inner 5
+#gaps outer 15
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps on
 # Only enable outer gaps when there is exactly one container
-smart_gaps inverse_outer
-# Activate smart borders (always)
-smart_borders on
-# Activate smart borders (only when there are effectively no gaps)
-smart_borders no_gaps
+#smart_gaps inverse_outer
 # Hide edge borders only if there is one window with no gaps
 hide_edge_borders smart_no_gaps
-
 
 # background (wallpaper)
 exec --no-startup-id feh --bg-scale /usr/share/backgrounds/manjaro-wallpapers-18.0/default-adapta.jpg
@@ -226,11 +228,19 @@ exec --no-startup-id feh --bg-scale /usr/share/backgrounds/manjaro-wallpapers-18
 #exec_always --no-startup-id picom -bc
 exec_always --no-startup-id picom --backend glx --experimental-backends -bc
 
-# rofi
-bindsym $mod+d exec rofi -show
+set $menu --no-startup-id qdbus org.kde.krunner /App display
+bindsym $mod+d exec $menu
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+
+# Disable standby if in fullscreen mode
+exec_always ~/.bin/i3/disable-standby-fs.py
+
+# Emacs
+exec --no-startup-id emacs --daemon
+bindsym $mod+i exec emacsclient -c
+bindsym $mod+Ctrl+i exec pkill emacs && emacs --daemon && emacsclient -c
 
