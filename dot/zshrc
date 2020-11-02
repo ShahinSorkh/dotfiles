@@ -121,4 +121,4 @@ zinit snippet OMZ::plugins/tmux/
 
 # fix nocorrect not found error (https://unix.stackexchange.com/a/526277)
 alias sudo=$'sudo\t'
-
+alias e='emacsclient -t'
