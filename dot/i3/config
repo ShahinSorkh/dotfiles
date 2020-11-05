@@ -215,7 +215,7 @@ for_window [class="Klipper"] floating enable, border none
 for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="VirtualBox Machine"] floating disable, move to workspace number $ws10
-for_window [class="Spotify"] move to workspace number $ws9
+for_window [class="Spotify"] move to workspace number $ws10
 
 # gaps
 gaps inner 5
