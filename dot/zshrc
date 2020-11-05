@@ -119,6 +119,12 @@ ZSH_TMUX_DEFAULT_SESSION_NAME='dev'
 zinit ice wait lucid svn
 zinit snippet OMZ::plugins/tmux/
 
+# docker
+zinit ice wait'1' as'completion' lucid
+zinit snippet OMZP::docker
+zinit ice wait'1' lucid
+zinit snippet OMZP::docker-compose
+
 # fix nocorrect not found error (https://unix.stackexchange.com/a/526277)
 alias sudo=$'sudo\t'
 alias e='emacsclient -t'
