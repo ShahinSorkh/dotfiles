@@ -49,6 +49,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# start win10 on virtualbox
+bindsym $mod+Ctrl+w exec VBoxManage startvm win10
+
 # kill focused window
 bindsym $mod+Shift+q kill
 

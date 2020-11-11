@@ -49,8 +49,8 @@ hide_inactive = true
 
 [[block]]
 block = "custom"
-on_click = "zsh ~/.bin/vpn/nordvpn.sh toggle"
-command = "zsh ~/.bin/vpn/nordvpn.sh"
+on_click = "zsh ~/.bin/vpn/checkvpn.sh toggle"
+command = "zsh ~/.bin/vpn/checkvpn.sh"
 json = true
 interval = 5
 
