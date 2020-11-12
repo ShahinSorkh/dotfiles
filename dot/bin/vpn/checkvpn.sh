@@ -7,7 +7,7 @@ WINDSTATUS=$(windscribe status 2>&1)
 if [ "$1" = "toggle" ]; then
     if ( grep -F 'Connected' <(echo $NORDSTATUS) >/dev/null ); then nordvpn d
     elif ( grep -P '\bCONNECTED' <(echo $WINDSTATUS) >/dev/null ); then windscribe disconnect
-    else windscribe connect
+    else windscribe connect best
     fi
     exit
 fi
