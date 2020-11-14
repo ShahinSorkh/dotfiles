@@ -111,7 +111,7 @@ zinit ice wait'1' lucid
 zinit snippet OMZP::colored-man-pages
 
 # Tmux
-ZSH_TMUX_AUTOSTART=false
+ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOQUIT=false
 ZSH_TMUX_UNICODE=true
 ZSH_TMUX_DEFAULT_SESSION_NAME='dev'
@@ -119,8 +119,8 @@ zinit ice wait lucid svn
 zinit snippet OMZ::plugins/tmux/
 
 # docker
-zinit ice wait'1' as'completion' lucid
-zinit snippet OMZP::docker
+zinit ice wait'1' as'completion' lucid svn
+zinit snippet OMZ::plugins/docker
 zinit ice wait'1' lucid
 zinit snippet OMZP::docker-compose
 
