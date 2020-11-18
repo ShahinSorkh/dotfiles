@@ -113,7 +113,7 @@ zinit ice wait'1' lucid
 zinit snippet OMZP::colored-man-pages
 
 # Tmux
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 ZSH_TMUX_AUTOQUIT=false
 ZSH_TMUX_UNICODE=true
 ZSH_TMUX_DEFAULT_SESSION_NAME='dev'
