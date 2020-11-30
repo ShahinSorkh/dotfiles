@@ -12,6 +12,7 @@ setopt  extended_glob       extended_history
 autoload -U colors && colors
 
 export PATH="$HOME/.local/bin:$PATH"
+[ -n "$TUMUX" ]  && export TERM=screen-256color
 
 ### Added by Zinit's installer
 module_path+=(~/.dotfiles/zinit/zmodules/Src); zmodload zdharma/zplugin &>/dev/null
@@ -117,7 +118,7 @@ ZSH_TMUX_AUTOSTART=false
 ZSH_TMUX_AUTOQUIT=false
 ZSH_TMUX_UNICODE=true
 ZSH_TMUX_DEFAULT_SESSION_NAME='dev'
-zinit ice wait lucid svn
+zinit ice wait'1' lucid svn
 zinit snippet OMZ::plugins/tmux/
 
 # docker
