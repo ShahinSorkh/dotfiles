@@ -11,7 +11,13 @@ setopt  extended_glob       extended_history
 
 autoload -U colors && colors
 
-export PATH="$HOME/.local/bin:$PATH"
+case $PATH in
+    $HOME/.local/bin:*) ;;
+    *:$HOME/.local/bin) ;;
+    *:$HOME/.local/bin:*) ;;
+    *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
 [ -n "$TUMUX" ]  && export TERM=screen-256color
 
 ### Added by Zinit's installer
