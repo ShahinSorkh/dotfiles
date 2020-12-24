@@ -231,7 +231,7 @@ smart_gaps on
 hide_edge_borders smart_no_gaps
 
 # background (wallpaper)
-exec --no-startup-id feh --bg-scale /usr/share/backgrounds/manjaro-wallpapers-18.0/default-adapta.jpg
+exec --no-startup-id feh --bg-scale ~/.i3/105857-1.jpg
 
 # compositor
 #exec_always --no-startup-id picom -bc
