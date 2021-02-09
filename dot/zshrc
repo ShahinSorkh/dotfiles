@@ -11,13 +11,16 @@ setopt  extended_glob       extended_history
 
 autoload -U colors && colors
 
-case $PATH in
-    $HOME/.local/bin:*) ;;
-    *:$HOME/.local/bin) ;;
-    *:$HOME/.local/bin:*) ;;
-    *) export PATH="$HOME/.local/bin:$PATH" ;;
-esac
+export function extend_path () {
+    for p in $@; do
+        case $PATH in
+            $p:*|*:$p|*:$p:*) ;;
+            *) export PATH="$p:$PATH" ;;
+        esac
+    done
+}
 
+extend_path "$HOME/.local/bin"
 [ -n "$TUMUX" ]  && export TERM=screen-256color
 
 ### Added by Zinit's installer
@@ -137,7 +140,7 @@ zinit snippet OMZP::docker-compose
 alias sudo=$'sudo\t'
 alias e='emacsclient -t'
 
-if [ -f "$HOME/.zprofile" ]; then
-    source "$HOME/.zprofile"
+if [ -f "$HOME/.zmenv" ]; then
+    source "$HOME/.zmenv"
 fi
 
