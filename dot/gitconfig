@@ -38,6 +38,7 @@
 
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = master
 
 [merge]
 	conflictstyle = diff3
@@ -65,16 +66,15 @@
 [url "git@gitlab.com:"]
 	insteadOf = https://gitlab.com/
 
-[url "http://185.88.152.130:3000"]
-	insteadOf = http://pin.dpd.ir:3000
-
 [hub]
 	protocol = ssh
 
 [include]
     path = ~/.gitprofile
+
 [pull]
 	rebase = false
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
