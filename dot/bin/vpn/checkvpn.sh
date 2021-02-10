@@ -1,7 +1,10 @@
 #!/usr/bin/zsh
 
-NORDSTATUS=$(nordvpn status)
-WINDSTATUS=$(windscribe status 2>&1)
+echo "{\"icon\": \"net_vpn\", \"state\": \"Critical\", \"text\": \"\"}"
+exit
+
+#NORDSTATUS=$(nordvpn status)
+#WINDSTATUS=$(windscribe status 2>&1)
 
 
 if [ "$1" = "toggle" ]; then
