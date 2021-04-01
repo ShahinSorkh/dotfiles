@@ -1,39 +1,36 @@
 [theme]
 name = "plain"
 [theme.overrides]
-separator = ""
+separator = "|"
 
 [icons]
 name = "awesome5"
+
 [icons.overrides]
 net_down = "\uf063"
 net_up = "\uf062"
-memory_mem = " "
-cogs = " "
-net_wireless = " W:"
-net_wired = " E:"
 
 [[block]]
 block = "disk_space"
 info_type = "available"
 unit = "GB"
 interval = 60
-warning = 40.0
+warning = 50.0
 alert = 20.0
 
 [[block]]
 block = "disk_space"
-path = "/hdd"
-alias = "/hdd"
+path = "/home"
+alias = "/home"
 info_type = "available"
 unit = "GB"
 interval = 60
-warning = 20.0
+warning = 30.0
 alert = 10.0
 
 [[block]]
 block = "net"
-device = "wlo1"
+device = "wlp0s20f3"
 speed_digits = 2
 use_bits = false
 hide_missing = true
@@ -41,29 +38,29 @@ hide_inactive = true
 
 [[block]]
 block = "net"
-device = "ens38s0"
+device = "enp7s0"
 speed_digits = 2
 use_bits = false
 hide_missing = true
 hide_inactive = true
 
-[[block]]
-block = "custom"
-on_click = "zsh ~/.bin/vpn/checkvpn.sh toggle"
-command = "zsh ~/.bin/vpn/checkvpn.sh"
-json = true
-interval = 5
+# [[block]]
+# block = "custom"
+# on_click = "zsh ~/.bin/vpn/checkvpn.sh toggle"
+# command = "zsh ~/.bin/vpn/checkvpn.sh"
+# json = true
+# interval = 5
 
 [[block]]
 block = "memory"
 display_type = "memory"
-clickable = false
+clickable = true
 format_mem = "{MAm} MB"
 
 [[block]]
 block = "load"
 interval = 2
 format = "{5m}"
-info = 1.9
-warning = 2.9
-critical = 3.9
+info = 5.9
+warning = 8.9
+critical = 11.9
