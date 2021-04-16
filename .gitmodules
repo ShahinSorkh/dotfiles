@@ -136,3 +136,6 @@
 [submodule "dot/vim/pack/filetypes/start/vifm.vim"]
 	path = dot/vim/pack/filetypes/start/vifm.vim
 	url = git@github.com:vifm/vifm.vim.git
+[submodule "dot/emacs.d"]
+	path = dot/emacs.d
+	url = git@github.com:hlissner/doom-emacs
