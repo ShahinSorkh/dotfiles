@@ -21,6 +21,7 @@ export function extend_path () {
 }
 
 extend_path "$HOME/.local/bin"
+extend_path "$HOME/.emacs.d/bin"
 [ -n "$TUMUX" ]  && export TERM=screen-256color
 
 ### Added by Zinit's installer
