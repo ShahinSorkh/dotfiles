@@ -1,3 +1,4 @@
+# vim: sw=4 et
 export EDITOR='vim' VISUAL='vim' LESS='-iRFX' BROWSER='firefox'
 
 setopt  aliases             append_history          auto_cd             auto_list
@@ -66,6 +67,7 @@ zinit ice svn; zinit snippet PZT::modules/utility/
 zinit snippet PZT::modules/ssh/init.zsh
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
+zinit snippet OMZP::git-flow
 
 zinit ice wait lucid
 zinit snippet PZT::modules/environment/init.zsh
@@ -143,5 +145,11 @@ alias e='emacsclient -t'
 
 if [ -f "$HOME/.zmenv" ]; then
     source "$HOME/.zmenv"
+fi
+
+if [ "x$INSIDE_EMACS" = "xvterm" ]; then
+    if [ "x$PROOT" != "x" ]; then
+        cd $PROOT
+    fi
 fi
 
