@@ -209,6 +209,8 @@ no_focus [class="plasmashell" window_type="notification"]
 for_window [class="yakuake"] floating enable, border none
 for_window [class="systemsettings"] floating enable
 for_window [class="plasmashell"] floating enable
+for_window [class="plasmawindowed"] floating enable
+for_window [class="knotes"] floating enable
 for_window [class="Plasma"] floating enable, border none
 for_window [title="plasma-desktop"] floating enable, border none
 for_window [title="win7"] floating enable, border none
@@ -220,6 +222,9 @@ for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="VirtualBox Machine"] floating disable, move to workspace number $ws10
 for_window [class="Spotify"] move to workspace number $ws10
 for_window [class="TelegramDesktop"] floating enable
+for_window [class="zoom"] floating enable
+for_window [class="clockify"] floating enable
+for_window [title="Zoom Meeting"] floating disable
 
 # gaps
 gaps inner 5

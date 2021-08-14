@@ -51,7 +51,7 @@ hide_inactive = true
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{mem_free;M}/{mem_total;M}"
+format_mem = "{mem_avail;M}/{mem_total;M}"
 clickable = false
 
 [[block]]
