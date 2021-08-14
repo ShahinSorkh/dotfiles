@@ -80,3 +80,9 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[github]
+	user = ShahinSorkh
+[gitlab]
+	user = ShahinSorkh
+[gitlab "git.malltina.com/api/v4"]
+	user = ShahinSorkh
