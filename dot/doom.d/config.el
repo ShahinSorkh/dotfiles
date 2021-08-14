@@ -7,7 +7,38 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
 (setq user-full-name "Shahin Sorkh"
-      user-mail-address "sorkh.shahin@protonmail.com")
+      user-mail-address "sorkh.shahin@hotmail.com")
+
+(set-email-account! "sorkh.shahin@hotmail.com"
+    '((mu4e-sent-folder                 . "/sorkh.shahin@hotmail.com/Sent")
+         (mu4e-drafts-folder            . "/sorkh.shahin@hotmail.com/Drafts")
+         (mu4e-trash-folder             . "/sorkh.shahin@hotmail.com/Deleted")
+         (mu4e-refile-folder            . "/sorkh.shahin@hotmail.com/All")
+         (mu4e-compose-signature        . "\nBest regards,\nShSo")
+         (smtpmail-smtp-server          . "smtp.office365.com")
+         (smtpmail-smtp-user            . "sorkh.shahin@hotmail.com")
+         (mu4e-compose-signature-auto-include t))
+    t)
+(set-email-account! "ali.zakeri2008@gmail.com"
+    '((mu4e-sent-folder                 . "/ali.zakeri2008@gmail.com/Sent Mail")
+         (mu4e-drafts-folder            . "/ali.zakeri2008@gmail.com/Drafts")
+         (mu4e-trash-folder             . "/ali.zakeri2008@gmail.com/Trash")
+         (mu4e-refile-folder            . "/ali.zakeri2008@gmail.com/All Mails")
+         (mu4e-compose-signature        . "\nBest regards,\nShSo")
+         (smtpmail-smtp-server          . "smtp.gmail.com")
+         (smtpmail-smtp-user            . "ali.zakeri2008@gmail.com")
+         (mu4e-compose-signature-auto-include nil))
+    nil)
+(set-email-account! "shahin@malltina.com"
+    '((mu4e-sent-folder                 . "/shahin@malltina.com/Sent Items")
+         (mu4e-drafts-folder            . "/shahin@malltina.com/Drafts")
+         (mu4e-trash-folder             . "/shahin@malltina.com/Deleted Items")
+         (mu4e-refile-folder            . "/shahin@malltina.com/All Items")
+         (mu4e-compose-signature        . "\nBest regards,\nShSo")
+         (smtpmail-smtp-server          . "mail.malltina.com")
+         (smtpmail-smtp-user            . "shahin@malltina.com")
+         (mu4e-compose-signature-auto-include t))
+    nil)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -19,17 +50,26 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 13)
+      doom-unicode (font-spec :family "Vazir Mono" :size 13)
+      doom-variable-pitch-font (font-spec :family "Overpass" :size 14))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-horizon)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+(setq org-noter-notes-search-path '("~/org/notes/"))
+(setq
+    deft-directory "~/org/"
+    deft-recursive t)
+(setq
+    org-journal-date-format "%y-%m-%d"
+    org-journal-file-type "org"
+    org-journal-file-format "YYYYMMDD.org")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
