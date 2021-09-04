@@ -1,5 +1,0 @@
-digitalocean.com###newsletter-signup-dialog
-deliciousbrains.com###cta_7079
-deliciousbrains.com##.cta.has-transitions.slide-up
-mdbootstrap.com##modalBFTutTemp
-mdbootstrap.com###modalBFTutTemp
