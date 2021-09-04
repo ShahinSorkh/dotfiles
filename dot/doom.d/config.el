@@ -94,7 +94,13 @@
 ;; they are implemented.
 
 (after! projectile
-  (setq projectile-project-search-path '("~/code/")))
+    (setq projectile-project-search-path '("~/code/"))
+    (setq projectile-auto-discover t))
+
+(after! company
+    (setq company-backends '(company-tabnine company-capf company-files company-yasnippet))
+    (setq company-tooltip-width-grow-only t)
+    (setq company-show-numbers t))
 
 ;; (setf (alist-get 'markdown-mode +spell-excluded-faces-alist)
 ;;       '(markdown-code-face

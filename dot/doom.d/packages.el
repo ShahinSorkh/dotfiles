@@ -11,6 +11,8 @@
 (package! graphql-mode)
 (package! impostman
     :recipe (:host github :repo "flashcode/impostman"))
+(when (featurep! :completion company)
+    (package! company-tabnine))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
