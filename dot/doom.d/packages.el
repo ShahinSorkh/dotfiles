@@ -13,6 +13,7 @@
     :recipe (:host github :repo "flashcode/impostman"))
 (when (featurep! :completion company)
     (package! company-tabnine))
+(package! feature-mode)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

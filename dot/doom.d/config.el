@@ -63,11 +63,9 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 (setq org-noter-notes-search-path '("~/org/notes/"))
-(setq
-    deft-directory "~/org/"
+(setq deft-directory "~/org/"
     deft-recursive t)
-(setq
-    org-journal-date-format "%y-%m-%d"
+(setq org-journal-date-format "%y-%m-%d"
     org-journal-file-type "org"
     org-journal-file-format "YYYYMMDD.org")
 
@@ -97,10 +95,10 @@
     (setq projectile-project-search-path '("~/code/"))
     (setq projectile-auto-discover t))
 
-(after! company
-    (setq company-backends '(company-tabnine company-capf company-files company-yasnippet))
+(after! lsp
+    (setq +lsp-company-backends '(company-tabnine company-capf company-files company-yasnippet))
     (setq company-tooltip-width-grow-only t)
-    (setq company-show-numbers t))
+    (setq company-show-quick-access t))
 
 ;; (setf (alist-get 'markdown-mode +spell-excluded-faces-alist)
 ;;       '(markdown-code-face
@@ -111,3 +109,4 @@
 ;;         markdown-html-attr-value-face
 ;;         markdown-html-attr-name-face
 ;;         markdown-html-tag-name-face))
+
