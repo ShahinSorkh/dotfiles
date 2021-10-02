@@ -196,33 +196,39 @@ for_window [class=".*"] border pixel 1
 # Plasma compatibility improvements
 exec --no-startup-id wmctrl -c Plasma
 for_window [title="Desktop — Plasma"] kill; floating enable
+for_window [class="ksplashqml"] kill; floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-for_window [class="plasmashell" window_type="notification"] border none, move absolute position center, move down 250 px
-assign [class="plasmashell" window_type="notification"] output primary
-no_focus [class="plasmashell" window_type="notification"]
+for_window [class="krunner"] floating enable, border none, move position center, move up 520
+assign [class="krunner"] output current
 
 for_window [class="yakuake"] floating enable, border none
 for_window [class="systemsettings"] floating enable
-for_window [class="plasmashell"] floating enable
+for_window [class="plasmashell" window_type="(?!notification$)"] floating enable, border none, resize set 800 px 500 px, move position mouse, move down 30 px
 for_window [class="plasmawindowed"] floating enable
+
+assign [class="plasmashell" window_type="notification"] output current
+for_window [class="plasmashell" window_type="notification"] floating enable, border none
+no_focus [class="plasmashell" window_type="notification"]
+
 for_window [class="knotes"] floating enable
 for_window [class="Plasma"] floating enable, border none
 for_window [title="plasma-desktop"] floating enable, border none
-for_window [title="win7"] floating enable, border none
-for_window [class="krunner"] floating enable, border none
 for_window [class="Kmix"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
-for_window [class="Plasmoidviewer"] floating enable, border none
-for_window [class="(?i)*nextcloud*"] floating disable
-for_window [class="Spotify"] move to workspace number $ws10
-for_window [class="TelegramDesktop"] floating enable
 for_window [class="zoom"] floating enable
 for_window [class="clockify"] floating enable
 for_window [title="Zoom Meeting"] floating disable
-for_window [class="discord"] move to workspace $ws3
-for_window [class="Slack"] move to workspace $ws3
+for_window [class="discord"] floating disable
+for_window [class="Slack"] floating disable
+for_window [title="win.info  — Kate"] floating enable
+for_window [class="TelegramDesktop"] floating enable, border none
+
+assign [class="Spotify"] workspace $ws10
+assign [class="TelegramDesktop"] workspace $ws3
+assign [class="discord"] workspace $ws3
+assign [class="Slack"] workspace $ws3
 
 # gaps
 gaps inner 5
@@ -255,3 +261,11 @@ exec_always ~/.bin/i3/disable-standby-fs.py
 bindsym $mod+i exec ~/.bin/i3/run-emacs-client.sh
 bindsym $mod+Ctrl+i exec ~/.bin/i3/restart-emacs.sh
 
+# Multi monitor
+bindsym $mod+m move workspace to output left
+
+bindsym --release $mod+F6 exec --no-startup-id ~/.bin/i3/get-window-criteria.sh > /tmp/win.info && kate /tmp/win.info
+
+# workspace back and forth
+workspace_auto_back_and_forth yes
+bindsym $mod+z workspace back_and_forth
