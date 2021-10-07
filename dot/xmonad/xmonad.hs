@@ -19,10 +19,11 @@ main =
     $ myConfig
   where
     myConfig =
-        desktopConfig { modMask    = myModeMask -- Rebine Mod to the Super key
-                    , terminal   = "konsole" -- Use konsole as default terminal
-                    , layoutHook = myLayout -- Use custom layouts
-                    , manageHook = myManageHook -- Use custom manage hook
-                    }
+        desktopConfig
+          { modMask    = myModeMask -- Rebine Mod to the Super key
+          , terminal   = "konsole" -- Use konsole as default terminal
+          , layoutHook = myLayout -- Use custom layouts
+          , manageHook = myManageHook -- Use custom manage hook
+          }
         `additionalKeysP` myKeys
         `additionalKeys`  myKeysX
