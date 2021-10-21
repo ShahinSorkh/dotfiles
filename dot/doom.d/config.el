@@ -96,8 +96,9 @@
     (setq projectile-project-search-path (my/find-directories-recursive "~/code" 3))
     (setq projectile-auto-discover t))
 
-(after! lsp
-    (setq +lsp-company-backends '(company-tabnine company-capf company-files company-yasnippet))
+(after! company
+    (setq +lsp-company-backends '(:separate company-tabnine company-capf :with company-yasnippet))
+    (add-to-list 'company-backends 'company-tabnine)
     (setq company-tooltip-width-grow-only t)
     (setq company-show-quick-access t))
 
