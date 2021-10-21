@@ -10,11 +10,11 @@ myModeMask = mod4Mask
 
 myKeys :: [(String, X ())]
 myKeys =
-  [ ("M-S-z", spawn "xscreensaver-command -lock"),
-    ("M-S-=", unGrab *> spawn "scrot -s"),
-    ("M-]", spawn "firefox"),
-    ("M-[", spawn "emacs"),
-    ("M-S-q", io exitSuccess)
+  [ ("M-S-z", spawn "xscreensaver-command -lock")
+  , ("M-S-=", unGrab *> spawn "scrot -s")
+  , ("M-]", spawn "firefox")
+  , ("M-[", spawn "emacs")
+  , ("M-S-q", io exitSuccess)
   ]
 
 myKeysX :: [((KeyMask, KeySym), X ())]

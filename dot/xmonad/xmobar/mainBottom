@@ -1,0 +1,47 @@
+-- -*- mode: haskell -*-
+
+Config {
+     font =            "xft:Source Code Pro for Powerline:size=11:bold:antialias=true"
+   , additionalFonts = ["xft:FontAwesome-9"]
+   , bgColor =         "black"
+   , fgColor =         "#646464"
+   , position =        Bottom
+   , iconRoot = ".xmonad/resources"
+
+   , lowerOnStart =     True    -- send to bottom of window stack on start
+   , hideOnStart =      False   -- start with window unmapped (hidden)
+   , allDesktops =      True    -- show on all desktops
+   , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+   , pickBroadest =     False   -- choose widest display (multi-monitor)
+   , persistent =       True    -- enable/disable hiding (True = disabled)
+
+   , sepChar =  "%"   -- delineator between plugin names and straight text
+   , alignSep = "}{"  -- separator between left-right alignment
+   , template = "%XMonadLog% }{ %dynnetwork% || %disku% || %cpu% || %memory% || %OIIE% "
+
+   , commands =
+        [ Run DynNetwork     [ "--template", "<dev> ▼<rx>KB/▲<tx>KB"
+                             , "--Low"      , "0"
+                             , "--High"     , "9999999999999999"
+                             , "--normal"   , "darkorange"
+                             ] 10
+        , Run Cpu            [ "--template", "<total>%"
+                             , "--Low"      , "50"         -- units: %
+                             , "--High"     , "85"         -- units: %
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             ] 10
+        , Run Memory         [ "--template" ,"<available>M"
+                             , "--Low"      , "2000"
+                             , "--High"     , "25000"
+                             , "--low"      , "darkred"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkgreen"
+                             ] 10
+        , Run DiskU          [ ("/", "<fc=#cfc>/</fc> <fc=#777><usedp>%/<free></fc>")
+                             , ("/home", "<fc=#cfc>/home</fc> <fc=#777><usedp>%/<free></fc>")
+                             ] ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 20
+        , Run XMonadLog
+        ]
+}
