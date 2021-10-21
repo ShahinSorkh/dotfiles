@@ -52,6 +52,7 @@
 ;; font string. You generally only need these two:
 (setq doom-font (font-spec :family "JetBrains Mono" :size 13)
       doom-unicode (font-spec :family "Vazir Mono" :size 13)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 16)
       doom-variable-pitch-font (font-spec :family "Overpass" :size 14))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -92,7 +93,7 @@
 ;; they are implemented.
 
 (after! projectile
-    (setq projectile-project-search-path '("~/code/"))
+    (setq projectile-project-search-path (my/find-directories-recursive "~/code" 3))
     (setq projectile-auto-discover t))
 
 (after! lsp
