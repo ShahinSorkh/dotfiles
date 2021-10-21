@@ -24,7 +24,7 @@ font pango:monospace 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -32,16 +32,22 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Use pactl to adjust volume in PulseAudio.
 #set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +15%
+bindsym shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym ctrl+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -15%
+bindsym shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym ctrl+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 10%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Use xbacklight to adjust display brightness.
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 15
 bindsym shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym ctrl+XF86MonBrightnessDown exec --no-startup-id xbacklight -set 5
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 15
 bindsym shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym ctrl+XF86MonBrightnessUp exec --no-startup-id xbacklight -set 100
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -102,6 +108,8 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+# focus the child container
+bindsym $mod+c focus child
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -144,7 +152,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+#bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -186,12 +194,13 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar
 bar {
+    tray_output none
     font pango:Vazir Code Hack, FontAwesome 11
     status_command i3status-rs ~/.i3/status.toml
 }
 
 # You can also use any non-zero value if you'd like to have a border
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border none
 
 # Plasma compatibility improvements
 exec --no-startup-id wmctrl -c Plasma
@@ -200,7 +209,7 @@ for_window [class="ksplashqml"] kill; floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-for_window [class="krunner"] floating enable, border none, move position center, move up 520
+for_window [class="krunner"] floating enable, border none
 assign [class="krunner"] output current
 
 for_window [class="yakuake"] floating enable, border none
@@ -208,8 +217,8 @@ for_window [class="systemsettings"] floating enable
 for_window [class="plasmashell" window_type="(?!notification$)"] floating enable, border none, resize set 500 px 500 px, move position mouse, move down 30 px
 for_window [class="plasmawindowed"] floating enable
 
-assign [class="plasmashell" window_type="notification"] output current
-for_window [class="plasmashell" window_type="notification"] floating enable, border none
+assign [class="plasmashell" window_type="notification"] output primary
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, resize set 400 px 100 px, move position center, move down 450 px, move right 750 px
 no_focus [class="plasmashell" window_type="notification"]
 
 for_window [class="knotes"] floating enable
@@ -243,6 +252,7 @@ hide_edge_borders smart_no_gaps
 exec --no-startup-id feh --bg-scale ~/.i3/105857-1.jpg
 
 exec_always --no-startup-id picom --config ~/.i3/picom.conf -bc
+exec_always --no-startup-id plasmashell --replace
 
 bindsym $mod+d exec --no-startup-id qdbus org.kde.krunner /App display
 
