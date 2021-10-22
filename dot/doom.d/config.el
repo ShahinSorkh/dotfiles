@@ -10,35 +10,35 @@
       user-mail-address "sorkh.shahin@hotmail.com")
 
 (set-email-account! "sorkh.shahin@hotmail.com"
-    '((mu4e-sent-folder                 . "/sorkh.shahin@hotmail.com/Sent")
-         (mu4e-drafts-folder            . "/sorkh.shahin@hotmail.com/Drafts")
-         (mu4e-trash-folder             . "/sorkh.shahin@hotmail.com/Deleted")
-         (mu4e-refile-folder            . "/sorkh.shahin@hotmail.com/All")
-         (mu4e-compose-signature        . "\nBest regards,\nShSo")
-         (smtpmail-smtp-server          . "smtp.office365.com")
-         (smtpmail-smtp-user            . "sorkh.shahin@hotmail.com")
-         (mu4e-compose-signature-auto-include t))
-    t)
+                    '((mu4e-sent-folder                 . "/sorkh.shahin@hotmail.com/Sent")
+                      (mu4e-drafts-folder            . "/sorkh.shahin@hotmail.com/Drafts")
+                      (mu4e-trash-folder             . "/sorkh.shahin@hotmail.com/Deleted")
+                      (mu4e-refile-folder            . "/sorkh.shahin@hotmail.com/All")
+                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
+                      (smtpmail-smtp-server          . "smtp.office365.com")
+                      (smtpmail-smtp-user            . "sorkh.shahin@hotmail.com")
+                      (mu4e-compose-signature-auto-include t))
+                    t)
 (set-email-account! "ali.zakeri2008@gmail.com"
-    '((mu4e-sent-folder                 . "/ali.zakeri2008@gmail.com/Sent Mail")
-         (mu4e-drafts-folder            . "/ali.zakeri2008@gmail.com/Drafts")
-         (mu4e-trash-folder             . "/ali.zakeri2008@gmail.com/Trash")
-         (mu4e-refile-folder            . "/ali.zakeri2008@gmail.com/All Mails")
-         (mu4e-compose-signature        . "\nBest regards,\nShSo")
-         (smtpmail-smtp-server          . "smtp.gmail.com")
-         (smtpmail-smtp-user            . "ali.zakeri2008@gmail.com")
-         (mu4e-compose-signature-auto-include nil))
-    nil)
+                    '((mu4e-sent-folder                 . "/ali.zakeri2008@gmail.com/Sent Mail")
+                      (mu4e-drafts-folder            . "/ali.zakeri2008@gmail.com/Drafts")
+                      (mu4e-trash-folder             . "/ali.zakeri2008@gmail.com/Trash")
+                      (mu4e-refile-folder            . "/ali.zakeri2008@gmail.com/All Mails")
+                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
+                      (smtpmail-smtp-server          . "smtp.gmail.com")
+                      (smtpmail-smtp-user            . "ali.zakeri2008@gmail.com")
+                      (mu4e-compose-signature-auto-include nil))
+                    nil)
 (set-email-account! "shahin@malltina.com"
-    '((mu4e-sent-folder                 . "/shahin@malltina.com/Sent Items")
-         (mu4e-drafts-folder            . "/shahin@malltina.com/Drafts")
-         (mu4e-trash-folder             . "/shahin@malltina.com/Deleted Items")
-         (mu4e-refile-folder            . "/shahin@malltina.com/All Items")
-         (mu4e-compose-signature        . "\nBest regards,\nShSo")
-         (smtpmail-smtp-server          . "mail.malltina.com")
-         (smtpmail-smtp-user            . "shahin@malltina.com")
-         (mu4e-compose-signature-auto-include t))
-    nil)
+                    '((mu4e-sent-folder                 . "/shahin@malltina.com/Sent Items")
+                      (mu4e-drafts-folder            . "/shahin@malltina.com/Drafts")
+                      (mu4e-trash-folder             . "/shahin@malltina.com/Deleted Items")
+                      (mu4e-refile-folder            . "/shahin@malltina.com/All Items")
+                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
+                      (smtpmail-smtp-server          . "mail.malltina.com")
+                      (smtpmail-smtp-user            . "shahin@malltina.com")
+                      (mu4e-compose-signature-auto-include t))
+                    nil)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -65,10 +65,10 @@
 (setq org-directory "~/org/")
 (setq org-noter-notes-search-path '("~/org/notes/"))
 (setq deft-directory "~/org/"
-    deft-recursive t)
+      deft-recursive t)
 (setq org-journal-date-format "%y-%m-%d"
-    org-journal-file-type "org"
-    org-journal-file-format "YYYYMMDD.org")
+      org-journal-file-type "org"
+      org-journal-file-format "YYYYMMDD.org")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -92,15 +92,35 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(when (featurep! :editor format)
+  (add-hook 'before-save-hook #'+format/buffer))
+
 (after! projectile
-    (setq projectile-project-search-path (my/find-directories-recursive "~/code" 3))
-    (setq projectile-auto-discover t))
+  (setq projectile-project-search-path (my/find-directories-recursive "~/code" 3))
+  (setq projectile-auto-discover t))
 
 (after! company
-    (setq +lsp-company-backends '(:separate company-tabnine company-capf :with company-yasnippet))
-    (add-to-list 'company-backends 'company-tabnine)
-    (setq company-tooltip-width-grow-only t)
-    (setq company-show-quick-access t))
+  (setq +lsp-company-backends '(:separate company-tabnine company-capf :with company-yasnippet))
+  (setq company-idle-delay 1)
+  (setq company-tooltip-width-grow-only t)
+  (setq company-show-quick-access t))
+
+(after! org
+  (map! :map org-mode-map
+        :n "M-j" #'org-metadown
+        :n "M-k" #'org-metaup))
+
+(after! php
+  (setq-hook! php-mode php-cs-fixer-config-option
+              (concat (projectile-project-root) ".php-cs-fixer.dist.php")))
+
+(after! format-all
+  (define-format-all-formatter php-cs-fixer
+    (:executable)
+    (:install "composer require --dev friendsofphp/php-cs-fixer")
+    (:modes php-mode)
+    (:format
+     (format-all--buffer-native 'php-mode #'php-cs-fixer-fix))))
 
 ;; (setf (alist-get 'markdown-mode +spell-excluded-faces-alist)
 ;;       '(markdown-code-face
