@@ -1,0 +1,121 @@
+* :TOC:
+- [[#personal-configurations][Personal Configurations]]
+  - [[#email-accounts][Email accounts]]
+- [[#preferences][Preferences]]
+  - [[#visual][Visual]]
+  - [[#org-mode][Org-mode]]
+- [[#programming-langs][Programming langs]]
+  - [[#php][php]]
+- [[#format-buffer][Format buffer]]
+- [[#projectile][Projectile]]
+- [[#company][Company]]
+- [[#eaf][EAF]]
+
+* Personal Configurations
+#+begin_src emacs-lisp
+(setq user-full-name "Shahin Sorkh"
+      user-mail-address "sorkh.shahin@hotmail.com")
+#+end_src
+** Email accounts
+#+begin_src emacs-lisp
+(set-email-account! "sorkh.shahin@hotmail.com"
+                    '((mu4e-sent-folder              . "/sorkh.shahin@hotmail.com/Sent")
+                      (mu4e-drafts-folder            . "/sorkh.shahin@hotmail.com/Drafts")
+                      (mu4e-trash-folder             . "/sorkh.shahin@hotmail.com/Deleted")
+                      (mu4e-refile-folder            . "/sorkh.shahin@hotmail.com/All")
+                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
+                      (smtpmail-smtp-server          . "smtp.office365.com")
+                      (smtpmail-smtp-user            . "sorkh.shahin@hotmail.com")
+                      (mu4e-compose-signature-auto-include t))
+                    t)
+(set-email-account! "ali.zakeri2008@gmail.com"
+                    '((mu4e-sent-folder              . "/ali.zakeri2008@gmail.com/Sent Mail")
+                      (mu4e-drafts-folder            . "/ali.zakeri2008@gmail.com/Drafts")
+                      (mu4e-trash-folder             . "/ali.zakeri2008@gmail.com/Trash")
+                      (mu4e-refile-folder            . "/ali.zakeri2008@gmail.com/All Mails")
+                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
+                      (smtpmail-smtp-server          . "smtp.gmail.com")
+                      (smtpmail-smtp-user            . "ali.zakeri2008@gmail.com")
+                      (mu4e-compose-signature-auto-include nil))
+                    nil)
+(set-email-account! "shahin@malltina.com"
+                    '((mu4e-sent-folder              . "/shahin@malltina.com/Sent Items")
+                      (mu4e-drafts-folder            . "/shahin@malltina.com/Drafts")
+                      (mu4e-trash-folder             . "/shahin@malltina.com/Deleted Items")
+                      (mu4e-refile-folder            . "/shahin@malltina.com/All Items")
+                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
+                      (smtpmail-smtp-server          . "mail.malltina.com")
+                      (smtpmail-smtp-user            . "shahin@malltina.com")
+                      (mu4e-compose-signature-auto-include t))
+                    nil)
+#+end_src
+* Preferences
+** Visual
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "JetBrains Mono" :size 13)
+      doom-unicode (font-spec :family "Vazir Mono" :size 13)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 16)
+      doom-variable-pitch-font (font-spec :family "Overpass" :size 14))
+(setq doom-theme 'doom-horizon)
+(setq display-line-numbers-type 'relative)
+#+end_src
+** Org-mode
+#+begin_src emacs-lisp
+(setq org-directory "~/org/")
+(setq org-noter-notes-search-path '("~/org/notes/"))
+(setq deft-directory "~/org/"
+      deft-recursive t)
+(setq org-journal-date-format "%y-%m-%d"
+      org-journal-file-type "org"
+      org-journal-file-format "YYYYMMDD.org")
+(after! org
+  (map! :map org-mode-map
+        :n "M-j" #'org-metadown
+        :n "M-k" #'org-metaup))
+#+end_src
+* Programming langs
+** php
+#+begin_src emacs-lisp
+(after! php
+  (setq-hook! php-mode php-cs-fixer-config-option
+              (concat (projectile-project-root) ".php-cs-fixer.dist.php")))
+(after! format-all
+  (define-format-all-formatter php-cs-fixer
+    (:executable)
+    (:install "composer require --dev friendsofphp/php-cs-fixer")
+    (:modes php-mode)
+    (:format
+     (format-all--buffer-native 'php-mode #'php-cs-fixer-fix))))
+#+end_src
+* Format buffer
+#+begin_src emacs-lisp
+(when (featurep! :editor format)
+  (add-hook 'before-save-hook #'+format/buffer))
+#+end_src
+* Projectile
+#+begin_src emacs-lisp
+(after! projectile
+  (setq projectile-project-search-path (my/find-directories-recursive "~/code" 3))
+  (setq projectile-auto-discover t))
+#+end_src
+* Company
+#+begin_src emacs-lisp
+(after! company
+  (setq +lsp-company-backends '(:separate company-tabnine company-capf :with company-yasnippet))
+  (setq company-idle-delay 0.4)
+  (setq company-tooltip-width-grow-only t)
+  (setq company-show-quick-access t))
+#+end_src
+* EAF
+I don't know how to make this guy run yet!
+#+begin_src emacs-lisp
+;; (after! eaf
+;;     (require 'eaf-browser)
+;;     (require 'eaf-image-viewer)
+;;     (require 'eaf-markdown-previewer)
+;;     (require 'eaf-mindmap)
+;;     (require 'eaf-music-player)
+;;     (require 'eaf-org-previewer)
+;;     (require 'eaf-pdf-viewer)
+;;     (require 'eaf-video-player))
+#+end_src
