@@ -218,7 +218,7 @@ for_window [class="plasmashell" window_type="(?!notification$)"] floating enable
 for_window [class="plasmawindowed"] floating enable
 
 assign [class="plasmashell" window_type="notification"] output primary
-for_window [class="plasmashell" window_type="notification"] floating enable, border none, resize set 400 px 100 px, move position center, move down 450 px, move right 750 px
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, resize set 400 px 100 px, move position center, move down 450 px, move right 550 px
 no_focus [class="plasmashell" window_type="notification"]
 
 for_window [class="knotes"] floating enable
