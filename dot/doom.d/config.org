@@ -99,16 +99,26 @@ Add ~behat~ tests support.
              '(toc-org-max-depth . 3))
 #+end_src
 ** Org-mode
+*** General
 #+begin_src emacs-lisp
 (setq org-directory "~/org/"
       org-passwords-file "~/.authinfo.gpg"
       org-use-property-inheritance t)
-(setq org-noter-notes-search-path '("~/org/notes/"))
 (setq deft-directory "~/org/"
       deft-recursive t)
+#+end_src
+*** Journal
+#+begin_src emacs-lisp
 (setq org-journal-date-format "%y-%m-%d"
       org-journal-file-type "org"
       org-journal-file-format "YYYYMMDD.org")
+#+end_src
+*** Noter
+#+begin_src emacs-lisp
+(setq org-noter-notes-search-path '("~/org/notes/"))
+#+end_src
+*** Misc
+#+begin_src emacs-lisp
 (after! org
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
