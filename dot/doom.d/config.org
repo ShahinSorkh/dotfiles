@@ -6,9 +6,12 @@
   - [[#org-mode][Org-mode]]
 - [[#programming-langs][Programming langs]]
   - [[#php][php]]
-- [[#format-buffer][Format buffer]]
-- [[#projectile][Projectile]]
-- [[#company][Company]]
+  - [[#graphql][graphql]]
+- [[#tools][Tools]]
+  - [[#format-buffer][Format buffer]]
+  - [[#projectile][Projectile]]
+  - [[#company][Company]]
+  - [[#postman-import][Postman import]]
 - [[#eaf][EAF]]
 
 * Personal Configurations
@@ -75,6 +78,9 @@
 #+end_src
 * Programming langs
 ** php
+#+begin_src emacs-lisp :tangle packages.el
+(package! feature-mode)
+#+end_src
 #+begin_src emacs-lisp
 (after! php
   (setq-hook! php-mode php-cs-fixer-config-option
@@ -87,18 +93,27 @@
     (:format
      (format-all--buffer-native 'php-mode #'php-cs-fixer-fix))))
 #+end_src
-* Format buffer
+** graphql
+#+begin_src emacs-lisp :tangle packages.el
+(package! graphql-mode)
+#+end_src
+* Tools
+** Format buffer
 #+begin_src emacs-lisp
 (when (featurep! :editor format)
   (add-hook 'before-save-hook #'+format/buffer))
 #+end_src
-* Projectile
+** Projectile
 #+begin_src emacs-lisp
 (after! projectile
   (setq projectile-project-search-path (my/find-directories-recursive "~/code" 3))
   (setq projectile-auto-discover t))
 #+end_src
-* Company
+** Company
+#+begin_src emacs-lisp :tangle packages.el
+(when (featurep! :completion company)
+    (package! company-tabnine))
+#+end_src
 #+begin_src emacs-lisp
 (after! company
   (setq +lsp-company-backends '(:separate company-tabnine company-capf :with company-yasnippet))
@@ -106,8 +121,33 @@
   (setq company-tooltip-width-grow-only t)
   (setq company-show-quick-access t))
 #+end_src
+** Postman import
+#+begin_src emacs-lisp :tangle packages.el
+(package! impostman
+    :recipe (:host github :repo "flashcode/impostman"))
+#+end_src
 * EAF
 I don't know how to make this guy run yet!
+#+begin_src emacs-lisp :tangle packages.el
+;; (package! eaf
+;;     :recipe (:local-repo "modules/eaf"
+;;                 :files ("*.el" "core/*.el" "extension/*.el" "app/*/*.el" "*.py")))
+
+;; (when (package! eaf :recipe (:host github
+;;                              :repo "manateelazycat/emacs-application-framework"
+;;                              :files ("*.el" "*.py" "app" "core")
+;;                              :build (:not compile)))
+;;     (package! ctable :recipe (:host github :repo "kiwanami/emacs-ctable"))
+;;     (package! deferred :recipe (:host github :repo "kiwanami/emacs-deferred"))
+;;     (package! epc :recipe (:host github :repo "kiwanami/emacs-epc")))
+
+;; (use-package! eaf
+;;   :commands (eaf-open-browser eaf-open find-file)
+;;   :config
+;;   (use-package! ctable)
+;;   (use-package! deferred)
+;;   (use-package! epc))
+#+end_src
 #+begin_src emacs-lisp
 ;; (after! eaf
 ;;     (require 'eaf-browser)
