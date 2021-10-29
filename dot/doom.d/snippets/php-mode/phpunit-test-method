@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: phpunit test method
+# name: phpunit-test-method
 # uuid: phpunit-test-method
 # key: test
 # condition: t
