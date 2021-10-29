@@ -27,6 +27,83 @@
       auth-sources '("~/.authinfo.gpg"))
 #+end_src
 ** Email accounts
+*** INIT
+#+begin_src conf-space :tangle ~/.mbsyncrc
+# These settings can also go under an "Account" section, but then the
+# "IMAPStore" section needs to reference the account. This is not
+# needed for just one store per account.
+Create Both
+Expunge Both
+SyncState *
+Sync All
+#+end_src
+*** Gmail
+#+begin_src conf-space :tangle ~/.mbsyncrc
+IMAPAccount gmail
+Host imap.gmail.com
+User ali.zakeri2008@gmail.com
+PassCmd "gpg --quiet --decrypt ~/.authinfo.gpg | awk '/machine imap.gmail.com/ {print $NF}'"
+SSLType IMAPS
+SSLVersion TLSv1.3 TLSv1.2
+AuthMechs LOGIN
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/ali.zakeri2008@gmail.com/
+Inbox ~/.mail/ali.zakeri2008@gmail.com/INBOX
+SubFolders Verbatim
+
+Channel gmail-default
+Far :gmail-remote:
+Near :gmail-local:
+Patterns INBOX
+
+Channel gmail-gmail
+Far :gmail-remote:"[Gmail]/"
+Near :gmail-local:
+Patterns * !INBOX !Trash !"All Mail" !Spam
+
+Group gmail
+Channel gmail-default
+Channel gmail-gmail
+#+end_src
+#+begin_src emacs-lisp
+(set-email-account! "ali.zakeri2008@gmail.com"
+                    '((mu4e-sent-folder              . "/ali.zakeri2008@gmail.com/Sent Mail")
+                      (mu4e-drafts-folder            . "/ali.zakeri2008@gmail.com/Drafts")
+                      (mu4e-trash-folder             . "/ali.zakeri2008@gmail.com/Trash")
+                      (mu4e-refile-folder            . "/ali.zakeri2008@gmail.com/All Mails")
+                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
+                      (smtpmail-smtp-server          . "smtp.gmail.com")
+                      (smtpmail-smtp-user            . "ali.zakeri2008@gmail.com")
+                      (mu4e-compose-signature-auto-include nil))
+                    nil)
+#+end_src
+*** Hotmail
+#+begin_src conf-space :tangle ~/.mbsyncrc
+IMAPAccount hotmail
+Host outlook.office365.com
+User sorkh.shahin@hotmail.com
+PassCmd "gpg --quiet --decrypt ~/.authinfo.gpg | awk '/machine outlook.office365.com/ {print $NF}'"
+SSLType IMAPS
+SSLVersion TLSv1.3 TLSv1.2
+AuthMechs LOGIN
+
+IMAPStore outlook-remote
+Account hotmail
+
+MaildirStore outlook-local
+Path ~/.mail/sorkh.shahin@hotmail.com/
+Inbox ~/.mail/sorkh.shahin@hotmail.com/INBOX
+SubFolders Verbatim
+
+Channel outlook
+Far :outlook-remote:
+Near :outlook-local:
+Patterns % !Archives !Deleted !Junk
+#+end_src
 #+begin_src emacs-lisp
 (set-email-account! "sorkh.shahin@hotmail.com"
                     '((mu4e-sent-folder              . "/sorkh.shahin@hotmail.com/Sent")
@@ -38,16 +115,6 @@
                       (smtpmail-smtp-user            . "sorkh.shahin@hotmail.com")
                       (mu4e-compose-signature-auto-include t))
                     t)
-(set-email-account! "ali.zakeri2008@gmail.com"
-                    '((mu4e-sent-folder              . "/ali.zakeri2008@gmail.com/Sent Mail")
-                      (mu4e-drafts-folder            . "/ali.zakeri2008@gmail.com/Drafts")
-                      (mu4e-trash-folder             . "/ali.zakeri2008@gmail.com/Trash")
-                      (mu4e-refile-folder            . "/ali.zakeri2008@gmail.com/All Mails")
-                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
-                      (smtpmail-smtp-server          . "smtp.gmail.com")
-                      (smtpmail-smtp-user            . "ali.zakeri2008@gmail.com")
-                      (mu4e-compose-signature-auto-include nil))
-                    nil)
 #+end_src
 * Preferences
 ** Fonts
@@ -230,9 +297,29 @@ I don't know how to make this guy run yet!
 ;;     (require 'eaf-pdf-viewer)
 ;;     (require 'eaf-video-player))
 #+end_src
-
 * Work
 ** Malltina
+#+begin_src conf-space :tangle ~/.mbsyncrc
+IMAPAccount malltina
+Host mail.malltina.com
+User shahin@malltina.com
+PassCmd "gpg --quiet --decrypt ~/.authinfo.gpg | awk '/machine mail.malltina.com/ {print $NF}'"
+SSLType STARTTLS
+CertificateFile ~/.mail/shahin@malltina.com/ca.cert
+
+IMAPStore malltina-remote
+Account malltina
+
+MaildirStore malltina-local
+Path ~/.mail/shahin@malltina.com/
+Inbox ~/.mail/shahin@malltina.com/INBOX
+SubFolders Verbatim
+
+Channel malltina
+Far :malltina-remote:
+Near :malltina-local:
+Patterns % !"Deleted Items"
+#+end_src
 #+begin_src emacs-lisp
 (after! forge
   (add-to-list 'browse-at-remote-type-domains '("git.malltina.com" . "gitlab"))
@@ -240,8 +327,6 @@ I don't know how to make this guy run yet!
                               "git.malltina.com/api/v4"
                               "git.malltina.com"
                               forge-gitlab-repository)))
-(setq smtpmail-smtp-server "mail.malltina.com"
-      smtpmail-smtp-service 587)
 (set-email-account! "shahin@malltina.com"
                     '((mu4e-sent-folder              . "/shahin@malltina.com/Sent Items")
                       (mu4e-drafts-folder            . "/shahin@malltina.com/Drafts")
