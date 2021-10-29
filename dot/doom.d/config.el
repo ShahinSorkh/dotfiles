@@ -101,7 +101,7 @@
 
 (after! company
   (setq +lsp-company-backends '(:separate company-tabnine company-capf :with company-yasnippet))
-  (setq company-idle-delay 1)
+  (setq company-idle-delay 0.4)
   (setq company-tooltip-width-grow-only t)
   (setq company-show-quick-access t))
 
