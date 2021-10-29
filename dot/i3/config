@@ -252,7 +252,7 @@ hide_edge_borders smart_no_gaps
 exec --no-startup-id feh --bg-scale ~/.i3/105857-1.jpg
 
 exec_always --no-startup-id picom --config ~/.i3/picom.conf -bc
-exec_always --no-startup-id plasmashell --replace
+exec_always --no-startup-id sh -c 'pkill plasmashell; plasmashell --replace'
 
 bindsym $mod+d exec --no-startup-id qdbus org.kde.krunner /App display
 
