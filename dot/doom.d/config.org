@@ -126,7 +126,7 @@ Patterns % !Archives !Deleted !Junk
 #+end_src
 ** Misc
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-horizon)
+(setq doom-theme 'doom-one)
 (setq display-line-numbers-type 'relative)
 #+end_src
 * Programming langs
