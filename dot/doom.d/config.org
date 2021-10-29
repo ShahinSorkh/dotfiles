@@ -1,23 +1,30 @@
-* :TOC:
+* Table of contents :TOC:
 - [[#personal-configurations][Personal Configurations]]
+  - [[#who-am-i][Who am I]]
   - [[#email-accounts][Email accounts]]
 - [[#preferences][Preferences]]
-  - [[#visual][Visual]]
-  - [[#org-mode][Org-mode]]
+  - [[#fonts][Fonts]]
+  - [[#misc][Misc]]
 - [[#programming-langs][Programming langs]]
-  - [[#php][php]]
-  - [[#graphql][graphql]]
+  - [[#php][PHP]]
+  - [[#graphql][GraphQL]]
 - [[#tools][Tools]]
-  - [[#format-buffer][Format buffer]]
+  - [[#local-variables][Local variables]]
+  - [[#org-mode][Org-mode]]
   - [[#projectile][Projectile]]
   - [[#company][Company]]
+  - [[#format-buffer][Format buffer]]
   - [[#postman-import][Postman import]]
-- [[#eaf][EAF]]
+- [[#emacs-application-framework][Emacs Application Framework]]
+- [[#work][Work]]
+  - [[#malltina][Malltina]]
 
 * Personal Configurations
+** Who am I
 #+begin_src emacs-lisp
 (setq user-full-name "Shahin Sorkh"
-      user-mail-address "sorkh.shahin@hotmail.com")
+      user-mail-address "sorkh.shahin@hotmail.com"
+      auth-sources '("~/.authinfo.gpg"))
 #+end_src
 ** Email accounts
 #+begin_src emacs-lisp
@@ -41,30 +48,61 @@
                       (smtpmail-smtp-user            . "ali.zakeri2008@gmail.com")
                       (mu4e-compose-signature-auto-include nil))
                     nil)
-(set-email-account! "shahin@malltina.com"
-                    '((mu4e-sent-folder              . "/shahin@malltina.com/Sent Items")
-                      (mu4e-drafts-folder            . "/shahin@malltina.com/Drafts")
-                      (mu4e-trash-folder             . "/shahin@malltina.com/Deleted Items")
-                      (mu4e-refile-folder            . "/shahin@malltina.com/All Items")
-                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
-                      (smtpmail-smtp-server          . "mail.malltina.com")
-                      (smtpmail-smtp-user            . "shahin@malltina.com")
-                      (mu4e-compose-signature-auto-include t))
-                    nil)
 #+end_src
 * Preferences
-** Visual
+** Fonts
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :family "JetBrains Mono" :size 13)
       doom-unicode (font-spec :family "Vazir Mono" :size 13)
       doom-big-font (font-spec :family "JetBrains Mono" :size 16)
       doom-variable-pitch-font (font-spec :family "Overpass" :size 14))
+#+end_src
+** Misc
+#+begin_src emacs-lisp
 (setq doom-theme 'doom-horizon)
 (setq display-line-numbers-type 'relative)
 #+end_src
+* Programming langs
+** PHP
+Fix php file template error.
+#+begin_src emacs-lisp :tangle autoload.el
+;;;###autoload
+(defun doom/php-class-name ()
+  (replace-regexp-in-string "\\.php$" "" (buffer-name)))
+#+end_src
+Add ~behat~ tests support.
+#+begin_src emacs-lisp :tangle packages.el
+(package! feature-mode)
+#+end_src
+#+begin_src emacs-lisp
+(after! php
+  (setq-hook! php-mode php-cs-fixer-config-option
+              (concat (projectile-project-root) ".php-cs-fixer.dist.php"))
+  (after! format-all
+    (define-format-all-formatter php-cs-fixer
+      (:executable)
+      (:install "composer require --dev friendsofphp/php-cs-fixer")
+      (:modes php-mode)
+      (:format
+       (format-all--buffer-native 'php-mode #'php-cs-fixer-fix)))))
+#+end_src
+** GraphQL
+#+begin_src emacs-lisp :tangle packages.el
+(package! graphql-mode)
+#+end_src
+* Tools
+** Local variables
+#+begin_src emacs-lisp
+(setq enable-local-variables t)
+(add-to-list 'safe-local-variable-values
+             '(toc-org-max-depth . 4)
+             '(toc-org-max-depth . 3))
+#+end_src
 ** Org-mode
 #+begin_src emacs-lisp
-(setq org-directory "~/org/")
+(setq org-directory "~/org/"
+      org-passwords-file "~/.authinfo.gpg"
+      org-use-property-inheritance t)
 (setq org-noter-notes-search-path '("~/org/notes/"))
 (setq deft-directory "~/org/"
       deft-recursive t)
@@ -76,39 +114,24 @@
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup))
 #+end_src
-* Programming langs
-** php
-#+begin_src emacs-lisp :tangle autoload.el
-;;;###autoload
-(defun doom/php-class-name ()
-  (replace-regexp-in-string "\\.php$" "" (buffer-name)))
-#+end_src
-#+begin_src emacs-lisp :tangle packages.el
-(package! feature-mode)
-#+end_src
-#+begin_src emacs-lisp
-(after! php
-  (setq-hook! php-mode php-cs-fixer-config-option
-              (concat (projectile-project-root) ".php-cs-fixer.dist.php")))
-(after! format-all
-  (define-format-all-formatter php-cs-fixer
-    (:executable)
-    (:install "composer require --dev friendsofphp/php-cs-fixer")
-    (:modes php-mode)
-    (:format
-     (format-all--buffer-native 'php-mode #'php-cs-fixer-fix))))
-#+end_src
-** graphql
-#+begin_src emacs-lisp :tangle packages.el
-(package! graphql-mode)
-#+end_src
-* Tools
-** Format buffer
-#+begin_src emacs-lisp
-(when (featurep! :editor format)
-  (add-hook 'before-save-hook #'+format/buffer))
-#+end_src
 ** Projectile
+My projects directories is typically as follows:
+#+begin_example
++ code
+|- localhost
+|--|- {project name}
+|- github.com
+|--|- {github user name}
+|--|--|- {github repo name}
+|- gitlab.com
+|--|- {gitlab repo namespace}
+|--|--|- {gitlab repo name}
+|- {private git server}
+|--|- {repo namespace}
+|--|--|- {repo name}
+#+end_example
+So I need a method to help =projectile= discover them all.
+~my/find-directories-recursive~ is my attempt to achieve this.
 #+begin_src emacs-lisp :tangle autoload.el
 (defun my/is-dir (file-attrs)
   (and
@@ -140,10 +163,12 @@
   (setq projectile-auto-discover t))
 #+end_src
 ** Company
+Because I like Tabnine.
 #+begin_src emacs-lisp :tangle packages.el
 (when (featurep! :completion company)
-    (package! company-tabnine))
+  (package! company-tabnine))
 #+end_src
+Still struggling with ~TAB~ being trigger for =company= /and/ =yasnippet= expansion.
 #+begin_src emacs-lisp
 (after! company
   (setq +lsp-company-backends '(:separate company-tabnine company-capf :with company-yasnippet))
@@ -151,12 +176,18 @@
   (setq company-tooltip-width-grow-only t)
   (setq company-show-quick-access t))
 #+end_src
+** Format buffer
+Work around format-on-save bug.
+#+begin_src emacs-lisp
+(when (featurep! :editor format)
+  (add-hook 'before-save-hook #'+format/buffer))
+#+end_src
 ** Postman import
 #+begin_src emacs-lisp :tangle packages.el
 (package! impostman
-    :recipe (:host github :repo "flashcode/impostman"))
+  :recipe (:host github :repo "flashcode/impostman"))
 #+end_src
-* EAF
+* Emacs Application Framework
 I don't know how to make this guy run yet!
 #+begin_src emacs-lisp :tangle packages.el
 ;; (package! eaf
@@ -188,4 +219,27 @@ I don't know how to make this guy run yet!
 ;;     (require 'eaf-org-previewer)
 ;;     (require 'eaf-pdf-viewer)
 ;;     (require 'eaf-video-player))
+#+end_src
+
+* Work
+** Malltina
+#+begin_src emacs-lisp
+(after! forge
+  (add-to-list 'browse-at-remote-type-domains '("git.malltina.com" . "gitlab"))
+  (add-to-list 'forge-alist '("git.malltina.com"
+                              "git.malltina.com/api/v4"
+                              "git.malltina.com"
+                              forge-gitlab-repository)))
+(setq smtpmail-smtp-server "mail.malltina.com"
+      smtpmail-smtp-service 587)
+(set-email-account! "shahin@malltina.com"
+                    '((mu4e-sent-folder              . "/shahin@malltina.com/Sent Items")
+                      (mu4e-drafts-folder            . "/shahin@malltina.com/Drafts")
+                      (mu4e-trash-folder             . "/shahin@malltina.com/Deleted Items")
+                      (mu4e-refile-folder            . "/shahin@malltina.com/All Items")
+                      (mu4e-compose-signature        . "\nBest regards,\nShSo")
+                      (smtpmail-smtp-server          . "mail.malltina.com")
+                      (smtpmail-smtp-user            . "shahin@malltina.com")
+                      (mu4e-compose-signature-auto-include t))
+                    nil)
 #+end_src
