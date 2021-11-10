@@ -142,6 +142,7 @@ zinit snippet OMZP::docker-compose
 # fix nocorrect not found error (https://unix.stackexchange.com/a/526277)
 alias sudo=$'sudo\t'
 alias e='emacsclient -t'
+alias lsd='ls -d *(/)'
 
 if [ -f "$HOME/.zmenv" ]; then
     source "$HOME/.zmenv"

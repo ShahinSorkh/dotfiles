@@ -238,6 +238,7 @@ assign [class="Spotify"] workspace $ws10
 assign [class="TelegramDesktop"] workspace $ws3
 assign [class="discord"] workspace $ws3
 assign [class="Slack"] workspace $ws3
+assign [class="Clash for Windows"] workspace $ws7
 
 # gaps
 gaps inner 10

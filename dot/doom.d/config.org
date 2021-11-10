@@ -322,7 +322,6 @@ Patterns % !"Deleted Items"
 #+end_src
 #+begin_src emacs-lisp
 (after! forge
-  (add-to-list 'browse-at-remote-type-domains '("git.malltina.com" . "gitlab"))
   (add-to-list 'forge-alist '("git.malltina.com"
                               "git.malltina.com/api/v4"
                               "git.malltina.com"
