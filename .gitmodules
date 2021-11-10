@@ -132,7 +132,7 @@
 	url = git@github.com:Krasjet/auto.pairs
 [submodule "zinit"]
 	path = zinit
-	url = git@github.com:zdharma/zinit.git
+	url = git@github.com:zdharma-continuum/zinit
 [submodule "dot/vim/pack/filetypes/start/vifm.vim"]
 	path = dot/vim/pack/filetypes/start/vifm.vim
 	url = git@github.com:vifm/vifm.vim.git
