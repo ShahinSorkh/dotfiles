@@ -26,7 +26,8 @@ extend_path "$HOME/.emacs.d/bin"
 [ -n "$TUMUX" ]  && export TERM=screen-256color
 
 ### Added by Zinit's installer
-module_path+=(~/.dotfiles/zinit/zmodules/Src); zmodload zdharma-continuum/zplugin &>/dev/null
+module_path+=(~/.dotfiles/zinit/zmodules/Src)
+zmodload zdharma/zplugin &>/dev/null
 source ~/.dotfiles/zinit/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
