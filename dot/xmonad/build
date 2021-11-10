@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+cabal build
+cp $(cabal list-bin xmonad-shso) "$1"
+gen-hie >hie.yaml
