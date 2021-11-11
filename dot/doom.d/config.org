@@ -13,7 +13,6 @@
   - [[#org-mode][Org-mode]]
   - [[#projectile][Projectile]]
   - [[#company][Company]]
-  - [[#format-buffer][Format buffer]]
   - [[#postman-import][Postman import]]
 - [[#emacs-application-framework][Emacs Application Framework]]
 - [[#work][Work]]
@@ -128,6 +127,7 @@ Patterns % !Archives !Deleted !Junk
 #+begin_src emacs-lisp
 (setq doom-theme 'doom-one)
 (setq display-line-numbers-type 'relative)
+(setq treemacs-git-mode 'deffered)
 #+end_src
 * Programming langs
 ** PHP
@@ -252,12 +252,6 @@ Still struggling with ~TAB~ being trigger for =company= /and/ =yasnippet= expans
   (setq company-idle-delay 0.4)
   (setq company-tooltip-width-grow-only t)
   (setq company-show-quick-access t))
-#+end_src
-** Format buffer
-Work around format-on-save bug.
-#+begin_src emacs-lisp
-(when (featurep! :editor format)
-  (add-hook 'before-save-hook #'+format/buffer))
 #+end_src
 ** Postman import
 #+begin_src emacs-lisp :tangle packages.el
