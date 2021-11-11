@@ -2,97 +2,64 @@
 
 module My.StatusBar (myStatusBar) where
 
-import XMonad
-  ( Default (def),
-    KeyMask,
-    KeySym,
-    Layout,
-    LayoutClass,
-    Window,
-    (<+>),
-  )
+import qualified Data.Map as M
+import Data.Maybe (fromJust)
+import GHC.Base (Any)
+import XMonad (KeyMask, KeySym, Layout, LayoutClass, Window, X, gets, WorkspaceId)
+import XMonad.Config.Prime (windowset)
 import XMonad.Core (XConfig)
 import XMonad.Hooks.DynamicLog
-  ( PP
-      ( ppCurrent,
-        ppExtras,
-        ppHidden,
-        ppHiddenNoWindows,
-        ppOrder,
-        ppSep,
-        ppTitleSanitize,
-        ppUrgent
-      ),
-    shorten,
-    wrap,
-    xmobarBorder,
-    xmobarColor,
-    xmobarRaw,
-    xmobarStrip,
+  ( PP (..)
+  , shorten
+  , wrap
+  , xmobarBorder
+  , xmobarColor
+  , xmobarRaw
+  , xmobarStrip
   )
 import XMonad.Hooks.ManageDocks (AvoidStruts)
 import XMonad.Hooks.StatusBar
-  ( StatusBarConfig,
-    defToggleStrutsKey,
-    dynamicEasySBs,
-    statusBarProp,
-    withEasySB,
+  ( StatusBarConfig
+  , defToggleStrutsKey
+  , dynamicEasySBs
+  , statusBarProp
+  , withEasySB
   )
+import XMonad.Hooks.StatusBar.PP (xmobarPP)
 import XMonad.Layout.Decoration (ModifiedLayout)
+import qualified XMonad.StackSet as W
 import XMonad.Util.Loggers (logTitles)
 
+myWorkspaces :: [String]
+myWorkspaces = [" www ", " code ", " chat ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
+
+myWorkspaceIndices :: M.Map Int String
+myWorkspaceIndices = M.fromList $ zip [1..] myWorkspaces
+
+workSpaceName :: WorkspaceId -> String
+workSpaceName wsId = fromJust $ M.lookup (read wsId) myWorkspaceIndices
+
 myStatusBar :: LayoutClass l Window => XConfig l -> XConfig (ModifiedLayout AvoidStruts l)
-myStatusBar = withEasySB (mainTop <+> mainBottom) defToggleStrutsKey
+myStatusBar = withEasySB mainTop defToggleStrutsKey
 
 mainTop :: StatusBarConfig
-mainTop = statusBarProp "xmobar ~/.xmonad/xmobar/mainTop" $ pure mainTopPP
-
-mainTopPP :: PP
-mainTopPP =
-  def
-    { ppSep = magenta "",
-      ppTitleSanitize = xmobarStrip,
-      ppCurrent = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2,
-      ppHidden = white . wrap " " "",
-      ppHiddenNoWindows = lowWhite . wrap " " "",
-      ppUrgent = red . wrap (yellow "!") (yellow "!"),
-      ppOrder = \[_, _, _, wins] -> [wins],
-      ppExtras = [logTitles formatFocused formatUnfocused]
-    }
+mainTop = statusBarProp "xmobar ~/.xmonad/xmobarrc" $ pure pp
   where
-    formatFocused = wrap (white "[") (white "]") . magenta . ppWindow
-    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue . ppWindow
-
-    ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
-
-    blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta = xmobarColor "#ff79c6" ""
-    blue = xmobarColor "#bd93f9" ""
-    white = xmobarColor "#f8f8f2" ""
-    yellow = xmobarColor "#f1fa8c" ""
-    red = xmobarColor "#ff5555" ""
-    lowWhite = xmobarColor "#aaaaaa" ""
-
-mainBottom :: StatusBarConfig
-mainBottom = statusBarProp "xmobar ~/.xmonad/xmobar/mainBottom" $ pure mainBottomPP
-
-mainBottomPP :: PP
-mainBottomPP =
-  def
-    { ppSep = magenta " • ",
-      ppTitleSanitize = xmobarStrip,
-      ppCurrent = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2,
-      ppHidden = white . wrap " " "",
-      ppHiddenNoWindows = lowWhite . wrap " " "",
-      ppUrgent = red . wrap (yellow "!") (yellow "!"),
-      ppOrder = \[ws, l, _] -> [ws, l],
-      ppExtras = []
-    }
-  where
-    lowWhite, magenta, red, white, yellow :: String -> String
-    magenta = xmobarColor "#ff79c6" ""
-    white = xmobarColor "#f8f8f2" ""
-    yellow = xmobarColor "#f1fa8c" ""
-    red = xmobarColor "#ff5555" ""
-    lowWhite = xmobarColor "#aaaaaa" ""
+    pp =
+      xmobarPP
+        { ppCurrent = purple . wrapBottomBar . workSpaceName -- Current workspace
+        , ppVisible = purple . workSpaceName -- Visible but not current workspace
+        , ppHidden = blue . wrapTopBar . workSpaceName -- Hidden workspaces
+        , ppHiddenNoWindows = blue . workSpaceName -- Hidden workspaces (no windows)
+        , ppTitle = white . shorten 100 -- Title of active window
+        , ppSep = sep -- Separator character
+        , ppUrgent = orange . wrapExcl -- Urgent workspace
+        }
+    purple = xmobarColor "#c792ea" ""
+    blue = xmobarColor "#82aaff" ""
+    white = xmobarColor "#b3afc2" ""
+    orange = xmobarColor "#c45500" ""
+    sep = "<fc=#666666> <fn=1>|</fn> </fc>"
+    wrapTopBar = wrap "<box type=Top width=2 mt=2 color=#82aaff>" "</box>"
+    wrapBottomBar = wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"
+    wrapExcl = wrap "!" "!"

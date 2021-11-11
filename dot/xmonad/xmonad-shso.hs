@@ -2,22 +2,24 @@ module Main (main) where
 
 import My.Hooks (myManageHook, myStartupHooks)
 import My.Keys
-  ( myKeys,
-    myKeysX,
-    myModeMask,
+  ( myKeys
+  , myKeysX
+  , myModeMask
   )
 import My.Layouts (myLayout)
 import My.StatusBar (myStatusBar)
 import XMonad
   ( XConfig
-      ( layoutHook,
-        logHook,
-        manageHook,
-        modMask,
-        startupHook,
-        terminal
-      ),
-    xmonad,
+    ( focusedBorderColor
+    , layoutHook
+    , logHook
+    , manageHook
+    , modMask
+    , normalBorderColor
+    , startupHook
+    , terminal
+    )
+  , xmonad
   )
 import XMonad.Config.Desktop (desktopConfig)
 import XMonad.Hooks.DynamicLog (dynamicLog)
@@ -35,12 +37,14 @@ main =
   where
     myConfig =
       desktopConfig
-        { modMask = myModeMask,
-          terminal = "konsole",
-          layoutHook = myLayout,
-          manageHook = myManageHook,
-          logHook = dynamicLog,
-          startupHook = do
+        { modMask = myModeMask
+        , terminal = "konsole"
+        , layoutHook = myLayout
+        , manageHook = myManageHook
+        , logHook = dynamicLog
+        , normalBorderColor = "#282c34"
+        , focusedBorderColor = "#46d9ff"
+        , startupHook = do
             myStartupHooks
         }
         `additionalKeysP` myKeys

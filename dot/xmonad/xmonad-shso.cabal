@@ -12,6 +12,7 @@ library my-internal
     , xmonad-contrib
     , xmobar
     , X11
+    , containers
   hs-source-dirs: lib
   exposed-modules:
     My.Hooks My.Keys My.Layouts My.StatusBar

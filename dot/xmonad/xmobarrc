@@ -1,0 +1,49 @@
+-- -*- mode: haskell -*-
+
+Config
+  { font = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
+  , additionalFonts =
+      [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
+      , "xft:Font Awesome 5 Free Solid:pixelsize=12"
+      , "xft:Font Awesome 5 Brands:pixelsize=12"
+      ]
+  , bgColor = "#282c34"
+  , fgColor = "#ff6c6b"
+    -- Position TopSize and BottomSize take 3 arguments:
+    --   an alignment parameter (L/R/C) for Left, Right or Center.
+    --   an integer for the percentage width, so 100 would be 100%.
+    --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
+    --   NOTE: The height should be the same as the trayer (system tray) height.
+  , position = TopSize L 100 24
+  , lowerOnStart = True
+  , hideOnStart = False
+  , allDesktops = True
+  , persistent = True
+  , iconRoot = ".xmonad/resources/"
+  , commands =
+      [ Run Battery [ "-t", "<acstatus> (<left>)"
+                    , "-L", "15" -- units: %
+                    , "-H", "85" -- units: %
+                    , "--"
+                    , "-P"
+                    -- full f240
+                    -- three quarter f241
+                    -- half f242
+                    -- quarter f243
+                    -- empty f244
+                    -- plug f1e6
+                    -- charg station f5e7
+                    , "-O", "<fn=2>\xf1e6</fn>"
+                    , "-i", "<fn=2>\xf241</fn>"
+                    , "-o", "<fn=2>\xf242</fn>"
+                    -- , "-a", "notify-send -u critical 'Battery running out!!'"
+                    ] 50
+      , Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
+      , Run Com ".bin/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
+      , Run XMonadLog
+      , Run Kbd [("us", "en"), ("ir", "fa")]
+      ]
+  , sepChar = "%"
+  , alignSep = "}{"
+  , template = " <icon=haskell_20.xpm/>   <fc=#666666>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#da8548>   <fc=#da8548>%battery%</fc>   </box><box type=Bottom width=2 mb=2 color=#46d9ff>   <fc=#46d9ff>%date%</fc>   </box><box type=Bottom width=2 mb=2 color=#c792ea>   <fc=#c792ea>%kbd%</fc>   </box>     %trayerpad%"
+  }

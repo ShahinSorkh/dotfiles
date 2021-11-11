@@ -1,28 +1,30 @@
 module My.Hooks (myManageHook, myStartupHooks) where
 
 import XMonad
-  ( ManageHook,
-    X,
-    className,
-    composeAll,
-    doFloat,
-    (-->),
-    (=?),
+  ( ManageHook
+  , X
+  , className
+  , composeAll
+  , doFloat
+  , (-->)
+  , (=?)
   )
 import XMonad.Hooks.ManageHelpers (isDialog)
-import XMonad.Util.SpawnOnce (spawnOnOnce, spawnOnce)
+import XMonad.Util.SpawnOnce (spawnOnce)
 
 myManageHook :: ManageHook
 myManageHook =
   composeAll
-    [ className =? "Gimp" --> doFloat,
-      isDialog --> doFloat
+    [ className =? "Gimp" --> doFloat
+    , isDialog --> doFloat
     ]
 
 myStartupHooks :: X ()
 myStartupHooks = do
-  spawnOnce "emacs --daemon"
-  spawnOnce "cfw"
-
--- spawnOnOnce "workspace3" "slack"
--- spawnOnOnce "workspace3" "discord"
+  spawnOnce "feh --bg-scale --no-fehbg ~/.i3/105857-1.jpg &"
+  spawnOnce "picom &"
+  spawnOnce "emacs --daemon &"
+  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
+  spawnOnce "volumeicon &"
+  spawnOnce "nm-applet &"
+  spawnOnce "cfw &"
