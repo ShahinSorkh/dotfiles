@@ -1,12 +1,48 @@
-module My.StatusBar (myStatusBar, withEasySB, defToggleStrutsKey, dynamicEasySBs) where
+{-# LANGUAGE FlexibleContexts #-}
+
+module My.StatusBar (myStatusBar) where
 
 import XMonad
-import XMonad.Hooks.StatusBar
+  ( Default (def),
+    KeyMask,
+    KeySym,
+    Layout,
+    LayoutClass,
+    Window,
+    (<+>),
+  )
+import XMonad.Core (XConfig)
 import XMonad.Hooks.DynamicLog
-import XMonad.Util.Loggers
+  ( PP
+      ( ppCurrent,
+        ppExtras,
+        ppHidden,
+        ppHiddenNoWindows,
+        ppOrder,
+        ppSep,
+        ppTitleSanitize,
+        ppUrgent
+      ),
+    shorten,
+    wrap,
+    xmobarBorder,
+    xmobarColor,
+    xmobarRaw,
+    xmobarStrip,
+  )
+import XMonad.Hooks.ManageDocks (AvoidStruts)
+import XMonad.Hooks.StatusBar
+  ( StatusBarConfig,
+    defToggleStrutsKey,
+    dynamicEasySBs,
+    statusBarProp,
+    withEasySB,
+  )
+import XMonad.Layout.Decoration (ModifiedLayout)
+import XMonad.Util.Loggers (logTitles)
 
-myStatusBar :: StatusBarConfig
-myStatusBar = mainTop <+> mainBottom
+myStatusBar :: LayoutClass l Window => XConfig l -> XConfig (ModifiedLayout AvoidStruts l)
+myStatusBar = withEasySB (mainTop <+> mainBottom) defToggleStrutsKey
 
 mainTop :: StatusBarConfig
 mainTop = statusBarProp "xmobar ~/.xmonad/xmobar/mainTop" $ pure mainTopPP

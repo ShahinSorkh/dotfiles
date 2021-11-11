@@ -7,11 +7,7 @@ import My.Keys
     myModeMask,
   )
 import My.Layouts (myLayout)
-import My.StatusBar
-  ( defToggleStrutsKey,
-    myStatusBar,
-    withEasySB,
-  )
+import My.StatusBar (myStatusBar)
 import XMonad
   ( XConfig
       ( layoutHook,
@@ -34,7 +30,7 @@ main =
   xmonad
     . ewmhFullscreen
     . ewmh
-    . withEasySB myStatusBar defToggleStrutsKey
+    . myStatusBar
     $ myConfig
   where
     myConfig =
