@@ -1,7 +1,14 @@
 #!/bin/sh
 
+if [ "$#" != 1 ]; then
+    >&2 echo "script called with wrong number of arguments"
+    exit 2
+fi
+
 set -e
 
 cabal build
-cp $(cabal list-bin xmonad-shso) "$1"
+
+cp -f $(cabal list-bin xmonad-shso) "$1"
+
 gen-hie >hie.yaml

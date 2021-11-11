@@ -22,5 +22,7 @@ myManageHook =
 myStartupHooks :: X ()
 myStartupHooks = do
   spawnOnce "emacs --daemon"
-  spawnOnOnce "workspace3" "slack"
-  spawnOnOnce "workspace3" "discord"
+  spawnOnce "cfw"
+
+-- spawnOnOnce "workspace3" "slack"
+-- spawnOnOnce "workspace3" "discord"
