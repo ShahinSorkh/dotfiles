@@ -195,17 +195,17 @@ Add ~behat~ tests support.
 My projects directories is typically as follows:
 #+begin_example
 + code
-|- localhost
-|--|- {project name}
-|- github.com
-|--|- {github user name}
-|--|--|- {github repo name}
-|- gitlab.com
-|--|- {gitlab repo namespace}
-|--|--|- {gitlab repo name}
-|- {private git server}
-|--|- {repo namespace}
-|--|--|- {repo name}
++- localhost
++-+- {project name}
++- github.com
++-+- {github user name}
++-+-+- {github repo name}
++- gitlab.com
++-+- {gitlab repo namespace}
++-+-+- {gitlab repo name}
++- {private git server}
++-+- {repo namespace}
++-+-+- {repo name}
 #+end_example
 So I need a method to help =projectile= discover them all.
 ~my/find-directories-recursive~ is my attempt to achieve this.
@@ -213,6 +213,8 @@ So I need a method to help =projectile= discover them all.
 (defun my/is-dir (file-attrs)
   (and
    (nth 1 file-attrs)
+   (not (cl-search "/node_modules" (nth 0 file-attrs)))
+   (not (cl-search "/vendor" (nth 0 file-attrs)))
    (not (cl-search "/.git" (nth 0 file-attrs)))))
 
 (defun my/get-file-path (file-attrs)
@@ -240,7 +242,7 @@ So I need a method to help =projectile= discover them all.
   (setq projectile-auto-discover t))
 #+end_src
 ** Company
-Because I like Tabnine.
+Because I like TabNine.
 #+begin_src emacs-lisp :tangle packages.el
 (when (featurep! :completion company)
   (package! company-tabnine))
