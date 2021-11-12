@@ -1,5 +1,4 @@
 #!/bin/sh
 
 setxkbmap -option ctrl:nocaps
-syndaemon -i 1 -d &
-
+syndaemon -i 0.3 -d &
