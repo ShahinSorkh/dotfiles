@@ -34,8 +34,8 @@ Config
                     -- plug f1e6
                     -- charg station f5e7
                     , "-O", "<fn=2>\xf1e6</fn>"
-                    , "-i", "<fn=2>\xf241</fn>"
-                    , "-o", "<fn=2>\xf242</fn>"
+                    , "-i", "<fn=2>\xf240</fn>"
+                    , "-o", "<fn=2>\xf241</fn>"
                     -- , "-a", "notify-send -u critical 'Battery running out!!'"
                     ] 50
       , Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
