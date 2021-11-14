@@ -144,6 +144,7 @@ zinit snippet OMZP::docker-compose
 alias sudo=$'sudo\t'
 alias e='emacsclient -t'
 alias lsd='ls -d *(/)'
+alias lsda='ls -d .*(/) *(/)'
 
 if [ -f "$HOME/.zmenv" ]; then
     source "$HOME/.zmenv"
