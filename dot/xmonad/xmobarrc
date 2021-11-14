@@ -36,7 +36,8 @@ Config
                     , "-O", "<fn=2>\xf1e6</fn>"
                     , "-i", "<fn=2>\xf240</fn>"
                     , "-o", "<fn=2>\xf241</fn>"
-                    -- , "-a", "notify-send -u critical 'Battery running out!!'"
+                    , "-A", "15"
+                    , "-a", "dunstify -I .config/dunst/icons/battery-empty.svg -r 9910 -u critical 'Watch out' 'Battery running out!!'"
                     ] 50
       , Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
       , Run Com ".bin/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
