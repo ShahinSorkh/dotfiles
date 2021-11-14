@@ -16,10 +16,12 @@ import XMonad
   , X
   , controlMask
   , io
+  , mod1Mask
   , mod4Mask
   , shiftMask
   , spawn
-  , (.|.), xK_KP_Space, mod1Mask
+  , xK_KP_Space
+  , (.|.)
   )
 import XMonad.Util.Ungrab (unGrab)
 

@@ -38,7 +38,7 @@ main =
     myConfig =
       desktopConfig
         { modMask = myModeMask
-        , terminal = "konsole"
+        , terminal = "alacritty"
         , layoutHook = myLayout
         , manageHook = myManageHook
         , logHook = dynamicLog
