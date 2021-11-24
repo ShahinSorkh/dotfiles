@@ -1,30 +1,27 @@
+#+TITLE: Doom Emacs config
+#+AUTHOR: Shahin Sorkh
+#+EMAIL: sorkh.shahin@hotmail.com
+
 * Table of contents :TOC:
-- [[#personal-configurations][Personal Configurations]]
-  - [[#who-am-i][Who am I]]
   - [[#email-accounts][Email accounts]]
 - [[#preferences][Preferences]]
   - [[#fonts][Fonts]]
   - [[#misc][Misc]]
-- [[#programming-langs][Programming langs]]
-  - [[#php][PHP]]
-  - [[#graphql][GraphQL]]
 - [[#tools][Tools]]
   - [[#local-variables][Local variables]]
   - [[#org-mode][Org-mode]]
   - [[#projectile][Projectile]]
   - [[#company][Company]]
   - [[#postman-import][Postman import]]
-- [[#emacs-application-framework][Emacs Application Framework]]
+  - [[#formatter][Formatter]]
+  - [[#super-save][Super save]]
+- [[#programming-languages][Programming languages]]
+  - [[#php][PHP]]
+  - [[#graphql][GraphQL]]
+- [[#emacs-application-framework-eaf][Emacs Application Framework /(EAF)/]]
 - [[#work][Work]]
   - [[#malltina][Malltina]]
 
-* Personal Configurations
-** Who am I
-#+begin_src emacs-lisp
-(setq user-full-name "Shahin Sorkh"
-      user-mail-address "sorkh.shahin@hotmail.com"
-      auth-sources '("~/.authinfo.gpg"))
-#+end_src
 ** Email accounts
 *** INIT
 #+begin_src conf-space :tangle ~/.mbsyncrc
@@ -126,44 +123,13 @@ Patterns % !Archives !Deleted !Junk
 ** Misc
 #+begin_src emacs-lisp
 (setq doom-theme 'doom-one)
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 'visual)
 (setq treemacs-git-mode 'deffered)
-#+end_src
-* Programming langs
-** PHP
-Fix php file template error.
-#+begin_src emacs-lisp :tangle autoload.el
-;;;###autoload
-(defun doom/php-class-name ()
-  (replace-regexp-in-string "\\.php$" "" (buffer-name)))
-#+end_src
-Add ~behat~ tests support.
-#+begin_src emacs-lisp :tangle packages.el
-(package! feature-mode)
-#+end_src
-#+begin_src emacs-lisp
-(after! php
-  (setq-hook! php-mode php-cs-fixer-config-option
-              (concat (projectile-project-root) ".php-cs-fixer.dist.php"))
-  (after! format-all
-    (define-format-all-formatter php-cs-fixer
-      (:executable)
-      (:install "composer require --dev friendsofphp/php-cs-fixer")
-      (:modes php-mode)
-      (:format
-       (format-all--buffer-native 'php-mode #'php-cs-fixer-fix)))))
-#+end_src
-** GraphQL
-#+begin_src emacs-lisp :tangle packages.el
-(package! graphql-mode)
 #+end_src
 * Tools
 ** Local variables
 #+begin_src emacs-lisp
 (setq enable-local-variables t)
-(add-to-list 'safe-local-variable-values
-             '(toc-org-max-depth . 4)
-             '(toc-org-max-depth . 3))
 #+end_src
 ** Org-mode
 *** General
@@ -173,18 +139,46 @@ Add ~behat~ tests support.
       org-use-property-inheritance t)
 (setq deft-directory "~/org/"
       deft-recursive t)
+;; Replace the content marker, “⋯”, with a nice unicode arrow.
+(setq org-ellipsis " ⤵")
+;; Fold all source blocks on startup.
+(setq org-hide-block-startup t)
+;; Lists may be labelled with letters.
+(setq org-list-allow-alphabetical t)
+;; Avoid accidentally editing folded regions, say by adding text after an Org “⋯”.
+(setq org-catch-invisible-edits 'show)
+;; Tangling should preserve my indentation.
+(setq org-src-preserve-indentation t)
+;; Tab should do indent in code blocks
+(setq org-src-tab-acts-natively t)
+;; Give quote and verse blocks a nice look.
+(setq org-fontify-quote-and-verse-blocks t)
+;; Pressing ENTER on a link should follow it.
+(setq org-return-follows-link t)
 #+end_src
 *** Journal
 #+begin_src emacs-lisp
-(setq org-journal-date-format "%y-%m-%d"
-      org-journal-file-type "org"
-      org-journal-file-format "YYYYMMDD.org")
+(after! org
+  (setq org-journal-date-format "%y-%m-%d"
+        org-journal-file-type "org"
+        org-journal-file-format "YYYYMMDD.org"))
 #+end_src
-*** Noter
+*** Notes
 #+begin_src emacs-lisp
-(setq org-noter-notes-search-path '("~/org/notes/"))
+(after! org
+  (setq org-noter-notes-search-path '("~/org/notes/")
+        org-default-notes-file "~/org/notes.org"))
+(after! org
+  (setq +org-capture-frame-parameters
+        `((name . "doom-capture")
+          (width . 70)
+          (height . 25)
+          (transient . t)
+          ,(when IS-LINUX
+             `(display . ,(or (getenv "DISPLAY") ":0")))
+          ,(if IS-MAC '(menu-bar-lines . 1)))))
 #+end_src
-*** Misc
+*** Bindings
 #+begin_src emacs-lisp
 (after! org
   (map! :map org-mode-map
@@ -242,26 +236,84 @@ So I need a method to help =projectile= discover them all.
   (setq projectile-auto-discover t))
 #+end_src
 ** Company
+Still struggling with ~TAB~ being trigger for =company= /and/ =yasnippet= expansion.
+#+begin_src emacs-lisp
+(after! company
+  (after! company-tabnine
+    (setq +lsp-company-backends '(:separate company-tabnine company-capf)))
+  (setq company-idle-delay 0.4)
+  (setq company-tooltip-width-grow-only t)
+  (setq company-show-quick-access t))
+#+end_src
+
+*** TabNine
 Because I like TabNine.
 #+begin_src emacs-lisp :tangle packages.el
 (when (featurep! :completion company)
   (package! company-tabnine))
-#+end_src
-Still struggling with ~TAB~ being trigger for =company= /and/ =yasnippet= expansion.
-#+begin_src emacs-lisp
-(after! company
-  (setq +lsp-company-backends '(:separate company-tabnine company-capf :with company-yasnippet))
-  (setq company-idle-delay 0.4)
-  (setq company-tooltip-width-grow-only t)
-  (setq company-show-quick-access t))
 #+end_src
 ** Postman import
 #+begin_src emacs-lisp :tangle packages.el
 (package! impostman
   :recipe (:host github :repo "flashcode/impostman"))
 #+end_src
-* Emacs Application Framework
-I don't know how to make this guy run yet!
+** Formatter
+#+begin_src emacs-lisp
+(setq +format-on-save-enabled-modes
+      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+            haskell-mode     ; it's not configured (yet)
+            sql-mode         ; sqlformat is currently broken
+            tex-mode         ; latexindent is broken
+            latex-mode))
+#+end_src
+** Super save
+#+begin_src emacs-lisp :tangle packages.el
+(package! super-save)
+#+end_src
+#+begin_src emacs-lisp
+(after! super-save
+  (super-save-mode +1)
+  (setq super-save-auto-save-when-idle t)
+  (setq auto-save-default nil)
+  (setq super-save-remote-files nil)
+  (setq super-save-exclude '(".gpg")))
+#+end_src
+* Programming languages
+** PHP
+*** template file
+Fix php file template error.
+#+begin_src emacs-lisp :tangle autoload.el
+;;;###autoload
+(defun doom/php-class-name ()
+  (replace-regexp-in-string "\\.php$" "" (buffer-name)))
+#+end_src
+*** tests related
+Add =behat= tests support.
+#+begin_src emacs-lisp :tangle packages.el
+(package! feature-mode)
+#+end_src
+*** formatter
+Use local =php-cs-fixer= config always.
++ [ ] fallback on some default values
++ [ ] search for all possible config file names
+#+begin_src emacs-lisp
+(after! php
+  (setq-hook! php-mode php-cs-fixer-config-option
+              (concat (doom-project-root) ".php-cs-fixer.dist.php"))
+  (after! format-all
+    (define-format-all-formatter php-cs-fixer
+      (:executable)
+      (:install "composer require --dev friendsofphp/php-cs-fixer")
+      (:modes php-mode)
+      (:format
+       (format-all--buffer-native 'php-mode #'php-cs-fixer-before-save)))))
+#+end_src
+** GraphQL
+#+begin_src emacs-lisp :tangle packages.el
+(package! graphql-mode)
+#+end_src
+* Emacs Application Framework /(EAF)/
+I don't know how to make this guy run (yet)!
 #+begin_src emacs-lisp :tangle packages.el
 ;; (package! eaf
 ;;     :recipe (:local-repo "modules/eaf"
