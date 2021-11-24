@@ -33,9 +33,9 @@ window:
     #
     # Blank space added around the window in pixels. This padding is scaled
     # by DPI and the specified value is always added at both opposing sides.
-    #padding:
-    #  x: 6
-    #  y: 6
+    padding:
+      x: 8
+      y: 8
 
     # Spread additional padding evenly around the terminal content.
     #dynamic_padding: false
@@ -214,9 +214,6 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-#######################################
-##      START OF COLOR SCHEMES       ##
-#######################################
 schemes:
     ### Doom One ###
     doom-one: &doom-one
@@ -296,7 +293,6 @@ colors: *doom-one
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
 #background_opacity: 1.0
-background_opacity: 0.90
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
