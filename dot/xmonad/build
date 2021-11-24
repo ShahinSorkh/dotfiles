@@ -12,3 +12,5 @@ cabal build
 cp -f $(cabal list-bin xmonad-shso) "$1"
 
 gen-hie >hie.yaml
+
+pkill -USR1 haskell-languag || true

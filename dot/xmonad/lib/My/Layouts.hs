@@ -59,6 +59,9 @@ defaultLayout = tall ||| full
         $ addTabs shrinkText myTabTheme
         $ subLayout [] (smartBorders Simplest)
         $ limitWindows 12
-        $ mySpacing' 4
+        $ mySpacing 4
         $ ResizableTall 1 (3/100) (1/2) []
-    full = renamed [Replace "full"] $ Full
+    full = renamed [Replace "full"]
+           $ smartBorders
+           $ mySpacing 4
+           $ Full

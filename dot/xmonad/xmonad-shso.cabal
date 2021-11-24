@@ -13,9 +13,11 @@ library my-internal
     , xmobar
     , X11
     , containers
+    , filepath
+    , directory
   hs-source-dirs: lib
   exposed-modules:
-    My.Hooks My.Keys My.Layouts My.StatusBar
+    My.Hooks My.Keys My.Layouts My.StatusBar My.Pass
   default-language: Haskell2010
 
 executable xmonad-shso

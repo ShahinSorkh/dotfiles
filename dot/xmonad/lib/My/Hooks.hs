@@ -6,6 +6,7 @@ import XMonad
   , className
   , composeAll
   , doFloat
+  , title
   , (-->)
   , (=?)
   )
@@ -16,6 +17,7 @@ myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ className =? "Gimp" --> doFloat
+    , title =? "doom-capture" --> doFloat
     , isDialog --> doFloat
     ]
 
