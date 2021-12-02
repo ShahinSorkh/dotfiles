@@ -42,11 +42,12 @@ Config
       , Run Com "jdate" ["+<fn=2>\xf017</fn>  %Y/%b/%d"] "jdate" 50
       , Run Date "%Y/%b/%d" "date" 50
       , Run Date "%l:%M %p" "time" 50
+      , Run Date "%a" "weekday" 50
       , Run Com ".bin/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
       , Run XMonadLog
       , Run Kbd [("us", "en"), ("ir", "fa")]
       ]
   , sepChar = "%"
   , alignSep = "}{"
-  , template = " <icon=haskell_20.xpm/>   <fc=#666666>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#46d9ff>   <fc=#46d9ff>%jdate% :: %date% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#c792ea>   <fc=#c792ea>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#da8548>   <fc=#da8548>%battery%</fc>   </box>   %trayerpad%"
+  , template = " <icon=haskell_20.xpm/>   <fc=#666666>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#46d9ff>   <fc=#46d9ff>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#c792ea>   <fc=#c792ea>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#da8548>   <fc=#da8548>%battery%</fc>   </box>   %trayerpad%"
   }
