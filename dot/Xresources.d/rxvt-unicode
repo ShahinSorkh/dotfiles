@@ -1,0 +1,88 @@
+! vim: ft=xdefaults
+
+! scroll
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt*scrollBar: false
+
+! disable the scrollback buffer for the secondary screen 
+URxvt*secondaryScreen: 1
+URxvt*secondaryScroll: 0
+URxvt*secondaryWheel: 1
+
+! font
+URxvt.font: xft:Source Code Pro for Powerline:size=11, \
+	xft:DejaVu Sans Mono for Powerline:size=11, \
+	xft:Vazir:size=11, \
+	xft:Inconsolata for Powerline:size=11, \
+	xft:Vazir Code:size=11
+URxvt.letterSpace: -1
+
+URxvt.intensityStyles: false
+URxvt.boldMode:       false
+URxvt.skipBuiltinGlyphs: true
+URxvt.loginShell: true
+URxvt*title: urxvt
+URxvt*termName: rxvt-unicode-256color
+URxvt*urgentOnBell: true
+
+! misc
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! Xterm escapes, word by word movement
+URxvt.keysym.Control-Left: \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+
+! colors
+URxvt.cursorColor: white
+
+! ----------
+! extensions
+! ----------
+URxvt.perl-ext-common: default,bidi,matcher,clipboard,tabbedex,fullscreen,resize-font,url-select,bell-command
+URxvt.colorUL: #4682B4
+
+! matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline
+
+! clipboard
+URxvt.clipboard.autocopy: true
+URxvt.keysym.C-C: perl:clipboard:copy
+URxvt.keysym.C-V: perl:clipboard:paste
+
+! tabbed
+URxvt.tabbedex.tabbar-fg: 11
+URxvt.tabbedex.tabbar-bg: 0
+URxvt.tabbedex.tab-fg: 14
+URxvt.tabbedex.tab-bg: 0
+URxvt*no-tabbedex-keys: true
+
+URxvt.keysym.Control-Shift-T: perl:tabbedex:new_tab
+URxvt.keysym.Shift-Right: perl:tabbedex:next_tab
+URxvt.keysym.Shift-Left: perl:tabbedex:prev_tab
+URxvt.keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
+URxvt.keysym.Control-Shift-Left: perl:tabbedex:move_tab_left
+URxvt.keysym.Control-Shift-R: perl:tabbedex:rename_tab
+
+
+! fullscreen
+URxvt.keysym.F11: perl:fullscreen:switch
+
+! url-select
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+URxvt.keysym.M-u: perl:usr-select:select_next
+
+! bell-command
+ URxvt.bell-command: notify-send 'urxvt: bell!'
+
+! bidi
+URxvt.bidi.LRE: \\\\[([]
+URxvt.bidi.PDF: \\\\[)\\]]
+urxvt-vimh.bidi.par: true
+urxvt-vimh.cursorUnderline: true
+

@@ -1,7 +1,7 @@
 -- -*- mode: haskell -*-
 
 Config
-  { font = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true"
+  { font = "xft:Vazio UI:weight=bold:pixelsize=11"
   , additionalFonts =
       [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
       , "xft:Font Awesome 5 Free Solid:pixelsize=12"
@@ -49,5 +49,5 @@ Config
       ]
   , sepChar = "%"
   , alignSep = "}{"
-  , template = " <icon=haskell_20.xpm/>   <fc=#666666>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#46d9ff>   <fc=#46d9ff>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#c792ea>   <fc=#c792ea>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#da8548>   <fc=#da8548>%battery%</fc>   </box>   %trayerpad%"
+  , template = " <icon=arch-linux-icon_24.xpm/>   <fc=#666666>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#46d9ff>   <fc=#46d9ff>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#c792ea>   <fc=#c792ea>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#da8548>   <fc=#da8548>%battery%</fc>   </box>   %trayerpad%"
   }

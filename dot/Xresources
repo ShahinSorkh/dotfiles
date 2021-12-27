@@ -1,0 +1,47 @@
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdfilter
+
+*.foreground:   #bbc2cf
+*.background:   #282c34
+*.cursorColor:  #bbc2cf
+
+! black
+*.color0:       #1c1f24
+*.color8:       #5b6268
+
+! red
+*.color1:       #ff6c6b
+*.color9:       #da8548
+
+! green
+*.color2:       #98be65
+*.color10:      #4db5bd
+
+! yellow
+*.color3:       #da8548
+*.color11:      #ecbe7b
+
+! blue
+*.color4:       #51afef
+*.color12:      #3071db
+
+! magenta
+*.color5:       #c678dd
+*.color13:      #a9a1e1
+
+! cyan
+*.color6:       #5699af
+*.color14:      #46d9ff
+
+! white
+*.color7:       #202328
+*.color15:      #dfdfdf
+
+#include ".Xresources.d/rxvt-unicode"
+#include ".Xresources.d/x11-ssh-askpass"
+#include ".Xresources.d/xscreensaver"

@@ -3,9 +3,10 @@ module My.Keys (myModeMask, myKeys, myKeysX) where
 import Data.Bits ((.|.))
 import Graphics.X11.ExtraTypes.XF86
 import Graphics.X11.Types
-import My.Pass (passPrompt', passGeneratePrompt', passRemovePrompt', passEditPrompt')
 import XMonad (X , io , spawn)
 import XMonad.Util.Ungrab (unGrab)
+import Graphics.X11.ExtraTypes (sunXK_Print_Screen)
+import XMonad.Config.Dmwit (altMask)
 
 myModeMask :: KeyMask
 myModeMask = mod4Mask
@@ -13,20 +14,26 @@ myModeMask = mod4Mask
 modShiftMask = myModeMask .|. shiftMask
 modCtrlMask = myModeMask .|. controlMask
 modCtrlShiftMask = modCtrlMask .|. shiftMask
+ctrlShiftMask = controlMask .|. shiftMask
+ctrlAltMask = controlMask .|. altMask
 
 cycleKbdLayoutKey = (mod1Mask .|. mod4Mask, xK_space) -- super+alt+space
 
 myKeys :: [(String, X ())]
 myKeys =
   [ ("M-S-z", spawn "xscreensaver-command -lock")
-  , ("M-S-=", unGrab *> spawn "scrot -s")
   , ("M-]",   spawn "firefox")
   , ("M-[",   spawn "emacsclient -c -a 'emacs'")
   , ("M-n",   spawn "~/.emacs.d/bin/org-capture")
+  , ("M-p",   spawn "rofi -show drun")
+  , ("M-C-p",   spawn "rofi -show ssh")
+  , ("M-S-p", spawn "rofi-pass")
+  , ("M-v",   spawn "CM_LAUNCHER=rofi clipmenu")
+  , ("M-c", spawn "rofi -modi calc -show")
   ]
 
 myKeysX :: [((KeyMask, KeySym), X ())]
-myKeysX = brightnessKeys ++ volumeKeys ++ passKeys ++ miscKeys
+myKeysX = brightnessKeys ++ volumeKeys ++ screenshotKeys ++ miscKeys
   where
     brightnessKeys =
       [ ((0, xF86XK_MonBrightnessDown),           spawn $ backlightModify "-dec 20")
@@ -45,15 +52,18 @@ myKeysX = brightnessKeys ++ volumeKeys ++ passKeys ++ miscKeys
       , ((controlMask, xF86XK_AudioLowerVolume),  spawn $ volumeModify "set-sink-volume 5%")
       , ((0, xF86XK_AudioMute),                   spawn $ volumeModify "set-sink-mute toggle")
       ]
-    passKeys =
-      [ ((myModeMask, xK_x),       passPrompt')
-      , ((modCtrlMask, xK_x),      passGeneratePrompt')
-      , ((modShiftMask, xK_x),     passEditPrompt')
-      , ((modCtrlShiftMask, xK_x), passRemovePrompt')
+    screenshotKeys =
+      [ ((0, sunXK_Print_Screen),                       spawn "scrot -F 'Pictures/Screenshots/%Y%m%d%H%M%S.png'")
+      , ((shiftMask, sunXK_Print_Screen),     unGrab *> spawn "scrot -s -F 'Pictures/Screenshots/%Y%m%d%H%M%S.png'")
+      , ((altMask, sunXK_Print_Screen),                 spawn "scrot -u -F 'Pictures/Screenshots/%Y%m%d%H%M%S.png'")
+      , ((controlMask, sunXK_Print_Screen),             spawn "scrot - | xclip -selection clipboard -target image/png")
+      , ((ctrlShiftMask, sunXK_Print_Screen), unGrab *> spawn "scrot -s - | xclip -selection clipboard -target image/png")
+      , ((ctrlAltMask, sunXK_Print_Screen),             spawn "scrot -u - | xclip -selection clipboard -target image/png")
       ]
     miscKeys =
-      [ ((0, xF86XK_PowerDown),   spawn "systemctl suspend-then-hibernate") ,
-        (cycleKbdLayoutKey,       spawn "~/.bin/dunst/cycle-kbd-layout.sh")
+      [ ((0, xF86XK_PowerDown),   spawn "systemctl suspend-then-hibernate")
+      , (cycleKbdLayoutKey,       spawn "~/.bin/dunst/cycle-kbd-layout.sh")
+      , ((mod1Mask, xK_Tab),      spawn "rofi -modi window -show")
       ]
 
 backlightModify :: String -> String

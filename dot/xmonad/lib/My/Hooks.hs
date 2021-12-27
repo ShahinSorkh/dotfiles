@@ -17,6 +17,9 @@ myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ className =? "Gimp" --> doFloat
+    , className =? "Tilda" --> doFloat
+    , className =? "telegram-desktop" --> doFloat
+    , className =? "TelegramDesktop" --> doFloat
     , title =? "doom-capture" --> doFloat
     , isDialog --> doFloat
     ]
@@ -30,3 +33,5 @@ myStartupHooks = do
   spawnOnce "volumeicon &"
   spawnOnce "nm-applet &"
   spawnOnce "cfw &"
+  spawnOnce "xscreensaver &"
+  spawnOnce "/usr/lib/polkit-kde-authentication-agent-1 &"
