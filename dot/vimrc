@@ -70,7 +70,7 @@ set lazyredraw
 set modeline
 set pastetoggle=<f2>
 set updatetime=1250
-nnoremap <CR> :noh<CR><CR>
+set mouse=
 let g:mapleader=','
 
 " autocmd group {{{2
@@ -402,18 +402,10 @@ autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " custom mappings {{{2
+nnoremap <cr> :noh<cr><cr>
 nnoremap <space> za
 nnoremap Y y$
-
-inoremap /*v /** @var */<esc>Tra
-inoremap /** /**<cr>/<esc>O
-inoremap {; {<cr>}<esc>O
-inoremap if({ if () {<cr>}<cr><esc>?if<cr>:noh<cr>f(a
-inoremap tfunc({ /** @test */<cr>public function ()<cr>{<cr>}<esc>?function<cr>:noh<cr>f(i
-inoremap func({ function () {<cr>}<esc>?function<cr>:noh<cr>f(i
-inoremap for({ for () {<cr>}<cr><esc>?for<cr>:noh<cr>f(a
-inoremap fore({ foreach () {<cr>}<cr><esc>?foreach<cr>:noh<cr>f(a
-inoremap while({ while () {<cr>}<cr><esc>?while<cr>:noh<cr>f(a
+inoremap jk <esc>
 
 " ~/.vimrc helpers {{{3
 nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
@@ -442,9 +434,6 @@ nnoremap <Leader><Leader>d :bd<cr>
 nnoremap <Tab> :bn!<cr>
 nnoremap <S-Tab> :bN!<cr>
 
-" force jk instead of <esc> {{{3
-inoremap jk <esc>
-inoremap <esc> <nop>
 
 " write as sudo {{{3
 cmap w!! w !sudo tee > /dev/null % <cr> :edit!<cr>
