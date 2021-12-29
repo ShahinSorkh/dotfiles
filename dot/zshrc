@@ -104,11 +104,12 @@ zinit light andrewferrier/fzf-z
 zinit ice wait'1' lucid
 zinit light changyuheng/zsh-interactive-cd
 
-bindkey -r '^r'
-function __bind_history_keys() {
-  bindkey '^r' history-substring-search-up
-}
 # History substring searching
+bindkey '^R' history-incremental-search-backward
+function __bind_history_keys() {
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+}
 zinit ice wait'1' lucid atload'__bind_history_keys'
 zinit light zsh-users/zsh-history-substring-search
 
