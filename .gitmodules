@@ -139,3 +139,6 @@
 [submodule "dot/emacs.d"]
 	path = dot/emacs.d
 	url = git@github.com:hlissner/doom-emacs
+[submodule "dot/vim/pack/utilities/start/vim-which-key"]
+	path = dot/vim/pack/utilities/start/vim-which-key
+	url = git@github.com:liuchengxu/vim-which-key
