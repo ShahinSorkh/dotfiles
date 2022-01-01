@@ -142,3 +142,6 @@
 [submodule "dot/vim/pack/utilities/start/vim-which-key"]
 	path = dot/vim/pack/utilities/start/vim-which-key
 	url = git@github.com:liuchengxu/vim-which-key
+[submodule "dot/vim/pack/themes/start/doom-one.vim"]
+	path = dot/vim/pack/themes/start/doom-one.vim
+	url = git@github.com:romgrk/doom-one.vim
