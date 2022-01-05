@@ -1,26 +1,28 @@
 module My.Hooks (myManageHook, myStartupHooks) where
 
+import My.StatusBar (myWorkspaces)
 import XMonad
   ( ManageHook
   , X
   , className
   , composeAll
   , doFloat
+  , doShift
   , title
   , (-->)
   , (=?)
   )
-import XMonad.Hooks.ManageHelpers (isDialog)
+import XMonad.Hooks.ManageHelpers (isDialog, doCenterFloat)
 import XMonad.Util.SpawnOnce (spawnOnce)
 
 myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ className =? "Gimp" --> doFloat
-    , className =? "Tilda" --> doFloat
-    , className =? "telegram-desktop" --> doFloat
     , className =? "TelegramDesktop" --> doFloat
-    , title =? "doom-capture" --> doFloat
+    , className =? "discord" --> doShift ( myWorkspaces !! 2 )
+    , className =? "Slack" --> doShift ( myWorkspaces !! 2 )
+    , title =? "doom-capture" --> doCenterFloat
     , isDialog --> doFloat
     ]
 

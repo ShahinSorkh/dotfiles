@@ -1,6 +1,6 @@
 {-# LANGUAGE FlexibleContexts #-}
 
-module My.StatusBar (myStatusBar) where
+module My.StatusBar (myStatusBar, myWorkspaces) where
 
 import qualified Data.Map as M
 import Data.Maybe (fromJust)
