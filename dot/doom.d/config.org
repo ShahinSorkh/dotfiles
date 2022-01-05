@@ -207,9 +207,9 @@ So I need a method to help =projectile= discover them all.
 (defun my/is-dir (file-attrs)
   (and
    (nth 1 file-attrs)
-   (not (cl-search "/node_modules" (nth 0 file-attrs)))
-   (not (cl-search "/vendor" (nth 0 file-attrs)))
-   (not (cl-search "/.git" (nth 0 file-attrs)))))
+   (not (cl-search "/node_modules" (my/get-file-path file-attrs)))
+   (not (cl-search "/vendor" (my/get-file-path file-attrs)))
+   (not (cl-search "/.git" (my/get-file-path file-attrs)))))
 
 (defun my/get-file-path (file-attrs)
   (nth 0 file-attrs))
@@ -298,15 +298,20 @@ Use local =php-cs-fixer= config always.
 + [ ] search for all possible config file names
 #+begin_src emacs-lisp
 (after! php
-  (setq-hook! php-mode php-cs-fixer-config-option
+  (setq-hook! 'php-mode-hook php-cs-fixer-config-option
               (concat (doom-project-root) ".php-cs-fixer.dist.php"))
-  (after! format-all
-    (define-format-all-formatter php-cs-fixer
-      (:executable)
-      (:install "composer require --dev friendsofphp/php-cs-fixer")
-      (:modes php-mode)
-      (:format
-       (format-all--buffer-native 'php-mode #'php-cs-fixer-before-save)))))
+  (setq-hook! 'php-mode-hook php-cs-fixer-rules-level-part-options
+              '("@PSR1" "@PSR2" "@PSR12" "@PSR12:risky" "@Symfony" "@Symfony:risky"))
+  (setq-hook! 'php-mode-hook php-cs-fixer-rules-fixer-part-options
+              '("array_indentation" "explicit_indirect_variable" "method_chaining_indentation" "-yoda_style" "-psr0")))
+(after! format-all
+  (setq-hook! 'php-mode-hook +format-with-lsp nil)
+  (define-format-all-formatter php-cs-fixer
+    (:executable)
+    (:install "composer require --dev friendsofphp/php-cs-fixer")
+    (:modes php-mode)
+    (:format
+     (format-all--buffer-native 'php-mode 'php-cs-fixer-fix))))
 #+end_src
 ** GraphQL
 #+begin_src emacs-lisp :tangle packages.el
