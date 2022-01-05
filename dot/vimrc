@@ -7,7 +7,6 @@ set t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 set term=xterm
 set t_Co=256
 set cursorline
-colorscheme desert
 
 " read/write {{{2
 set encoding=utf-8
@@ -54,7 +53,6 @@ set signcolumn=yes
 
 " fold {{{2
 set foldenable
-set foldlevelstart=0
 set foldcolumn=4
 set foldmethod=syntax
 
@@ -71,7 +69,6 @@ set modeline
 set pastetoggle=<f2>
 set updatetime=1250
 set mouse=
-let g:mapleader=','
 
 " autocmd group {{{2
 augroup vimrc
@@ -79,6 +76,14 @@ augroup vimrc
 augroup END
 
 """""""""""""""""""""""""""""""""""""" Plugins configuration {{{1
+" vim-which-key {{{2
+set timeout
+set timeoutlen=500
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+
 " ale {{{2
 " ale general {{{3
 let g:ale_linters_explicit = 1
@@ -86,6 +91,13 @@ let g:ale_sign_column_always = 1
 
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let g:ale_fix_on_save = 1
+
+let g:ale_floating_preview = 1
+let g:ale_hover_cursor = 1
+let g:ale_set_balloons = 1
+let g:ale_hover_to_preview = 1
+let g:ale_hover_to_floating_preview = 1
 
 let g:ale_pattern_options = {
       \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
@@ -120,7 +132,7 @@ let g:ale_linters = {
       \  'scss': ['stylelint'],
       \  'sass': ['stylelint'],
       \  'python': ['pylint', 'pyls'],
-      \  'php': ['langserver', 'php'],
+      \  'php': ['phpactor', 'php'],
       \  'blade': ['langserver', 'php', 'eslint', 'stylelint'],
       \  'vim': ['vint'],
       \  'vader': ['vint'],
@@ -158,6 +170,12 @@ let g:ale_vue_vls_use_global = 1
 let g:ale_python_pylint_options = '--disable=missing-docstring'
 
 let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
+
+" ale mappings {{{3
+nnoremap <leader>cla :ALECodeAction<cr>
+nnoremap <leader>cld :ALEFindReferences<cr>
+nnoremap <leader>clD :ALEGoToDefinition<cr>
+nnoremap <leader>clh :ALEHover<cr>
 
 " vim vue {{{2
 let g:vue_disable_pre_processors=1
@@ -403,7 +421,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " custom mappings {{{2
 nnoremap <cr> :noh<cr><cr>
-nnoremap <space> za
 nnoremap Y y$
 inoremap jk <esc>
 
