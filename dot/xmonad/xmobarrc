@@ -46,8 +46,9 @@ Config
       , Run Com ".bin/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
       , Run XMonadLog
       , Run Kbd [("us", "en"), ("ir", "fa")]
+      , Run Com "sh" ["-c", "if [ \"$(dunstctl is-paused)\" = 'true' ]; then echo -n \"   <fn=2>\xf1f6</fn> [$(dunstctl count waiting)]   \"; fi"] "dunst" 5
       ]
   , sepChar = "%"
   , alignSep = "}{"
-  , template = " <icon=arch-linux-icon_24.xpm/>   <fc=#666666>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#46d9ff>   <fc=#46d9ff>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#c792ea>   <fc=#c792ea>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#da8548>   <fc=#da8548>%battery%</fc>   </box>   %trayerpad%"
+  , template = " <icon=arch-linux-icon_24.xpm/>   <fc=#666666>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#46d9ff>   <fc=#46d9ff>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#c45500><fc=#c45500>%dunst%</fc></box><box type=Bottom width=2 mb=2 color=#c792ea>   <fc=#c792ea>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#da8548>   <fc=#da8548>%battery%</fc>   </box>   %trayerpad%"
   }

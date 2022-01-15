@@ -6,7 +6,9 @@ import Graphics.X11.Types
 import XMonad (X , io , spawn)
 import XMonad.Util.Ungrab (unGrab)
 import Graphics.X11.ExtraTypes (sunXK_Print_Screen)
-import XMonad.Config.Dmwit (altMask)
+
+altMask :: KeyMask
+altMask = mod1Mask
 
 myModeMask :: KeyMask
 myModeMask = mod4Mask
@@ -30,6 +32,7 @@ myKeys =
   , ("M-S-p", spawn "rofi-pass")
   , ("M-v",   spawn "CM_LAUNCHER=rofi clipmenu")
   , ("M-c", spawn "rofi -modi calc -show")
+  , ("M-S-n",    spawn "dunstctl set-paused toggle")
   ]
 
 myKeysX :: [((KeyMask, KeySym), X ())]
