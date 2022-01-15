@@ -28,6 +28,9 @@ myManageHook =
 
 myStartupHooks :: X ()
 myStartupHooks = do
+  spawnOnce "xscreensaver &"
+  spawnOnce "~/.bin/lightson &"
+  spawnOnce "~/.bin/xscreensaver-watch.sh &"
   spawnOnce "feh --bg-scale --no-fehbg ~/.i3/105857-1.jpg &"
   spawnOnce "picom &"
   spawnOnce "emacs --daemon &"
@@ -35,5 +38,4 @@ myStartupHooks = do
   spawnOnce "volumeicon &"
   spawnOnce "nm-applet &"
   spawnOnce "cfw &"
-  spawnOnce "xscreensaver &"
   spawnOnce "/usr/lib/polkit-kde-authentication-agent-1 &"
