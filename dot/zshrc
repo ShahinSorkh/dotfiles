@@ -68,7 +68,7 @@ zinit ice svn; zinit snippet PZT::modules/utility/
 zinit snippet PZT::modules/ssh/init.zsh
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
-zinit snippet OMZP::git-flow
+# zinit snippet OMZP::git-flow
 
 zinit ice wait lucid
 zinit snippet PZT::modules/environment/init.zsh
