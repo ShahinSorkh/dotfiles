@@ -39,19 +39,23 @@ myKeysX :: [((KeyMask, KeySym), X ())]
 myKeysX = brightnessKeys ++ volumeKeys ++ screenshotKeys ++ miscKeys
   where
     brightnessKeys =
-      [ ((0, xF86XK_MonBrightnessDown),           spawn $ backlightModify "-dec 20")
-      , ((shiftMask, xF86XK_MonBrightnessDown),   spawn $ backlightModify "-dec 10")
+      [ ((0, xF86XK_MonBrightnessDown),           spawn $ backlightModify "-dec 10")
+      , ((shiftMask, xF86XK_MonBrightnessDown),   spawn $ backlightModify "-dec 2")
+      , ((ctrlShiftMask, xF86XK_MonBrightnessDown),   spawn $ backlightModify "-dec 20")
       , ((controlMask, xF86XK_MonBrightnessDown), spawn $ backlightModify "-set 5")
-      , ((0, xF86XK_MonBrightnessUp),             spawn $ backlightModify "-inc 20")
-      , ((shiftMask, xF86XK_MonBrightnessUp),     spawn $ backlightModify "-inc 10")
+      , ((0, xF86XK_MonBrightnessUp),             spawn $ backlightModify "-inc 10")
+      , ((shiftMask, xF86XK_MonBrightnessUp),     spawn $ backlightModify "-inc 2")
+      , ((ctrlShiftMask, xF86XK_MonBrightnessUp),     spawn $ backlightModify "-inc 20")
       , ((controlMask, xF86XK_MonBrightnessUp),   spawn $ backlightModify "-set 100")
       ]
     volumeKeys =
       [ ((0, xF86XK_AudioRaiseVolume),            spawn $ volumeModify "set-sink-volume +10%")
-      , ((shiftMask, xF86XK_AudioRaiseVolume),    spawn $ volumeModify "set-sink-volume +5%")
+      , ((shiftMask, xF86XK_AudioRaiseVolume),    spawn $ volumeModify "set-sink-volume +2%")
+      , ((ctrlShiftMask, xF86XK_AudioRaiseVolume),    spawn $ volumeModify "set-sink-volume +20%")
       , ((controlMask, xF86XK_AudioRaiseVolume),  spawn $ volumeModify "set-sink-volume 100%")
       , ((0, xF86XK_AudioLowerVolume),            spawn $ volumeModify "set-sink-volume -10%")
-      , ((shiftMask, xF86XK_AudioLowerVolume),    spawn $ volumeModify "set-sink-volume -5%")
+      , ((shiftMask, xF86XK_AudioLowerVolume),    spawn $ volumeModify "set-sink-volume -2%")
+      , ((ctrlShiftMask, xF86XK_AudioLowerVolume),    spawn $ volumeModify "set-sink-volume -20%")
       , ((controlMask, xF86XK_AudioLowerVolume),  spawn $ volumeModify "set-sink-volume 5%")
       , ((0, xF86XK_AudioMute),                   spawn $ volumeModify "set-sink-mute toggle")
       ]

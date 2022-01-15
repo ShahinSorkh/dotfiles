@@ -6,7 +6,11 @@ notify_vol () {
     OUT=$(pactl get-sink-volume "$SINK" | tr ' ' "\n" | awk '/[[:digit:]]+%/ {vol=$1} /-?[^0][[:digit:]]*\.[[:digit:]]+/ {db=$1} END {printf "%s  %s dB", vol, db ? db : "0.00"}')
     VOL=$(echo "$OUT" | grep -E -o '^[[:digit:]]+')
 
-    if [ "$VOL" -gt 100 ]
+    if [ "$VOL" -gt 149 ]
+    then
+        pactl set-sink-volume "$SINK" 150%
+        dunstify -u critical -h "int:value:150" -I "$ICONDIR"/volume-up.png -r 9970 'No. Not more!' '150%'
+    elif [ "$VOL" -gt 100 ]
     then
         dunstify -u critical -h "int:value:$VOL" -I "$ICONDIR"/volume-up.png -r 9970 'You fucking kidding me?!' "$OUT"
     elif [ "$VOL" -gt 70 ]
