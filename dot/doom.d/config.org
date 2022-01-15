@@ -188,18 +188,18 @@ Patterns % !Archives !Deleted !Junk
 ** Projectile
 My projects directories is typically as follows:
 #+begin_example
-+ code
-+- localhost
-+-+- {project name}
-+- github.com
-+-+- {github user name}
-+-+-+- {github repo name}
-+- gitlab.com
-+-+- {gitlab repo namespace}
-+-+-+- {gitlab repo name}
-+- {private git server}
-+-+- {repo namespace}
-+-+-+- {repo name}
+~/code
+├── github.com
+│   └── {username}
+│       └── {repo-name}
+├── gitlab.com
+│   └── {repo-namespace}
+│       └── {repo-name}
+├── {private-repo}
+│   └── {repo-namespace}
+│       └── {repo-name}
+└── localhost
+    └── {project-name}
 #+end_example
 So I need a method to help =projectile= discover them all.
 ~my/find-directories-recursive~ is my attempt to achieve this.
