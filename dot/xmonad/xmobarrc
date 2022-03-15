@@ -4,11 +4,11 @@ Config
   { font = "xft:Vazio UI:weight=bold:pixelsize=11"
   , additionalFonts =
       [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
-      , "xft:Font Awesome 5 Free Solid:pixelsize=12"
-      , "xft:Font Awesome 5 Brands:pixelsize=12"
+      , "xft:Font Awesome 6 Free Solid:pixelsize=12"
+      , "xft:Font Awesome 6 Brands:pixelsize=12"
       ]
-  , bgColor = "#282c34"
-  , fgColor = "#ff6c6b"
+  , bgColor = "#fafafa"
+  , fgColor = "#3b3b43"
     -- Position TopSize and BottomSize take 3 arguments:
     --   an alignment parameter (L/R/C) for Left, Right or Center.
     --   an integer for the percentage width, so 100 would be 100%.
@@ -50,5 +50,5 @@ Config
       ]
   , sepChar = "%"
   , alignSep = "}{"
-  , template = " <icon=arch-linux-icon_24.xpm/>   <fc=#666666>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#46d9ff>   <fc=#46d9ff>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#c45500><fc=#c45500>%dunst%</fc></box><box type=Bottom width=2 mb=2 color=#c792ea>   <fc=#c792ea>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#da8548>   <fc=#da8548>%battery%</fc>   </box>   %trayerpad%"
+  , template = " <icon=arch-linux-icon_24.xpm/>   <fc=#383a42>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#417af1>   <fc=#417af1>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#e45649><fc=#e45649>%dunst%</fc></box><box type=Bottom width=2 mb=2 color=#6a1868>   <fc=#6a1868>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#9a6e29>   <fc=#9a6e29>%battery%</fc>   </box>   %trayerpad%"
   }

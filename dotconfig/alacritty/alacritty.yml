@@ -34,8 +34,8 @@ window:
     # Blank space added around the window in pixels. This padding is scaled
     # by DPI and the specified value is always added at both opposing sides.
     padding:
-      x: 8
-      y: 8
+        x: 16
+        y: 16
 
     # Spread additional padding evenly around the terminal content.
     #dynamic_padding: false
@@ -215,7 +215,6 @@ font:
 draw_bold_text_with_bright_colors: true
 
 schemes:
-    ### Doom One ###
     doom-one: &doom-one
         primary:
             background: "#282c34"
@@ -240,27 +239,41 @@ schemes:
             red: "#da8548"
             green: "#4db5bd"
             yellow: "#ecbe7b"
-            blue: "#3071db" # This is 2257a0 in Doom Emacs but I lightened it.
+            blue: "#3071db"
             magenta: "#a9a1e1"
             cyan: "#46d9ff"
             white: "#dfdfdf"
 
-######################################################################
-## SET THEME: Choose ONE color scheme from those in the above list. ##
-## ###################################################################
-# Available themes are:
-# *doom-one
-# *dracula
-# *gruvbox-dark
-# *monokai-pro
-# *nord
-# *oceanic-next
-# *palenight
-# *solarized-light
-# *solarized-dark
-# *tomorrow-night
+    doom-one-light: &doom-one-light
+        primary:
+            background: "#fafafa"
+            foreground: "#383a42"
+        cursor:
+            text: CellBackground
+            cursor: "#4078f2"
+        selection:
+            text: CellForeground
+            background: "#d8d8d8"
+        normal:
+            black: "#1b2229"
+            red: "#e45649"
+            green: "#50a14f"
+            yellow: "#986801"
+            blue: "#a0bcf8"
+            magenta: "#a626a4"
+            cyan: "#005478"
+            white: "#f0f0f0"
+        bright:
+            black: "#202328"
+            red: "#da8548"
+            green: "#4db5bd"
+            yellow: "#ecbe7b"
+            blue: "#4078f2"
+            magenta: "#b751b6"
+            cyan: "#0184bc"
+            white: "#dfdfdf"
 
-colors: *doom-one
+colors: *doom-one-light
 
 # Visual Bell
 #
@@ -301,7 +314,7 @@ colors: *doom-one
 #save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
+dynamic_title: true
 
 #cursor:
 # Cursor style
@@ -310,7 +323,7 @@ colors: *doom-one
 #   - ▇ Block
 #   - _ Underline
 #   - | Beam
-#style: Block
+style: Block
 
 # If this is `true`, the cursor will be rendered as a hollow box when the
 # window is not focused.
@@ -386,7 +399,7 @@ colors: *doom-one
 #triple_click: { threshold: 300 }
 
 # If this is `true`, the cursor is temporarily hidden when typing.
-hide_when_typing: false
+hide_when_typing: true
 
 #url:
 # URL launcher
@@ -408,7 +421,7 @@ hide_when_typing: false
 #
 # These are the modifiers that need to be held down for opening URLs when clicking
 # on them. The available modifiers are documented in the key binding section.
-#modifiers: None
+modifiers: Control
 
 # Mouse bindings
 #
@@ -535,15 +548,15 @@ hide_when_typing: false
 key_bindings:
     # (Windows, Linux, and BSD only)
     - { key: V, mods: Control|Shift, action: Paste }
+    - { key: Paste, mods: None, action: Paste }
     - { key: C, mods: Control|Shift, action: Copy }
+    - { key: Copy, mods: None, action: Copy }
     - { key: Insert, mods: Shift, action: PasteSelection }
     - { key: Key0, mods: Control, action: ResetFontSize }
     - { key: Equals, mods: Control, action: IncreaseFontSize }
     - { key: Plus, mods: Control, action: IncreaseFontSize }
     - { key: Minus, mods: Control, action: DecreaseFontSize }
     - { key: F11, mods: None, action: ToggleFullscreen }
-    - { key: Paste, mods: None, action: Paste }
-    - { key: Copy, mods: None, action: Copy }
     - { key: L, mods: Control, action: ClearLogNotice }
     - { key: L, mods: Control, chars: "\x0c" }
     - { key: PageUp, mods: None, action: ScrollPageUp, mode: ~Alt }

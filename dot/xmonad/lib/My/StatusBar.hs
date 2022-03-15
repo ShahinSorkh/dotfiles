@@ -6,7 +6,6 @@ import qualified Data.Map as M
 import Data.Maybe (fromJust)
 import GHC.Base (Any)
 import XMonad (KeyMask, KeySym, Layout, LayoutClass, Window, X, gets, WorkspaceId)
-import XMonad.Config.Prime (windowset)
 import XMonad.Core (XConfig)
 import XMonad.Hooks.DynamicLog
   ( PP (..)
@@ -55,11 +54,11 @@ mainTop = statusBarProp "xmobar ~/.xmonad/xmobarrc" $ pure pp
         , ppSep = sep -- Separator character
         , ppUrgent = orange . wrapExcl -- Urgent workspace
         }
-    purple = xmobarColor "#c792ea" ""
-    blue = xmobarColor "#82aaff" ""
-    white = xmobarColor "#b3afc2" ""
-    orange = xmobarColor "#c45500" ""
+    purple = xmobarColor "#6a1868" ""
+    blue = xmobarColor "#417af1" ""
+    white = xmobarColor "#5b6268" ""
+    orange = xmobarColor "#9a6e29" ""
     sep = "<fc=#666666> <fn=1>|</fn> </fc>"
-    wrapTopBar = wrap "<box type=Top width=2 mt=2 color=#82aaff>" "</box>"
-    wrapBottomBar = wrap "<box type=Bottom width=2 mb=2 color=#c792ea>" "</box>"
+    wrapTopBar = wrap "<box type=Top width=2 mt=2 color=#417af1>" "</box>"
+    wrapBottomBar = wrap "<box type=Bottom width=2 mb=2 color=#6a1868>" "</box>"
     wrapExcl = wrap "!" "!"
