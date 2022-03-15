@@ -85,6 +85,9 @@ zinit ice lucid
 zinit snippet PZT::modules/history/init.zsh
 
 # History substring searching
+export HISTORY_SUBSTRING_SEARCH_FUZZY=true
+export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=true
+
 bindkey '^R' history-incremental-search-backward
 function __bind_history_keys() {
   bindkey '^[[A' history-substring-search-up
