@@ -78,7 +78,7 @@ URxvt.url-select.underline: true
 URxvt.keysym.M-u: perl:usr-select:select_next
 
 ! bell-command
- URxvt.bell-command: notify-send 'urxvt: bell!'
+ URxvt.bell-command: true
 
 ! bidi
 URxvt.bidi.LRE: \\\\[([]
