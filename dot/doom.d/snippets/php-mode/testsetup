@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: setup
+# uuid: setup
+# key: setup
+# --
+protected function setUp(): void
+{
+    parent::setUp();
+    $0
+}

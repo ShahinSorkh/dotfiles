@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: psysh
+# uuid: psysh
+# key: psysh
+# --
+eval(\Psy\sh());
