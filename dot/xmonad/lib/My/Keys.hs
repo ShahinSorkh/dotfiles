@@ -1,11 +1,14 @@
 module My.Keys (myModeMask, myKeys, myKeysX) where
 
+import Control.Monad
 import Data.Bits ((.|.))
+import Graphics.X11.ExtraTypes (sunXK_Print_Screen)
 import Graphics.X11.ExtraTypes.XF86
 import Graphics.X11.Types
+import System.Exit
 import XMonad (X , io , spawn)
+import XMonad.Util.Dmenu
 import XMonad.Util.Ungrab (unGrab)
-import Graphics.X11.ExtraTypes (sunXK_Print_Screen)
 
 altMask :: KeyMask
 altMask = mod1Mask
@@ -21,6 +24,12 @@ ctrlAltMask = controlMask .|. altMask
 
 cycleKbdLayoutKey = (mod1Mask .|. mod4Mask, xK_space) -- super+alt+space
 
+quitWithWarning :: X ()
+quitWithWarning = do
+    let m = "confirm quit"
+    s <- dmenu [m]
+    when (m == s) (io exitSuccess)
+
 myKeys :: [(String, X ())]
 myKeys =
   [ ("M-S-z", spawn "xscreensaver-command -lock")
@@ -34,6 +43,7 @@ myKeys =
   , ("M-c",   spawn "rofi -modi calc -show")
   , ("M-S-n", spawn "dunstctl set-paused toggle")
   , ("M-S-t", spawn "~/.bin/toggle-touchpad")
+  , ("M-S-q", quitWithWarning)
   ]
 
 myKeysX :: [((KeyMask, KeySym), X ())]
