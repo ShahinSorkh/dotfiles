@@ -1,0 +1,51 @@
+{
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "discard-changes": true,
+        "allow-plugins": {
+            "composer\/package-versions-deprecated": true
+        }
+    },
+    "require": {
+        "composer\/composer": "@stable",
+        "clue\/phar-composer": "@stable",
+        "lctrs\/psalm-psr-container-plugin": "@stable",
+        "orklah\/psalm-strict-visibility": "@stable",
+        "php-standard-library\/psalm-plugin": "@stable",
+        "phpactor\/phpactor": "@stable",
+        "phpstan\/phpstan": "@stable",
+        "psy\/psysh": "@stable",
+        "psalm\/plugin-mockery": "@stable",
+        "psalm\/plugin-phpunit": "@stable",
+        "vimeo\/psalm": "@stable"
+    },
+    "autoload": {
+        "classmap": [
+            "scripts"
+        ]
+    },
+    "scripts": {
+        "build-phar": [
+            "php -dphar.readonly=Off vendor\/bin\/phar-composer build"
+        ],
+        "install-phar": [
+            "@build-phar",
+            "PostInstallPharComposer::exec"
+        ],
+        "update-phars": [
+            "UpdatePharPackages::exec",
+            "composer update --lock"
+        ]
+    },
+    "extra": {
+        "phars": [
+            "d11wtq\/boris as boris",
+            "friendsofphp\/php-cs-fixer as php-cs-fixer",
+            "phan\/phan as phan",
+            "phpunit\/phpunit as phpunit",
+            "techlivezheng\/phpctags as phpctags"
+        ]
+    }
+}
