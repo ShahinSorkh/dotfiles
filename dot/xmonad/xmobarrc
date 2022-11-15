@@ -1,11 +1,11 @@
 -- -*- mode: haskell -*-
 
 Config
-  { font = "xft:Vazirmatn UI RD:weight=medium:pixelsize=13"
+  { font = "xft:Vazirmatn UI RD:weight=medium:pixelsize=14"
   , additionalFonts =
-      [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
-      , "xft:Font Awesome 6 Free Solid:pixelsize=12"
-      , "xft:Font Awesome 6 Brands:pixelsize=12"
+      [ "xft:Cantarell:pixelsize=13:weight=bold:antialias=true:hinting=true"
+      , "xft:Font Awesome 6 Free Solid:pixelsize=13"
+      , "xft:Font Awesome 6 Brands:pixelsize=13"
       ]
   , bgColor = "#fafafa"
   , fgColor = "#3b3b43"
@@ -50,5 +50,5 @@ Config
       ]
   , sepChar = "%"
   , alignSep = "}{"
-  , template = " <icon=arch-linux-icon_24.xpm/>   <fc=#383a42>|</fc> %XMonadLog% }{ <box type=Bottom width=2 mb=2 color=#417af1>   <fc=#417af1>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#e45649><fc=#e45649>%dunst%</fc></box><box type=Bottom width=2 mb=2 color=#6a1868>   <fc=#6a1868>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#9a6e29>   <fc=#9a6e29>%battery%</fc>   </box>   %trayerpad%"
+  , template = " <icon=arch-linux-icon_24.xpm/>   <fc=#383a42>|</fc> %XMonadLog% }{ <fn=1><box type=Bottom width=2 mb=2 color=#417af1>   <fc=#417af1>%jdate% :: %date% :: %weekday% :: %time%</fc>   </box><box type=Bottom width=2 mb=2 color=#e45649><fc=#e45649>%dunst%</fc></box><box type=Bottom width=2 mb=2 color=#6a1868>   <fc=#6a1868>%kbd%</fc>   </box><box type=Bottom width=2 mb=2 color=#9a6e29>   <fc=#9a6e29>%battery%</fc>   </box></fn>   %trayerpad%"
   }

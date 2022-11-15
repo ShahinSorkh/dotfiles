@@ -7,7 +7,7 @@ import Graphics.X11.ExtraTypes.XF86
 import Graphics.X11.Types
 import System.Exit
 import XMonad (X , io , spawn)
-import XMonad.Util.Dmenu
+import XMonad.Util.Dmenu (dmenu)
 import XMonad.Util.Ungrab (unGrab)
 
 altMask :: KeyMask
@@ -22,19 +22,23 @@ modCtrlShiftMask = modCtrlMask .|. shiftMask
 ctrlShiftMask = controlMask .|. shiftMask
 ctrlAltMask = controlMask .|. altMask
 
-cycleKbdLayoutKey = (mod1Mask .|. mod4Mask, xK_space) -- super+alt+space
+cycleKbdLayoutKey = (altMask .|. myModeMask, xK_space) -- super+alt+space
 
 quitWithWarning :: X ()
 quitWithWarning = do
-    let m = "confirm quit"
-    s <- dmenu [m]
-    when (m == s) (io exitSuccess)
+    let logout = "logout"
+    let reboot = "reboot"
+    let poweroff = "poweroff"
+    s <- dmenu [logout, reboot, poweroff]
+    when (s == logout) (io exitSuccess)
+    when (s == reboot) (spawn "systemctl reboot")
+    when (s == poweroff) (spawn "systemctl poweroff")
 
 myKeys :: [(String, X ())]
 myKeys =
-  [ ("M-S-z", spawn "xscreensaver-command -lock")
+  [ ("M-S-z", spawn "slock")
   , ("M-]",   spawn "firefox")
-  , ("M-[",   spawn "emacsclient -c -a 'emacs'")
+  , ("M-[",   spawn "emacsclient -c --alternate-editor=")
   , ("M-n",   spawn "~/.emacs.d/bin/org-capture")
   , ("M-p",   spawn "rofi -show drun")
   , ("M-C-p", spawn "rofi -show ssh")
