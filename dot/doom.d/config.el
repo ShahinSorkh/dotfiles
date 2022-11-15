@@ -3,10 +3,10 @@
 (setq user-full-name "Shahin Sorkh"
       user-mail-address "sorkh.shahin@hotmail.com")
 
-(setq doom-font (font-spec :family "Jetbrains Mono" :size 13)
-      doom-big-font (font-spec :family "Jetbrains Mono" :size 18)
-      doom-unicode-font (font-spec :family "Vazir Code" :size 13)
-      doom-variable-pitch-font (font-spec :family "Vazirmatn" :size 13))
+(setq doom-font (font-spec :family "Jetbrains Mono" :size 16)
+      doom-big-font (font-spec :family "Jetbrains Mono" :size 19)
+      doom-unicode-font (font-spec :family "Vazir Code" :size 16)
+      doom-variable-pitch-font (font-spec :family "Vazirmatn" :size 16))
 
 (setq doom-theme 'doom-one-light)
 
