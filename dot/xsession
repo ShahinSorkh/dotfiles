@@ -1,3 +1,0 @@
-#!/bin/sh
-
-syndaemon -i 0.5 -m 50 -d -K -p /tmp/syndaemon.pid

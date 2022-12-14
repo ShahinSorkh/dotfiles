@@ -1,7 +1,0 @@
-*.o
-*.hi
-xmonad.errors
-xmonad*linux
-
-dist-newstyle/
-prompt-history

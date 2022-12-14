@@ -1,12 +1,3 @@
-[submodule "dot/vim/pack/git/opt/fugitive-gitlab.vim"]
-	path = dot/vim/pack/git/opt/fugitive-gitlab.vim
-	url = https://github.com/shumphrey/fugitive-gitlab.vim
-[submodule "dot/vim/pack/finders/opt/incsearch-fuzzy.vim"]
-	path = dot/vim/pack/finders/opt/incsearch-fuzzy.vim
-	url = https://github.com/haya14busa/incsearch-fuzzy.vim
-[submodule "dot/vim/pack/git/opt/vim-rhubarb"]
-	path = dot/vim/pack/git/opt/vim-rhubarb
-	url = https://github.com/tpope/vim-rhubarb
 [submodule "dot/zsh/custom/plugins/mysql-colorize"]
 	path = dot/zsh/custom/plugins/mysql-colorize
 	url = https://github.com/horosgrisa/mysql-colorize
@@ -22,24 +13,9 @@
 [submodule "dot/vim/pack/utilities/start/ale"]
 	path = dot/vim/pack/utilities/start/ale
 	url = https://github.com/dense-analysis/ale.git
-[submodule "dot/vim/pack/finders/start/ctlp.vim"]
-	path = dot/vim/pack/finders/start/ctlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim
 [submodule "dot/vim/pack/utilities/start/editorconfig-vim"]
 	path = dot/vim/pack/utilities/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim
-[submodule "dot/vim/pack/finders/start/incsearch.vim"]
-	path = dot/vim/pack/finders/start/incsearch.vim
-	url = https://github.com/haya14busa/incsearch.vim
-[submodule "dot/vim/pack/utilities/start/indentLine"]
-	path = dot/vim/pack/utilities/start/indentLine
-	url = https://github.com/Yggdroot/indentLine.git
-[submodule "dot/vim/pack/nerdtree/start/nerdtree-git-plugin"]
-	path = dot/vim/pack/nerdtree/start/nerdtree-git-plugin
-	url = https://github.com/Xuyuanp/nerdtree-git-plugin
-[submodule "dot/vim/pack/nerdtree/start/nerdtree"]
-	path = dot/vim/pack/nerdtree/start/nerdtree
-	url = https://github.com/scrooloose/nerdtree
 [submodule "dot/vim/pack/filetypes/start/php.vim"]
 	path = dot/vim/pack/filetypes/start/php.vim
 	url = https://github.com/StanAngeloff/php.vim
@@ -49,30 +25,12 @@
 [submodule "dot/vim/pack/filetypes/start/typescript-vim"]
 	path = dot/vim/pack/filetypes/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim
-[submodule "dot/vim/pack/airline/start/vim-airline-themes"]
-	path = dot/vim/pack/airline/start/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
-[submodule "dot/vim/pack/airline/start/vim-airline"]
-	path = dot/vim/pack/airline/start/vim-airline
-	url = https://github.com/vim-airline/vim-airline
-[submodule "dot/vim/pack/utilities/start/vim-auto-save"]
-	path = dot/vim/pack/utilities/start/vim-auto-save
-	url = https://github.com/907th/vim-auto-save
 [submodule "dot/vim/pack/filetypes/start/vim-blade"]
 	path = dot/vim/pack/filetypes/start/vim-blade
 	url = https://github.com/jwalton512/vim-blade
-[submodule "dot/vim/pack/utilities/start/vim-easymotion"]
-	path = dot/vim/pack/utilities/start/vim-easymotion
-	url = https://github.com/easymotion/vim-easymotion
-[submodule "dot/vim/pack/git/start/vim-fugitive"]
-	path = dot/vim/pack/git/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
 [submodule "dot/vim/pack/filetypes/start/vim-gfm-syntax"]
 	path = dot/vim/pack/filetypes/start/vim-gfm-syntax
 	url = https://github.com/rhysd/vim-gfm-syntax
-[submodule "dot/vim/pack/git/start/vim-gitgutter"]
-	path = dot/vim/pack/git/start/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "dot/vim/pack/filetypes/start/vim-javascript"]
 	path = dot/vim/pack/filetypes/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
@@ -94,33 +52,18 @@
 [submodule "dot/vim/pack/filetypes/start/vader.vim"]
 	path = dot/vim/pack/filetypes/start/vader.vim
 	url = https://github.com/junegunn/vader.vim
-[submodule "dot/vim/pack/utilities/opt/vim-jekyll"]
-	path = dot/vim/pack/utilities/opt/vim-jekyll
-	url = https://github.com/parkr/vim-jekyll.git
 [submodule "dot/vim/pack/filetypes/start/vim-liquid"]
 	path = dot/vim/pack/filetypes/start/vim-liquid
 	url = https://github.com/tpope/vim-liquid.git
-[submodule "dot/vim/pack/utilities/start/vim-localvimrc"]
-	path = dot/vim/pack/utilities/start/vim-localvimrc
-	url = https://github.com/embear/vim-localvimrc.git
-[submodule "dot/vim/pack/utilities/start/goyo.vim"]
-	path = dot/vim/pack/utilities/start/goyo.vim
-	url = https://github.com/junegunn/goyo.vim.git
 [submodule "dot/vim/pack/filetypes/opt/vim-instant-markdown"]
 	path = dot/vim/pack/filetypes/opt/vim-instant-markdown
 	url = https://github.com/suan/vim-instant-markdown.git
-[submodule "dot/vim/pack/utilities/opt/emmet-vim"]
-	path = dot/vim/pack/utilities/opt/emmet-vim
-	url = https://github.com/mattn/emmet-vim.git
 [submodule "dot/vim/pack/filetypes/start/rust.vim"]
 	path = dot/vim/pack/filetypes/start/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
 [submodule "dot/vim/pack/filetypes/start/vim-toml"]
 	path = dot/vim/pack/filetypes/start/vim-toml
 	url = https://github.com/cespare/vim-toml.git
-[submodule "dot/vim/pack/utilities/start/vim-test"]
-	path = dot/vim/pack/utilities/start/vim-test
-	url = https://github.com/janko/vim-test.git
 [submodule "dot/vim/pack/filetypes/start/vim-twig"]
 	path = dot/vim/pack/filetypes/start/vim-twig
 	url = https://github.com/lumiliet/vim-twig.git
@@ -130,9 +73,6 @@
 [submodule "dot/vim/pack/utilities/start/auto.pairs"]
 	path = dot/vim/pack/utilities/start/auto.pairs
 	url = https://github.com/Krasjet/auto.pairs
-[submodule "zinit"]
-	path = zinit
-	url = https://github.com/zdharma-continuum/zinit
 [submodule "dot/vim/pack/filetypes/start/vifm.vim"]
 	path = dot/vim/pack/filetypes/start/vifm.vim
 	url = https://github.com/vifm/vifm.vim.git
@@ -140,9 +80,3 @@
 	path = dot/emacs.d
 	url = https://github.com/hlissner/doom-emacs
 	branch = master
-[submodule "dot/vim/pack/utilities/start/vim-which-key"]
-	path = dot/vim/pack/utilities/start/vim-which-key
-	url = https://github.com/liuchengxu/vim-which-key
-[submodule "dot/vim/pack/themes/start/doom-one.vim"]
-	path = dot/vim/pack/themes/start/doom-one.vim
-	url = https://github.com/romgrk/doom-one.vim
