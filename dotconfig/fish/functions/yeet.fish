@@ -1,3 +1,3 @@
-function yeet --wraps='yay -Rcsn' --description 'alias yeet=yay -Rcsn'
-  yay -Rcsn $argv; 
+function yeet --wraps='yay -Rcsn' --wraps='yay -Rcn' --description 'alias yeet=yay -Rcn'
+  yay -Rcn $argv; 
 end
