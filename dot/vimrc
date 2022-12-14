@@ -1,12 +1,10 @@
 " vim: et ts=2 sts=2 sw=2 fdm=marker fdl=1
 
-"""""""""""""""""""""""""""""""""""""" General configurations {{{1
 " colors {{{2
-set t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
-set t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
 set term=xterm
 set t_Co=256
 set cursorline
+colorscheme shine
 
 " read/write {{{2
 set encoding=utf-8
@@ -45,27 +43,8 @@ set nobackup
 set noshowmode
 set noswapfile
 
-" gutter {{{2
-set number
-set relativenumber
-set scrolloff=1
-set signcolumn=yes
-
-" fold {{{2
-set foldenable
-set foldcolumn=4
-set foldmethod=syntax
-
-" wild menu {{{2
-set wildmenu
-set wildmode=full
-
 " misc {{{2
-set backspace=indent,eol,start
 set nohidden
-set tags^=./.git/tags
-set lazyredraw
-set modeline
 set pastetoggle=<f2>
 set updatetime=1250
 set mouse=
@@ -75,343 +54,18 @@ augroup vimrc
   autocmd!
 augroup END
 
-"""""""""""""""""""""""""""""""""""""" Plugins configuration {{{1
-" vim-which-key {{{2
-set timeout
-set timeoutlen=500
+" leader {{{2
 let g:mapleader = "\<Space>"
-let g:maplocalleader = ','
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+let g:maplocalleader = 'm'
 
-" ale {{{2
-" ale general {{{3
-let g:ale_linters_explicit = 1
-let g:ale_sign_column_always = 1
-
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_fix_on_save = 1
-
-let g:ale_floating_preview = 1
-let g:ale_hover_cursor = 1
-let g:ale_set_balloons = 1
-let g:ale_hover_to_preview = 1
-let g:ale_hover_to_floating_preview = 1
-
-let g:ale_pattern_options = {
-      \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-      \ }
-let g:ale_list_window_size = 5
-
-nmap <silent> <Leader>k <Plug>(ale_previous_wrap)
-nmap <silent> <Leader>j <Plug>(ale_next_wrap)
-
-let g:ale_linter_aliases = {
-      \  'vue': ['vue', 'javascript', 'html', 'css'],
-      \  'blade': ['php', 'javascript', 'css', 'html'],
-      \  'vader': ['vim'],
-      \  }
-
-" ale completion {{{3
-set completeopt=menu,menuone,preview,noselect,noinsert
-let g:ale_completion_enabled = 1
-
-" ale linters {{{3
-let g:ale_linters = {
-      \  'vue': ['vls', 'eslint', 'stylelint'],
-      \  'javascript': ['tsserver', 'eslint'],
-      \  'typescript': ['tsserver', 'eslint'],
-      \  'typescriptreact': ['tsserver', 'eslint'],
-      \  'html': ['alex', 'tidy'],
-      \  'text': ['alex'],
-      \  'markdown': ['alex'],
-      \  'json': ['jsonlint'],
-      \  'css': ['stylelint'],
-      \  'scss': ['stylelint'],
-      \  'sass': ['stylelint'],
-      \  'python': ['pylint', 'pyls'],
-      \  'php': ['phpactor', 'php'],
-      \  'blade': ['langserver', 'php', 'eslint', 'stylelint'],
-      \  'vim': ['vint'],
-      \  'vader': ['vint'],
-      \  'sh': ['language_server'],
-      \  'bash': ['language_server'],
-      \  'c': ['ccls', 'gcc', 'clang', 'clazy'],
-      \  'cpp': ['ccls', 'g++', 'clang', 'clazy'],
-      \  'rust': ['rls', 'cargo', 'rustc'],
-      \  'go': ['gobuild', 'gofmt', 'govet', 'golangserver'],
-      \  }
-
-" ale fixers {{{3
-let g:ale_fixers = {
-      \  'javascript': ['eslint'],
-      \  'typescript': ['eslint'],
-      \  'typescriptreact': ['eslint'],
-      \  'html': ['tidy'],
-      \  'css': ['stylelint'],
-      \  'vue': ['eslint', 'tidy', 'stylelint'],
-      \  'json': ['jq', 'jsonlint'],
-      \  'scss': ['stylelint'],
-      \  'sass': ['stylelint'],
-      \  'python': ['autopep8', 'flake8'],
-      \  'php': ['php_cs_fixer']
-      \  }
-
-" ale options {{{3
-let g:ale_bash_language_server_use_global = 1
-let g:ale_javascript_tsserver_use_global = 1
-
-let g:ale_php_langserver_use_global = 1
-let g:ale_php_langserver_executable = substitute(system('composer global config bin-dir --absolute 2>/dev/null') .  '/php-language-server.php', '\n', '', 'g')
-
-let g:ale_vue_vls_use_global = 1
-let g:ale_python_pylint_options = '--disable=missing-docstring'
-
-let g:ale_html_tidy_options = '-i -wrap 80 -omit -ashtml -utf8 --indent-cdata --indent --indent-spaces 4 --sort-attributes alpha --tab-size 4 --newline LF'
-
-" ale mappings {{{3
-nnoremap <leader>cla :ALECodeAction<cr>
-nnoremap <leader>cld :ALEFindReferences<cr>
-nnoremap <leader>clD :ALEGoToDefinition<cr>
-nnoremap <leader>clh :ALEHover<cr>
-
-" vim vue {{{2
-let g:vue_disable_pre_processors=1
-
-autocmd vimrc FileType vue syntax sync fromstart
-autocmd vimrc BufRead,BufNewFile *.vue setlocal filetype=vue
-
-" php {{{2
-let g:PHP_noArrowMatching = 1
-let g:php_folding = 2
-
-" blade {{{2
-autocmd vimrc FileType blade syntax sync fromstart
-autocmd vimrc BufRead,BufNewFile *.blade.php setlocal filetype=blade
-
-" emmet-vim {{{2
-let g:user_emmet_mode = 'iv'
-autocmd vimrc FileType blade,php,vue,html,css,sass,scss packadd emmet-vim
-
-" indentLine {{{2
-let g:indentLine_char_list = ['▏', '⎸', '¦', '┆', '┊']
-
-" fugitive {{{2
-autocmd vimrc QuickFixCmdPost *grep* cwindow
-
-" vim-gitgutter {{{2
-let g:gitgutter_diff_args = '-w'
-let g:gitgutter_map_keys = 0 " overwrites tcomment objects
-
-autocmd vimrc BufWrite * GitGutter
-nnoremap <Leader>gglh :GitGutterLineHighlightsToggle<CR>
-
-nmap ]c <Plug>(GitGutterNextHunk)
-nmap [c <Plug>(GitGutterPrevHunk)
-
-nmap <Leader>ha <Plug>(GitGutterStageHunk)
-nmap <Leader>hu <Plug>(GitGutterUndoHunk)
-nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
-
-omap ih <Plug>(GitGutterTextObjectInnerPending)
-omap ah <Plug>(GitGutterTextObjectOuterPending)
-xmap ih <Plug>(GitGutterTextObjectInnerVisual)
-xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-
-" vim-autosave {{{2
-nnoremap <Leader>as :AutoSaveToggle<CR>
-let g:auto_save_events = ['InsertLeave', 'TextChanged']
-let g:auto_save_write_all_buffers = 1
-let g:auto_save_no_updatetime = 1
-
-" easy motion {{{2
-nmap s <Plug>(easymotion-overwin-f)
-nmap s <Plug>(easymotion-overwin-f2)
-
-let g:EasyMotion_smartcase = 1
-
-" airline {{{2
-" general {{{3
-let g:airline_skip_empty_sections = 1
-
-" appearance {{{3
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_powerline_fonts = 1
-let g:airline_theme='simple'
-
-" extensions {{{3
-" ale {{{4
-let g:airline#extensions#ale#enabled = 1
-
-" branch {{{4
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#branch#format = 2
-let g:airline#extensions#branch#sha1_len = 7
-
-" tabline {{{4
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#show_tab_count = 1
-let g:airline#extensions#tabline#exclude_preview = 1
-let g:airline#extensions#tabline#show_tab_type = 1
-let g:airline#extensions#tabline#overflow_marker = '…'
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#disable_refresh = 0
-
-" cursormode {{{4
-let g:airline#extensions#cursormode#enabled = 1
-
-" hunks {{{4
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-
-" nerdtree File highlighting {{{2
-function! NERDTreeHighlightFile(extension, fg, bg) abort
-  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg=#ffffff guifg=#151515'
-  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-call NERDTreeHighlightFile('ini', 'yellow', 'none')
-call NERDTreeHighlightFile('md', 'blue', 'none')
-call NERDTreeHighlightFile('config', 'yellow', 'none')
-call NERDTreeHighlightFile('conf', 'yellow', 'none')
-call NERDTreeHighlightFile('json', 'yellow', 'none')
-call NERDTreeHighlightFile('html', 'yellow', 'none')
-call NERDTreeHighlightFile('py', 'cyan', 'none')
-call NERDTreeHighlightFile('css', 'cyan', 'none')
-call NERDTreeHighlightFile('coffee', 'Red', 'none')
-call NERDTreeHighlightFile('vue', 'Red', 'none')
-call NERDTreeHighlightFile('js', 'Red', 'none')
-call NERDTreeHighlightFile('php', 'Magenta', 'none')
-
-" nerdtree {{{2
-autocmd vimrc StdinReadPre * let s:std_in=1
-
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd vimrc VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | wincmd p | ene | exe 'NERDTree' argv()[0] | endif
-autocmd vimrc BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeIgnore = [
-      \ '\.min\.(js|css)$',
-      \ '\.map$',
-      \ '\.pyc$',
-      \]
-
-map <C-n> :NERDTree<CR>
-map <C-N> :NERDTreeToggle<CR>
-
-" ctrl p {{{2
-map <C-p> :CtrlP<CR>
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.tar,*.bz,*.bz2,*.gz,*.xz,*.rar,*.phar,*.jar
-set wildignore+=*/node_modules/*,*/vendor/*,*/bower_components/*,*/storage/framework/*
-set wildignore+=*.pyc
-
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -oc --exclude-standard']
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_working_path_mode = '0'
-
-" incsearch plugin {{{2
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
-" incsearch-fuzzy {{{2
-packadd incsearch-fuzzy.vim
-
-function! s:config_fuzzyall(...) abort
-  return extend(copy({
-        \   'converters': [
-        \     incsearch#config#fuzzy#converter(),
-        \     incsearch#config#fuzzyspell#converter()
-        \   ],
-        \ }), get(a:, 1, {}))
-endfunction
-
-noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
-noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
-noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
-
-" vim-jekyll {{{2
-let g:jekyll_post_extension = '.md'
-let g:jekyll_post_template =  [
-      \ '---',
-      \ 'date: "JEKYLL_DATE"',
-      \ 'title: "JEKYLL_TITLE"',
-      \ '---'
-      \]
-let g:jekyll_build_command = 'bundle exec jekyll build'
-
-" vim-go {{{2
-let g:go_code_completion_enabled = 0
-let g:go_play_browser_command = '$BROWSER %URL% &'
-let g:go_gopls_enabled = 1
-
-" goyo.vim {{{2
-function! s:goyo_enter() abort
-  silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  set scrolloff=999
-endfunction
-
-function! s:goyo_leave() abort
-  silent !tmux set status on
-  "silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  set scrolloff=1
-  AirlineRefresh
-endfunction
-
-autocmd vimrc User GoyoEnter nested call <SID>goyo_enter()
-autocmd vimrc User GoyoLeave nested call <SID>goyo_leave()
-noremap <Leader><Leader>g :Goyo<cr>
-
-" vim-test {{{2
-nnoremap <leader>tf :TestFile<cr>
-nnoremap <leader>tl :TestLast<cr>
-nnoremap <leader>tn :TestNearest<cr>
-nnoremap <leader>ts :TestSuite<cr>
-nnoremap <leader>tv :TestVisit<cr>
-
-" status line {{{2
-set statusline+=%#warningmsg#
-set statusline+=%{fugitive#statusline()}
-set statusline+=%*
-
-if exists('#airline')
-  AirlineRefresh
-endif
-
-"""""""""""""""""""""""""""""""""""""" My configurations {{{1
 " terminal configs {{{2
 autocmd vimrc TerminalOpen * if &buftype == 'terminal' | setlocal signcolumn=no nonumber | endif
-
-" disable IndentLines for json files {{{2
-autocmd vimrc FileType json IndentLinesDisable
 
 " YAML specific configs {{{2
 autocmd vimrc FileType yml,yaml setlocal softtabstop=2 shiftwidth=2 expandtab foldmethod=indent
 
 " python specific configs {{{2
 autocmd vimrc FileType python setlocal foldmethod=indent
-
-" persistent folds (https://til.hashrocket.com/posts/17c44eda91-persistent-folds-between-vim-sessions) {{{2
-autocmd vimrc BufWinLeave * silent! mkview
-autocmd vimrc BufWinEnter * if &filetype != '' | silent! loadview | endif
 
 " jump to the last position when reopening a file {{{2
 autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -423,10 +77,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 nnoremap <cr> :noh<cr><cr>
 nnoremap Y y$
 inoremap jk <esc>
-
-" ~/.vimrc helpers {{{3
-nnoremap <Leader>ev :vsplit ~/.vimrc<cr>
-nnoremap <Leader>sv :source ~/.vimrc<cr>
 
 " smart movement {{{3
 nnoremap gj j
@@ -446,19 +96,5 @@ nnoremap g; g;zz
 nnoremap g, g,zz
 nnoremap <c-o> <c-o>zz
 
-" buffer helpers {{{3
-nnoremap <Leader><Leader>d :bd<cr>
-nnoremap <Tab> :bn!<cr>
-nnoremap <S-Tab> :bN!<cr>
-
-
 " write as sudo {{{3
 cmap w!! w !sudo tee > /dev/null % <cr> :edit!<cr>
-
-" safe load local vimrc file {{{2
-" the idea has come from https://stackoverflow.com/a/13192721/3332676
-autocmd vimrc BufEnter .shvimsorc set filetype=vim
-set secure
-for rc in findfile('.shvimsorc', getcwd() . ';', -1)
-  source `=resolve(rc)`
-endfor
