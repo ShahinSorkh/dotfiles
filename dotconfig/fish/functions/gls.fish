@@ -1,3 +1,3 @@
-function gls --wraps='git files' --description 'alias gls=git files'
-  git files $argv; 
+function gls --wraps='git files' --wraps='git ls-files' --description 'alias gls=git ls-files'
+  git ls-files $argv; 
 end

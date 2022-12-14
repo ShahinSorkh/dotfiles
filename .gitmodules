@@ -55,9 +55,6 @@
 [submodule "dot/vim/pack/filetypes/start/vim-liquid"]
 	path = dot/vim/pack/filetypes/start/vim-liquid
 	url = https://github.com/tpope/vim-liquid.git
-[submodule "dot/vim/pack/filetypes/opt/vim-instant-markdown"]
-	path = dot/vim/pack/filetypes/opt/vim-instant-markdown
-	url = https://github.com/suan/vim-instant-markdown.git
 [submodule "dot/vim/pack/filetypes/start/rust.vim"]
 	path = dot/vim/pack/filetypes/start/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
