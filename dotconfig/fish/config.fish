@@ -10,4 +10,5 @@ set -Ux VISUAL vim
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    bind \eg 'fish_commandline_append " &| rg"'
 end
