@@ -3,11 +3,21 @@
 # from: https://gist.github.com/RichardBronosky/56d8f614fab2bacdd8b048fb58d0c0c7
 
 LINUX_copy(){
-    cat | xclip -selection clipboard
+    if [ -z "$WAYLAND_DISPLAY" ]
+    then
+        cat | xclip -selection clipboard
+    else
+        cat | wl-copy
+    fi
 }
 
 LINUX_paste(){
-    xclip -selection clipboard -o
+    if [ -z "$WAYLAND_DISPLAY" ]
+    then
+        xclip -selection clipboard -o
+    else
+        wl-paste -n
+    fi
 }
 
 WSL_copy(){
