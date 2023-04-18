@@ -1,5 +1,7 @@
 " vim: et ts=2 sts=2 sw=2 fdm=marker fdl=1
 
+set fdl=999
+
 " colors {{{2
 set term=xterm
 set t_Co=256
