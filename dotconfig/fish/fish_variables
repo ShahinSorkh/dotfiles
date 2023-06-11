@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR ANDROID_HOME:/opt/android\x2dsdk
 SETUVAR --export DEBUGINFOD_URLS:https\x3a//debuginfod\x2earchlinux\x2eorg\x20
 SETUVAR --export EDITOR:vim
 SETUVAR FZF_DEFAULT_OPTS:\x2d\x2dheight\x2040\x25
