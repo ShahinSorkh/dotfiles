@@ -25,7 +25,7 @@ return {
         'mbbill/undotree',
         event = { "BufReadPost", "BufNewFile" },
         keys = {
-            { "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" }},
+            { "<leader>u", vim.cmd.UndotreeToggle, desc = "Undotree"},
         },
     },
 }

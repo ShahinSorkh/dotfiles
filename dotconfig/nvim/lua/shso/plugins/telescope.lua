@@ -6,7 +6,6 @@ return {
         commit = vim.fn.has("nvim-0.9.0") == 0 and "057ee0f8783" or nil,
         cmd = "Telescope",
         version = false, -- telescope did only one release, so use HEAD for now
-        lazy = false,
         dependencies = {
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
@@ -18,14 +17,12 @@ return {
             'nvim-lua/plenary.nvim',
         },
         keys = {
-
---             {'<leader>pf', Util.telescope("find_files"), { desc = 'Find files' }},
-            {'<leader><leader>', Util.telescope("files"), { desc = 'Git files' }},
-            {'<leader>ps', Util.telescope("live_grep"), { desc = 'Grep' }},
-            {'<leader>bb', Util.telescope("buffers"), { desc = 'Buffers' }},
-            {'<leader>fr', Util.telescope("oldfiles"), { desc = 'Recent files' }},
-            {'<leader>s/', Util.telescope("search_history"), { desc = 'Search history' }},
-            {'<M-x>', Util.telescope("commands"), { desc = 'Commands' }},
+            {'<leader><leader>', Util.telescope("files"), desc = 'Find files'},
+            {'<leader>ps', Util.telescope("live_grep"), desc = 'Grep'},
+            {'<leader>bb', Util.telescope("buffers"), desc = 'Buffers'},
+            {'<leader>fr', Util.telescope("oldfiles"), desc = 'Recent files'},
+            {'<leader>s/', Util.telescope("search_history"), desc = 'Search history'},
+            {'<M-x>', Util.telescope("commands"), desc = 'Commands'},
 
 
             -- { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },

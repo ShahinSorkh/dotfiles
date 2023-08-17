@@ -18,8 +18,11 @@ nnoremap("<leader>E", function() vim.cmd.Explore(vim.fn.getcwd()) end, "open net
 
 inoremap("jk", "<esc>")
 
-vnoremap("K", ":m '>-2<cr>gv=gv'")
-vnoremap("J", ":m '>+1<cr>gv=gv'")
+xnoremap(">", ">gv")
+xnoremap("<", "<gv")
+
+vnoremap("<M-k>", ":m '<-2<cr>gv=gv")
+vnoremap("<M-j>", ":m '>+1<cr>gv=gv")
 nnoremap("j", "gj")
 nnoremap("k", "gk")
 
