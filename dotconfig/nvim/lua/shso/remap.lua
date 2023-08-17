@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>e", vim.cmd.Lexplore, { desc = "open netrw" })
+vim.keymap.set("n", "<leader>e", vim.cmd.Explore, { desc = "open netrw here" })
+vim.keymap.set("n", "<leader>E", function() vim.cmd.Explore(vim.fn.getcwd()) end, { desc = "open netrw at root" })
 -- vim.keymap.set("n", "<C-Slash>", vim.cmd.terminal, { desc = "open terminal" })
 
 vim.keymap.set("i", "jk", "<esc>")
