@@ -247,6 +247,36 @@ return {
         end,
     },
 
+    -- snippets
+    {
+        "L3MON4D3/LuaSnip",
+        build = (not jit.os:find("Windows"))
+            and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
+            or nil,
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+            config = function()
+                require("luasnip.loaders.from_vscode").lazy_load()
+            end,
+        },
+        opts = {
+            history = true,
+            delete_check_events = "TextChanged",
+        },
+        -- stylua: ignore
+        keys = {
+            {
+                "<tab>",
+                function()
+                    return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+                end,
+                expr = true, silent = true, mode = "i",
+            },
+            { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+            { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+        },
+    },
+
     -- auto completion
     {
         "hrsh7th/nvim-cmp",
@@ -259,7 +289,7 @@ return {
             "saadparwaiz1/cmp_luasnip",
         },
         opts = function()
-            vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+            -- vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
             local cmp = require("cmp")
             local defaults = require("cmp.config.default")()
             return {
@@ -299,11 +329,11 @@ return {
                         return item
                     end,
                 },
-                experimental = {
-                    ghost_text = {
-                        hl_group = "CmpGhostText",
-                    },
-                },
+                -- experimental = {
+                --     ghost_text = {
+                --         hl_group = "CmpGhostText",
+                --     },
+                -- },
                 sorting = defaults.sorting,
             }
         end,
