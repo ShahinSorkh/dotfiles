@@ -48,6 +48,8 @@ set pastetoggle=<f2>
 set updatetime=1250
 set mouse=
 set fdl=999
+set scrolloff=8
+set sidescroll=8
 
 " autocmd group {{{2
 augroup vimrc

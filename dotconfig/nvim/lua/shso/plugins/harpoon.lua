@@ -1,7 +1,7 @@
 return {
     {
         'ThePrimeagen/harpoon',
-        dependencies = { "nvim-telescope/telescope.nvim" },
+        dependencies = { "telescope.nvim" },
         init = function()
             require('telescope').load_extension('harpoon')
             local mark = require('harpoon.mark')
