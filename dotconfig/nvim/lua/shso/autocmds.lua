@@ -42,9 +42,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
-  pattern = {
+local close_with = function (patterns, cmd)
+    vim.api.nvim_create_autocmd("FileType", {
+        group = augroup("close_with_q"),
+        pattern = patterns,
+        callback = function (event)
+            vim.bo[event.buf].buflisted = false
+            vim.keymap.set("n", "q", cmd, { buffer = event.buf, silent = true })
+        end
+    })
+end
+close_with({
     "PlenaryTestPopup",
     "help",
     "lspinfo",
@@ -59,22 +67,9 @@ vim.api.nvim_create_autocmd("FileType", {
     "neotest-summary",
     "neotest-output-panel",
     "fugitive",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end,
-})
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
-  pattern = {
-    "netrw",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>bd<cr>", { buffer = event.buf, silent = true })
-  end,
-})
+}, "<cmd>close<cr>")
+close_with({ "netrw" }, "<cmd>bd<cr>")
+close_with({ "TelescopePrompt" }, "<cmd>close!<cr>")
 
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
