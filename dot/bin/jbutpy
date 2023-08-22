@@ -1,0 +1,91 @@
+#!/bin/bash
+
+set -euo pipefail
+
+PORT=${1:-8000}
+
+HTML='<!doctype html>
+<html>
+	<head>
+		<title>hey!</title>
+		<style>
+		* { box-sizing: border-box; }
+		html, body { width: 100%; margin: 0; padding: 5px; }
+		#output { padding: 5px; word-break: break-all; width: 100%; white-space: pre-wrap; }
+		#errBox { padding: 5px; color: #f55; border: 1px solid red; width: 100%; }
+		textarea { display: block; width: 90%; margin: auto; }
+		.json-string { color: green; }
+		.json-number { color: darkorange; }
+		.json-boolean { color: blue; }
+		.json-null { color: magenta; }
+		.json-key { color: red; }
+		</style>
+		<script defer async src="https://unpkg.com/lodash@4.17.21"></script>
+	</head>
+	<body>
+		<textarea id="input" onblur="updateOutput()"></textarea>
+		<textarea id="eval" onblur="updateOutput()"></textarea>
+		<span id="len"></span>
+		<div><pre id="output"></pre></div>
+		<script>
+			const evalText = document.querySelector("#eval")
+			const input = document.querySelector("#input")
+			const output = document.querySelector("#output")
+			const lenBox = document.querySelector("#len")
+			const wrapInClass = (match, cls) => `<span class="json-${cls}">${match}</span>`
+			const syntaxHighlight = (json) => json
+				.replace(/&/g, "&amp;")
+				.replace(/</g, "&lt;")
+				.replace(/>/g, "&gt;")
+				.replace(
+					/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+				        (match) => wrapInClass(match, /^"/.test(match)
+					    ? (/:$/.test(match) ? "key" : "string")
+					    : /true|false/.test(match)
+					    ? "boolean"
+					    : /null/.test(match)
+					    ? "null"
+					    : "number")
+				)
+			const updateOutput = async () => {
+				let isUrl = false;
+				try {
+					const url = new URL(input.value.trim())
+					console.log({ url })
+					isUrl = true
+				} catch(e) {}
+				try {
+					const val = isUrl 
+						? await fetch(input.value.trim())
+							.then(r => r.text())
+							.catch(e => {
+								output.innerHTML = `<div id="errBox">${e}</div>`
+								lenBox.innerHTML = ""
+								return ""
+							})
+						: input.value.trim()
+					if (val === "") return;
+					const script = evalText.value.trim()
+					const data = JSON.parse(val)
+					const result = JSON.stringify(script ? eval(script) : data, null, "    ")
+					output.innerHTML = result.length > 100000 ? result : syntaxHighlight(result)
+					lenBox.innerHTML = result.length + " chars"
+				} catch (e) {
+					output.innerHTML = `<div id="errBox">${e}</div>`
+					lenBox.innerHTML = ""
+				}
+			}
+		</script>
+	</body>
+</html>'
+DIR=$(mktemp -d)
+
+echo "www root on '$DIR'.."
+cd "$DIR"
+
+echo "$HTML" >index.html
+python -m http.server "$PORT"
+
+cd /
+rm -rf "$DIR"
+
