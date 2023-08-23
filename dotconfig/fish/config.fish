@@ -9,7 +9,9 @@ fish_add_path -g $HOME/.local/share/solana/install/active_release/bin
 fish_add_path -g $HOME/.detaspace/bin
 fish_add_path -g $HOME/.npm-packages/bin
 fish_add_path -g $HOME/opt/VSCode/bin
-fish_add_path -g (gem environment user_gemhome)/bin || true
+if command -v gem >/dev/null
+    fish_add_path -g (gem environment user_gemhome)/bin || true
+end
 
 set -U fish_greeting
 set -U EDITOR vim
