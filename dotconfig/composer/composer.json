@@ -9,7 +9,6 @@
         }
     },
     "require": {
-        "composer/composer": "@stable",
         "d11wtq/boris": "@stable",
         "friendsofphp/php-cs-fixer": "@stable",
         "lctrs/psalm-psr-container-plugin": "@stable",
