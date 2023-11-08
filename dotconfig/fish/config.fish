@@ -1,5 +1,3 @@
-set -U ANDROID_HOME /opt/android-sdk
-
 fish_add_path -g /usr/lib/jvm/default/bin
 fish_add_path -g $HOME/.local/bin
 fish_add_path -g $HOME/.emacs.d/bin
@@ -13,10 +11,22 @@ if command -v gem >/dev/null
     fish_add_path -g (gem environment user_gemhome)/bin || true
 end
 
-set -U fish_greeting
-set -U EDITOR vim
-set -U VISUAL vim
+set -xg fish_greeting
+set -xg EDITOR e
+set -xg VISUAL e
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    bass source $HOME/.cargo/env
+    load_nvm >/dev/stderr
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
+# pnpm
+set -gx PNPM_HOME "/var/home/shahin/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

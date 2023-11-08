@@ -10,7 +10,7 @@ return {
             vim.g.codeium_disable_bindings = 1
         end,
         keys = {
-            imap('<Tab>', function () return vim.fn['codeium#Accept']() end),
+            imap('<C-y>', function () return vim.fn['codeium#Accept']() end),
             imap('<M-Space>', function() return vim.fn['codeium#CycleCompletions'](1) end),
             imap('<M-]>', function() return vim.fn['codeium#CycleCompletions'](1) end),
             imap('<M-[>', function() return vim.fn['codeium#CycleCompletions'](-1) end),
