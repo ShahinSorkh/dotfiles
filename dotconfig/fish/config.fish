@@ -1,32 +1,22 @@
-fish_add_path -g /usr/lib/jvm/default/bin
-fish_add_path -g $HOME/.local/bin
-fish_add_path -g $HOME/.emacs.d/bin
-fish_add_path -g $HOME/.config/composer/vendor/bin
-fish_add_path -g $HOME/go/bin
-fish_add_path -g $HOME/.local/share/solana/install/active_release/bin
-fish_add_path -g $HOME/.detaspace/bin
-fish_add_path -g $HOME/.npm-packages/bin
-fish_add_path -g $HOME/opt/VSCode/bin
-if command -v gem >/dev/null
-    fish_add_path -g (gem environment user_gemhome)/bin || true
-end
+#fish_add_path -g $HOME/.local/bin
 
 set -xg fish_greeting
-set -xg EDITOR e
-set -xg VISUAL e
+set -xg EDITOR nvim
+set -xg VISUAL nvim
+
+set --universal nvm_default_version lts/iron
+set --universal nvm_default_packages yarn pnpm ts-node
 
 if status is-interactive
     bass source $HOME/.cargo/env
-    load_nvm >/dev/stderr
 end
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
-
 # pnpm
-set -gx PNPM_HOME "/var/home/shahin/.local/share/pnpm"
+set -gx PNPM_HOME "/home/shahin/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# Created by `pipx` on 2024-06-16 19:22:14
+set PATH $PATH /home/shahin/.local/bin
