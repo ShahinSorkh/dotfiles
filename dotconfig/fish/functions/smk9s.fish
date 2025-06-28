@@ -8,8 +8,8 @@ function smk9s --wraps='k9s --kubeconfig ~/.kube/salecrm-staging' --description 
   end
 
   if test $has_namespace -eq 1
-    k9s --kubeconfig ~/.kube/salecrm-staging $argv
+    k9s --logoless --kubeconfig ~/.kube/salecrm-staging $argv
   else
-    k9s --kubeconfig ~/.kube/salecrm-staging -n staging $argv
+    k9s --logoless --kubeconfig ~/.kube/salecrm-staging -n staging $argv
   end
 end

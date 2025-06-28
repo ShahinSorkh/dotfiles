@@ -8,8 +8,8 @@ function smk9s-prod --wraps='k9s --kubeconfig ~/.kube/salecrm-production' --desc
   end
 
   if test $has_namespace -eq 1
-    k9s --kubeconfig ~/.kube/salecrm-production $argv
+    k9s --logoless --kubeconfig ~/.kube/salecrm-production $argv
   else
-    k9s --kubeconfig ~/.kube/salecrm-production -n production $argv
+    k9s --logoless --kubeconfig ~/.kube/salecrm-production -n production $argv
   end
 end
