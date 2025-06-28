@@ -1,3 +1,3 @@
 function cb
-  $HOME/.bin/cb
+  $HOME/.dotfiles/dot/bin/cb
 end

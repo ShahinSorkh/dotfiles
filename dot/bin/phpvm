@@ -1,363 +1,421 @@
 #!/usr/bin/env bash
-# a php version manager
-#
-# @todo quiet mode with log files
-# @todo handling configure options
-# @todo check deps before starting
 
 set -euo pipefail
 
-program_name=phpvm
+# Configuration
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/phpvm"
+mkdir -p "$cache_dir"
+rels_cache_path="$cache_dir/releases"
+old_rels_cache_path="$cache_dir/releases_old"
 
-installs_path="${XDG_DATA_DIR:-$HOME/.local/share}/$program_name"
-current_path="$installs_path/current"
+data_dir="${XDG_DATA_HOME:-$HOME/.local/share/phpvm}"
+install_base_dir="$data_dir/versions"
+current_link="$data_dir/current"
 
-downloads_path="${XDG_CACHE_HOME:-$HOME/.cache}/$program_name"
-old_rels_cache_path="$downloads_path/old_releases.html"
-rels_cache_path="$downloads_path/releases.html"
+quiet=0
+verbose=0
+
+log() {
+  local level=$1; shift
+  if (( quiet )); then
+    [[ "$level" == "ERROR" ]] && echo "ERROR: $*" >&2
+    return
+  fi
+  if (( verbose )); then
+    echo "$level: $*"
+  else
+    [[ "$level" == "ERROR" || "$level" == "INFO" ]] && echo "$*"
+  fi
+}
 
 usage() {
-    echo "Usage: phpvm cmd"
-    echo ""
-    echo "Commands:"
-    echo -e "\thelp\t\tshow this"
-    echo -e "\tls\t\tlist installed php versions"
-    echo -e "\tls-remote\tlist remote php versions"
-    echo -e "\tinstall version\tinstalls a remote php version"
-    echo -e "\tbin\t\tget bin path for an install"
-    echo -e "\tremove version\tremoves a php version"
-    echo -e "\tuse version\tuses a php version"
-    echo ""
-    echo "Examples:"
-    echo -e "\tphpvm install 7.0.4"
-    echo -e "\t\$(phpvm bin 7.0.4)/php --version"
-    echo -e "\t\$(phpvm bin 7.0.4)/composer --version"
+  cat <<EOF
+Usage: phpvm [--quiet|--verbose] <command> [args]
+
+Commands:
+  help             Show this message
+  ls               List installed PHP versions
+  ls-remote        List available remote PHP versions
+  install <ver>    Install a specific PHP version (builds from source)
+  remove <ver>     Remove an installed PHP version
+  use <ver>        Switch to a given PHP version
+  bin <ver>        Show bin path for an install
+  php [args]       Run 'php' in the context of current version
+  composer [args]  Run 'composer' in the context of current version
+  run <exec> [...] Run any executable from the current version
+
+Flags:
+  -q, --quiet      Suppress non-error output
+  -v, --verbose    Enable debug output
+
+Examples:
+  phpvm install 7.4.20
+  \$(phpvm bin 7.4.20)/php --version
+  phpvm run phpstan analyse
+EOF
 }
 
-deps() {
-    echo "libxml2-dev"
+get_remote_versions() {
+  local old_versions new_versions
+  if [[ -f "$old_rels_cache_path" ]]; then
+    old_versions=$(grep -oE '[0-9]+\.[0-9]+\.[0-9]+' "$old_rels_cache_path" | sort -Vu)
+  else
+    old_versions=""
+  fi
+  if [[ -f "$rels_cache_path" ]]; then
+    new_versions=$(grep -oE '[0-9]+\.[0-9]+\.[0-9]+' "$rels_cache_path" | sort -Vu | tail -n+2)
+  else
+    new_versions=""
+  fi
+  printf "All Versions:\n%s\n\nStable Versions:\n%s\n" "$old_versions" "$new_versions"
 }
 
-dir_setup() {
-    mkdir -p "$installs_path"
-    mkdir -p "$downloads_path"
-}
-
-ls_remote__get_releases() {
-    wget -qO- 'http://php.net/releases/' > $old_rels_cache_path
-    wget -qO- 'http://php.net/downloads.php' > $rels_cache_path
-    return 0
-}
-
-ls_remote__versions() {
-    local old_versions="$(cat $old_rels_cache_path| grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -Vu)"
-    local new_versions="$(cat $rels_cache_path | grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -Vu)"
-    echo "$old_versions"
-    echo "$new_versions"
-    return 0;
-}
-
-ls_local() {
-    # installed means bin was linked
-    echo "Locally installed"
-    for dir in $installs_path/*
-    do
-        if [ -f "$dir/bin/php" ]
-        then
-            echo "$(basename "$dir")"
-        fi
-    done
+fetch_releases() {
+  log INFO "Fetching available PHP versions..."
+  log DEBUG "Fetching releases page..."
+  if ! curl -sfSL 'http://php.net/releases/' -o $old_rels_cache_path.tmp; then
+    log ERROR "Failed to fetch PHP releases page"
+  else
+    mv $old_rels_cache_path.tmp $old_rels_cache_path
+  fi
+  log DEBUG "Fetching downloads page..."
+  if ! curl -sfSL 'http://php.net/downloads.php' -o $rels_cache_path.tmp; then
+    log ERROR "Failed to fetch PHP downloads page"
+  else
+    mv $rels_cache_path.tmp $rels_cache_path
+  fi
 }
 
 ls_remote() {
-    local cache_time=$((60*15))
-    #local cache_time=0 # for debug
-
-    if [ -f "$old_rels_cache_path" ]
-    then
-        local last_mod_time=$(stat "$old_rels_cache_path" -c %Y)
-        local cur_time=$(date +"%s")
-        local time_diff=$(($cur_time - $last_mod_time))
-        if [ "$time_diff" -gt "$cache_time" ]
-        then
-            ls_remote__get_releases
-        fi
-    else
-        ls_remote__get_releases
-    fi
-
-    local old_versions="$(cat $old_rels_cache_path| grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -Vu)"
-    local new_versions="$(cat $rels_cache_path | grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -Vu)"
-    echo "Old versions:"
-    echo "$old_versions"
-    echo ""
-    echo "Stable versions:"
-    echo "$new_versions"
+  local cache_max=900
+  if [[ -f "$rels_cache_path" ]]; then
+    local age=$(( $(date +%s) - $(stat -c %Y "$rels_cache_path") ))
+    (( age > cache_max )) && fetch_releases
+  else
+    fetch_releases
+  fi
+  get_remote_versions
 }
 
-install_composer() {
-    local php_bin="$1"
-    local install_path="$2"
-    local installed_path="$install_path/composer.phar"
-
-    if [ ! -f "$php_bin" ]
-    then
-        echo "$php_bin php bin not found"
-        return 1
-    fi
-
-    if [ ! -d "$install_path" ]
-    then
-        echo "$install_path install path not found"
-        return 1
-    fi
-
-    if [ ! -f "$installed_path" ]
-    then
-        EXPECTED_CHECKSUM="$($php_bin -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
-        $php_bin -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        ACTUAL_CHECKSUM="$($php_bin -r "echo hash_file('sha384', 'composer-setup.php');")"
-
-        if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
-        then
-            >&2 echo 'ERROR: Invalid installer checksum'
-            rm composer-setup.php
-            exit 1
-        fi
-
-        $php_bin composer-setup.php --quiet --install-dir="$install_path"
-        rm composer-setup.php
-    fi
-
-    echo "#!/usr/bin/env sh
-$php_bin \"$install_path/composer.phar\" \$*
-" > "$install_path/composer"
-
-    chmod +x "$install_path/composer"
-
-    return 0
-}
-
-test_full_version() {
-    local version="$1"
-    if echo "$version" | grep -q -e '[0-9]\+\.[0-9]\+\.[0-9]\+'
-    then
-        return 0
-    fi
-
-    return 1
-}
-
-get_version_dir() {
-    local version="$1"
-    echo "$installs_path/$version"
-    return 0
-}
-
-get_tar_url() {
-    local version="$1"
-    echo "http://php.net/get/php-$version.tar.bz2/from/this/mirror"
+ls_local() {
+  if [[ -d "$install_base_dir" ]]; then
+    ls -1 "$install_base_dir" | sort -V
+  else
+    echo "No local PHP versions installed."
+  fi
 }
 
 install() {
-    local version="$2"
-    # @todo
-    local configure_string="${3:-}"
+  local ver=$1
+  local install_dir="$install_base_dir/$ver"
+  local tarball_url="https://www.php.net/distributions/php-$ver.tar.gz"
+  local src_versions_dir="$cache_dir/versions"
 
-    # init cache files
-    ls_remote > /dev/null
+  if [[ -x "$install_dir/bin/php" ]]; then
+    log ERROR "Version $ver is already installed."
+    return 1
+  fi
 
-    # search for version
-    local versions="$(ls_remote__versions)"
-    if test_full_version "$version"
-    then
-        echo "$version OK format"
-    else
-        echo "A full version not specified"
-        return 1
+  log INFO "Installing PHP $ver..."
+  mkdir -p "$src_versions_dir"
+  local ver_dir="$src_versions_dir/php-$ver"
+
+  local tarball_filename="$src_versions_dir/php-$ver.tar.gz"
+  if [ ! -r "$tarball_filename" ]; then
+    log INFO "Downloading $tarball_url"
+    if ! curl -fSL "$tarball_url" -o $tarball_filename; then
+      log ERROR "Failed to download PHP $ver source archive."
+      rm -rf "$tmp_dir"
+      return 1
     fi
+  else
+    log DEBUG "Tarball exists. Skip downloading."
+  fi
 
-    if echo "$versions" | grep -q -e "$version"
-    then
-        echo "$version in available versions"
-    else
-        echo "$version not in available versions, try again"
-    fi
+  if [ ! -d "$ver_dir" ]; then
+    log INFO "Extracting source..."
+    tar -xf $tarball_filename -C "$src_versions_dir"
+  else
+    log DEBUG "Source is already extracted."
+  fi
 
-    echo "Starting install"
+  pushd "$ver_dir"
 
-    local install_dir="$(get_version_dir "$version")"
+  log INFO "Configuring build..."
+  install_etc_dir="$install_dir/etc/php.conf.d"
+  mkdir -p "$install_etc_dir"
+  ./configure --prefix="$install_dir" \
+    --disable-debug \
+    --disable-cgi \
+    --with-config-file-path="$install_dir/etc" \
+    --with-config-file-scan-dir="$install_etc_dir" \
+    --enable-bcmath \
+    --enable-calendar \
+    --enable-cli \
+    --enable-embed \
+    --enable-exif \
+    --enable-fpm \
+    --enable-ftp \
+    --enable-gd \
+    --enable-intl \
+    --enable-litespeed \
+    --enable-mbstring \
+    --enable-soap \
+    --enable-sockets \
+    --with-curl \
+    --with-freetype \
+    --with-gettext \
+    --with-jpeg \
+    --with-kerberos \
+    --with-mhash \
+    --with-mysqli=mysqlnd \
+    --with-openssl \
+    --with-pdo-mysql=mysqlnd \
+    --with-pear \
+    --with-readline \
+    --with-webp \
+    --with-xsl \
+    --with-zlib
 
-    echo "Install dir: $install_dir"
+  log INFO "Building PHP $ver..."
+  if ((verbose)); then
+    make -j"$(nproc)"
+  else
+    make -j"$(nproc)" >/dev/null
+  fi
 
-    local install_src_dir="$(get_version_dir "$version")/src"
+  log INFO "Installing PHP $ver..."
+  if ((verbose)); then
+    make install
+  else
+    make install >/dev/null
+  fi
 
-    local tar_url="$(get_tar_url "$version")"
-    local tar_file="php-${version}.tar.bz2"
-    local tar_path="$downloads_path/$tar_file"
+  cp php.ini* "$install_dir/etc"
 
-    if [ ! -f "$tar_path" ]
-    then
-        echo "Getting: $tar_url saving to $tar_file"
-        wget -O "$tar_path" "$tar_url"
-    fi
+  popd
+  rm -rf "$ver_dir"
 
-
-    if [ ! -f "$tar_path" ]
-    then
-        echo "Cannot find $tar_path, check download"
-        return 1
-    fi
-
-    mkdir -p "$install_src_dir"
-
-    local extracted_dir="$install_src_dir/php-$version"
-
-    # @todo don't necessarily know extracted dir pattern
-    if [ -d "$extracted_dir" ]
-    then
-        echo "Extracted dir exists: $extracted_dir"
-    else
-        tar -xvf "$tar_path" -C "$install_src_dir"
-    fi
-
-    cd "$extracted_dir"
-
-    install_etc_dir="$install_dir/etc/php.conf.d"
-    mkdir -p "$install_etc_dir"
-    ./configure \
-        --with-config-file-path="$install_dir/etc" \
-        --with-config-file-scan-dir="$install_etc_dir" \
-        --enable-bcmath \
-        --enable-calendar \
-        --enable-embed \
-        --enable-exif \
-        --enable-fpm \
-        --enable-ftp \
-        --enable-gd \
-        --enable-intl \
-        --enable-litespeed \
-        --enable-mbstring \
-        --enable-soap \
-        --enable-sockets \
-        --with-curl \
-        --with-freetype \
-        --with-gettext \
-        --with-jpeg \
-        --with-kerberos \
-        --with-mhash \
-        --with-mysqli=mysqlnd \
-        --with-openssl \
-        --with-pdo-mysql=mysqlnd \
-        --with-pear \
-        --with-readline \
-        --with-webp \
-        --with-xsl \
-        --with-zlib \
-        "$configure_string"
-    make -j $(nproc)
-
-    # link bins
-    local install_bin_path="$install_dir/bin"
-    mkdir -p "$install_bin_path"
-
-    ln -sf $extracted_dir/sapi/cli/php $install_bin_path/php
-    install_composer "$install_bin_path/php" "$install_bin_path"
-
-    echo "php --version"
-    "$install_bin_path/php" --version
-    echo "composer --version"
-    "$install_bin_path/composer" --version
-
-    echo "Installation complete"
-    return 0;
-}
-
-bin_path() {
-    local version="$2"
-    local version_dir="$(get_version_dir "$version")"
-    local bin_dir="$version_dir/bin"
-
-    if [ ! -d "$bin_dir" ]
-    then
-        echo "No bin dir found"
-        exit 1
-    fi
-
-    echo "$bin_dir"
-    return 0
+  log INFO "PHP $ver installed successfully at $install_dir"
 }
 
 remove() {
-    let version="$2"
-    let version_dir="$(get_version_dir "$version")"
+  local ver=$1
+  local install_dir="$install_base_dir/$ver"
 
-    if [ -d "$version_dir" ]
+  if [[ ! -d "$install_dir" ]]; then
+    log ERROR "Version $ver is not installed."
+    return 1
+  fi
+
+  log INFO "Removing PHP $ver..."
+  rm -rf "$install_dir"
+
+  if [[ -L "$current_link" && $(readlink "$current_link") == "$install_dir" ]]; then
+    rm -f "$current_link"
+    log INFO "Removed active symlink for $ver"
+  fi
+
+  log INFO "PHP $ver removed."
+}
+
+switch_version() {
+  local ver=$1
+  local install_dir="$install_base_dir/$ver"
+
+  if [[ ! -d "$install_dir" ]]; then
+    log ERROR "Version $ver is not installed."
+    return 1
+  fi
+
+  mkdir -p "$(dirname "$current_link")"
+
+  ln -sfn "$install_dir" "$current_link"
+
+  log INFO "Switched active PHP to $ver"
+}
+
+bin_path() {
+  local ver=$1
+  local path="$install_base_dir/$ver/bin"
+  if [[ ! -d "$path" ]]; then
+    log ERROR "Version $ver not installed or bin path missing."
+    return 1
+  fi
+  echo "$path"
+}
+
+run_php() {
+  local bin_dir
+  if [[ -L "$current_link" ]]; then
+    bin_dir="$current_link/bin"
+  else
+    log ERROR "No PHP version selected. Use 'phpvm use <version>' first."
+    exit 1
+  fi
+
+  if [[ ! -x "$bin_dir/php" ]]; then
+    log ERROR "php executable not found in $bin_dir"
+    exit 1
+  fi
+
+  "$bin_dir/php" "$@"
+}
+
+run_composer() {
+  local bin_dir
+  if [[ -L "$current_link" ]]; then
+    bin_dir="$current_link/bin"
+  else
+    log ERROR "No PHP version selected. Use 'phpvm use <version>' first."
+    exit 1
+  fi
+
+  if [[ ! -x "$bin_dir/composer" ]]; then
+    local php_bin="$bin_dir/php"
+
+    log INFO "Installing composer to $bin_dir"
+    EXPECTED_CHECKSUM="$(curl -fSL https://composer.github.io/installer.sig -o-)"
+    curl -fSL https://getcomposer.org/installer -o "$cache_dir/composer-setup.php"
+    ACTUAL_CHECKSUM="$($php_bin -r "echo hash_file('sha384', '$cache_dir/composer-setup.php');")"
+
+    if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
     then
-        rm -rf "$version_dir"
+      log ERROR 'Invalid installer checksum'
+      rm -f composer-setup.php
+      exit 1
     fi
 
-    echo "Removed $version at $version_dir"
+    if ((verbose)); then
+      $php_bin "$cache_dir/composer-setup.php" --install-dir="$bin_dir"
+    else
+      $php_bin "$cache_dir/composer-setup.php" --quiet --install-dir="$bin_dir"
+    fi
+    rm -f composer-setup.php
+
+    echo "#!/usr/bin/env sh
+$php_bin \"$bin_dir/composer.phar\" \$*
+" > "$bin_dir/composer"
+
+    chmod +x "$bin_dir/composer"
+  fi
+
+  "$bin_dir/composer" "$@"
 }
 
-switch_version () {
-    version=$2
-    current="$(bin_path '' $version)"
-    ln -sf "$current" "$current_path"
-    echo "switched to $current"
+run_exec() {
+  local bin_dir
+  if [[ -L "$current_link" ]]; then
+    bin_dir="$current_link/bin"
+  else
+    log ERROR "No PHP version selected. Use 'phpvm use <version>' first."
+    exit 1
+  fi
+
+  local exec_name=$1
+  shift
+
+  if [[ ! -x "$bin_dir/$exec_name" ]]; then
+    log ERROR "Executable '$exec_name' not found in $bin_dir"
+    exit 1
+  fi
+
+  "$bin_dir/$exec_name" "$@"
 }
 
-run_php () {
-    shift
-    "$current_path/php" $*
-}
+main() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -q|--quiet)
+        quiet=1
+        shift
+        ;;
+      -v|--verbose)
+        verbose=1
+        shift
+        ;;
+      -h|--help)
+        usage
+        exit 0
+        ;;
+      -*)
+        echo "Unknown option: $1"
+        usage
+        exit 1
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
 
-run_composer () {
-    shift
-    "$current_path/composer" $*
-}
+  if [[ $# -lt 1 ]]; then
+    usage
+    exit 1
+  fi
 
-dir_setup
-case "${1:-}" in
+  local cmd=$1
+  shift
+  local cmd_args=("$@")
+
+  case "$cmd" in
     help)
-        usage
-        exit 0
-        ;;
-    bin)
-        bin_path "$@"
-        exit 0
-        ;;
+      usage
+      ;;
     ls)
-        ls_local "$@"
-        exit 0
-        ;;
+      ls_local
+      ;;
     ls-remote)
-        ls_remote
-        exit 0;
-        ;;
-    remove)
-        remove "$@"
-        exit 0;
-        ;;
+      ls_remote
+      ;;
     install)
-        install "$@"
-        exit 0;
-        ;;
+      if [[ ${#cmd_args[@]} -ne 1 ]]; then
+        log ERROR "install requires exactly one version argument."
+        exit 1
+      fi
+      install "${cmd_args[0]}"
+      ;;
+    remove)
+      if [[ ${#cmd_args[@]} -ne 1 ]]; then
+        log ERROR "remove requires exactly one version argument."
+        exit 1
+      fi
+      remove "${cmd_args[0]}"
+      ;;
     use)
-        switch_version "$@"
-        exit 0;
-        ;;
-    composer)
-        run_composer "$@"
-        exit 0;
-        ;;
+      if [[ ${#cmd_args[@]} -ne 1 ]]; then
+        log ERROR "use requires exactly one version argument."
+        exit 1
+      fi
+      switch_version "${cmd_args[0]}"
+      ;;
+    bin)
+      if [[ ${#cmd_args[@]} -ne 1 ]]; then
+        log ERROR "bin requires exactly one version argument."
+        exit 1
+      fi
+      bin_path "${cmd_args[0]}"
+      ;;
     php)
-        run_php "$@"
-        exit 0;
-        ;;
+      run_php "${cmd_args[@]}"
+      ;;
+    composer)
+      run_composer "${cmd_args[@]}"
+      ;;
+    run)
+      if [[ ${#cmd_args[@]} -lt 1 ]]; then
+        log ERROR "run requires an executable name argument."
+        exit 1
+      fi
+      run_exec "${cmd_args[@]}"
+      ;;
     *)
-        usage
-        exit 0
-        ;;
-esac
+      log ERROR "Unknown command: $cmd"
+      usage
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"
 
