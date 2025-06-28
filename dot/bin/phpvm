@@ -7,10 +7,14 @@
 
 set -euo pipefail
 
-phpvm_path="$HOME/.phpvm"
-old_rels_cache_path="$phpvm_path/tmp/old_releases.html"
-rels_cache_path="$phpvm_path/tmp/releases.html"
-downloads_path="$phpvm_path/tmp"
+program_name=phpvm
+
+installs_path="${XDG_DATA_DIR:-$HOME/.local/share}/$program_name"
+current_path="$installs_path/current"
+
+downloads_path="${XDG_CACHE_HOME:-$HOME/.cache}/$program_name"
+old_rels_cache_path="$downloads_path/old_releases.html"
+rels_cache_path="$downloads_path/releases.html"
 
 usage() {
     echo "Usage: phpvm cmd"
@@ -35,8 +39,8 @@ deps() {
 }
 
 dir_setup() {
-    mkdir -p ~/.phpvm
-    mkdir -p ~/.phpvm/tmp
+    mkdir -p "$installs_path"
+    mkdir -p "$downloads_path"
 }
 
 ls_remote__get_releases() {
@@ -46,8 +50,8 @@ ls_remote__get_releases() {
 }
 
 ls_remote__versions() {
-    local old_versions="$(cat $old_rels_cache_path| grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort | uniq)"
-    local new_versions="$(cat $rels_cache_path | grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort | uniq)"
+    local old_versions="$(cat $old_rels_cache_path| grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -Vu)"
+    local new_versions="$(cat $rels_cache_path | grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -Vu)"
     echo "$old_versions"
     echo "$new_versions"
     return 0;
@@ -56,7 +60,7 @@ ls_remote__versions() {
 ls_local() {
     # installed means bin was linked
     echo "Locally installed"
-    for dir in $phpvm_path/installs/*
+    for dir in $installs_path/*
     do
         if [ -f "$dir/bin/php" ]
         then
@@ -82,8 +86,8 @@ ls_remote() {
         ls_remote__get_releases
     fi
 
-    local old_versions="$(cat $old_rels_cache_path| grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort | uniq)"
-    local new_versions="$(cat $rels_cache_path | grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort | uniq)"
+    local old_versions="$(cat $old_rels_cache_path| grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -Vu)"
+    local new_versions="$(cat $rels_cache_path | grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+' | sort -Vu)"
     echo "Old versions:"
     echo "$old_versions"
     echo ""
@@ -146,7 +150,7 @@ test_full_version() {
 
 get_version_dir() {
     local version="$1"
-    echo "$phpvm_path/installs/$version"
+    echo "$installs_path/$version"
     return 0
 }
 
@@ -299,18 +303,18 @@ remove() {
 switch_version () {
     version=$2
     current="$(bin_path '' $version)"
-    ln -sf "$current" ~/.phpvm/current
+    ln -sf "$current" "$current_path"
     echo "switched to $current"
 }
 
 run_php () {
     shift
-    ~/.phpvm/current/php $*
+    "$current_path/php" $*
 }
 
 run_composer () {
     shift
-    ~/.phpvm/current/composer $*
+    "$current_path/composer" $*
 }
 
 dir_setup
@@ -356,3 +360,4 @@ case "${1:-}" in
         exit 0
         ;;
 esac
+

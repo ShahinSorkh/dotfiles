@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: test
-# uuid: test
-# key: test
-# --
-public function test_${1:name}(): void
-{
-    $0
-}

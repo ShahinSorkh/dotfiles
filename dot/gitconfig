@@ -14,10 +14,6 @@
 [difftool]
 	prompt = false
 
-[init]
-	templatedir = ~/.git_template
-	defaultBranch = master
-
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
@@ -38,14 +34,14 @@
 [submodule]
 	fetchJobs = 0
 
-# [url "git@github.com:"]
-# 	insteadOf = https://github.com/
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 
-# [url "git@gitlab.com:"]
-# 	insteadOf = https://gitlab.com/
+[url "git@gitlab.com:"]
+    insteadOf = https://gitlab.com/
 
-# [url "git@codeberg.org:"]
-# 	insteadOf = https://codeberg.org/
+[url "git@codeberg.org:"]
+	insteadOf = https://codeberg.org/
 
 [hub]
 	protocol = ssh
