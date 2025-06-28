@@ -24,7 +24,7 @@ log() {
   if (( verbose )); then
     echo "$level: $*"
   else
-    [[ "$level" == "ERROR" || "$level" == "INFO" ]] && echo "$*"
+    [[ "$level" == "ERROR" || "$level" == "INFO" ]] && echo "$*" || true
   fi
 }
 
@@ -71,7 +71,6 @@ get_remote_versions() {
 }
 
 fetch_releases() {
-  log INFO "Fetching available PHP versions..."
   log DEBUG "Fetching releases page..."
   if ! curl -sfSL 'http://php.net/releases/' -o $old_rels_cache_path.tmp; then
     log ERROR "Failed to fetch PHP releases page"

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-PORT=${1:-8000}
+PORT=${1:-8011}
 
 HTML='<!doctype html>
 <html>
@@ -20,11 +20,11 @@ HTML='<!doctype html>
 		.json-null { color: magenta; }
 		.json-key { color: red; }
 		</style>
-		<script defer async src="https://unpkg.com/lodash@4.17.21"></script>
+		<script defer async src="https://unpkg.com/lodash@latest"></script>
 	</head>
 	<body>
-		<textarea id="input" onblur="updateOutput()"></textarea>
-		<textarea id="eval" onblur="updateOutput()"></textarea>
+		<textarea placeholder="json value" id="input" onblur="updateOutput()"></textarea>
+        <textarea placeholder="eval expression (lodash is available)" id="eval" onblur="updateOutput()"></textarea>
 		<span id="len"></span>
 		<div><pre id="output"></pre></div>
 		<script>
@@ -55,7 +55,7 @@ HTML='<!doctype html>
 					isUrl = true
 				} catch(e) {}
 				try {
-					const val = isUrl 
+					const val = isUrl
 						? await fetch(input.value.trim())
 							.then(r => r.text())
 							.catch(e => {
@@ -84,7 +84,7 @@ echo "www root on '$DIR'.."
 cd "$DIR"
 
 echo "$HTML" >index.html
-python -m http.server "$PORT"
+python3 -m http.server "$PORT"
 
 cd /
 rm -rf "$DIR"
