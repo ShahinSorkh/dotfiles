@@ -15,3 +15,7 @@ if test -d $HOME/.bin
     fish_add_path $HOME/.bin
 end
 
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

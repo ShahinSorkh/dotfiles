@@ -63,3 +63,6 @@
 
 [include]
     path = ~/.gitprofile
+[user]
+	name = Shahin Sorkh
+	email = 13497697+ShahinSorkh@users.noreply.github.com

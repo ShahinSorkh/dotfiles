@@ -1,0 +1,1 @@
+complete --command basic-memory --no-files --arguments "(env _BASIC_MEMORY_COMPLETE=complete_fish _TYPER_COMPLETE_FISH_ACTION=get-args _TYPER_COMPLETE_ARGS=(commandline -cp) basic-memory)" --condition "env _BASIC_MEMORY_COMPLETE=complete_fish _TYPER_COMPLETE_FISH_ACTION=is-args _TYPER_COMPLETE_ARGS=(commandline -cp) basic-memory"
